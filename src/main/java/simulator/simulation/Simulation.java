@@ -32,13 +32,13 @@ public class Simulation {
       RequestEvent currentRequestEvent = requestEvents.poll();
       Request currentRequest = currentRequestEvent.getRequest();
       if(currentRequestEvent.isArrivalEvent()) { // arrival event
-        Mapping requestMapping = mapper.map(substrateNetwork, currentRequest);
-        mappings.add(currentRequest, requestMapping);
+        Mapping requestMapping = mapper.map(currentRequest, substrateNetwork);
+        mappings.put(currentRequest, requestMapping);
         if(requestMapping != null) {
           // cria evento de saída
           requestEvents.add(new RequestEvent(currentRequest,
-                                             currentRequest.getDepartureTime()),
-                                             RequestEvent.DEPARTURE_EVENT);
+                                             currentRequest.getDepartureTime(),
+                                             RequestEvent.DEPARTURE_EVENT));
         }
       } else { // departure event
         mappings.get(currentRequest).clearMappings();
