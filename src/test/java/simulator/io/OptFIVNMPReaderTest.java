@@ -12,7 +12,7 @@ public class OptFIVNMPReaderTest extends TestCase {
 
   public OptFIVNMPReaderTest(String testName) {
     super(testName);
-    reader = new OptFIVNMPReader("/home/embs/Data/simulator/VNMP_Instances/20/eu_20_0_prob");
+    reader = new OptFIVNMPReader("/media/embs/Data/VNMP_Instances/20/eu_20_0_prob");
   }
 
   public static Test suite() {
