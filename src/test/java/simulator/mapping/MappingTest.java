@@ -1,4 +1,4 @@
-package simulator.simulation;
+package simulator.mapping;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

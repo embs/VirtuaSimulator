@@ -5,20 +5,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import simulator.io.IVNMPReader;
-import simulator.io.OptFIVNMPReader;
+import simulator.mapping.IMapper;
+import simulator.mapping.Mapping;
 import simulator.network.SubstrateNetwork;
-import simulator.network.components.physical.*;
-import simulator.network.components.virtual.*;
+// import simulator.network.components.physical.*;
+// import simulator.network.components.virtual.*;
 
 public class Simulation {
   private PriorityQueue<RequestEvent> requestEvents;
   private SubstrateNetwork substrateNetwork;
   private HashMap<Request, Mapping> mappings;
 
-  public Simulation(String filename) {
+  public Simulation(IVNMPReader reader) {
     requestEvents = new PriorityQueue<RequestEvent>();
     mappings = new HashMap<Request, Mapping>();
-    IVNMPReader reader = new OptFIVNMPReader(filename);
     substrateNetwork = reader.getSubstrateNetwork();
     ArrayList<Request> virtualRequests = reader.getVirtualNetworkRequests();
     for(Request request : virtualRequests) {
@@ -44,5 +44,9 @@ public class Simulation {
         mappings.get(currentRequest).clearMappings();
       }
     }
+  }
+
+  public HashMap<Request, Mapping> getMappings() {
+    return this.mappings;
   }
 }
