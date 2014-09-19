@@ -56,4 +56,20 @@ public class VirtualLinkTest extends TestCase {
   public void testIsAllocated() {
     assertFalse(virtualLink.isAllocated());
   }
+
+  public void testSourceNodeAttachment() {
+    assertTrue(node1.getAttachedLinks().contains(virtualLink));
+  }
+
+  public void testDestinyNodeAttachment() {
+    assertTrue(node2.getAttachedLinks().contains(virtualLink));
+  }
+
+  public void testNodeAttachedToSourceNode() {
+    assertEquals(node2, virtualLink.getNodeAttachedTo(node1));
+  }
+
+  public void testNodeAttachedToDestinyNode() {
+    assertEquals(node1, virtualLink.getNodeAttachedTo(node2));
+  }
 }

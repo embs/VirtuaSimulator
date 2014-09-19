@@ -11,8 +11,8 @@ public class VirtualLink extends Link {
   private List<PhysicalLink> physicalHostLinks;
 
   public VirtualLink(String id, VirtualNode sourceNode, VirtualNode destinyNode,
-                     double bandWidth, int delay) {
-    super(id, sourceNode, destinyNode, bandWidth, delay);
+                     double bandwidth, int delay) {
+    super(id, sourceNode, destinyNode, bandwidth, delay);
     this.physicalHostLinks = new ArrayList<PhysicalLink>();
   }
 

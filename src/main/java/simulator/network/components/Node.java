@@ -38,8 +38,8 @@ public abstract class Node {
     links.remove(link);
   }
 
-  public Link[] getAttachedLinks() {
-    return links.toArray(new Link[1]);
+  public List<Link> getAttachedLinks() {
+    return links;
   }
 
   public boolean isSourceNodeFor(Link link) {

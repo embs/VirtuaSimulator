@@ -4,6 +4,8 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import simulator.network.components.virtual.VirtualNode;
+
 public class PhysicalNodeTest extends TestCase {
 
   private PhysicalNode physicalNode;
@@ -34,15 +36,36 @@ public class PhysicalNodeTest extends TestCase {
     assertEquals(50.0, physicalNode.getRemainingCapacity());
   }
 
-  public void testGetHypervisorAvailability() {
-    assertNotNull(physicalNode.getHypervisorAvailability());
+  public void testGetNodeAvailability() {
+    assertNotNull(physicalNode.getNodeAvailability());
   }
 
-  public void testGetRouterAvailability() {
-    assertNotNull(physicalNode.getRouterAvailability());
+  public void testGetIntermediaryNodeAvailability() {
+    assertNotNull(physicalNode.getIntermediaryNodeAvailability());
   }
 
-  public void testGetVirtualMachineAvailability() {
-    assertNotNull(physicalNode.getVirtualMachineAvailability());
+  public void testNodesIquality() {
+    PhysicalNode equalNode = new PhysicalNode(1, 100);
+    assertEquals(equalNode, physicalNode);
+  }
+
+  public void testNodesInequality() {
+    PhysicalNode differentNode = new PhysicalNode(2, 100);
+    assertFalse(differentNode.equals(physicalNode));
+  }
+
+  public void testCanHostWhenItCan() {
+    VirtualNode virtualNode = new VirtualNode(1, physicalNode.getCapacity());
+    assertTrue(physicalNode.canHost(virtualNode));
+  }
+
+  public void testCanHostWhenItCannot() {
+    VirtualNode virtualNode = new VirtualNode(1, physicalNode.getCapacity() + 0.1);
+    assertFalse(physicalNode.canHost(virtualNode));
+  }
+
+  public void testAvailabilitiesComparison() {
+    assertEquals(1, physicalNode.getIntermediaryNodeAvailability().compareTo(
+      physicalNode.getNodeAvailability()));
   }
 }

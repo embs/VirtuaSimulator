@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import simulator.network.components.Link;
 import simulator.network.components.physical.PhysicalNode;
+import simulator.network.components.virtual.VirtualLink;
 import simulator.dependability.AvailabilityGenerator;
 
 public class PhysicalLink extends Link {
@@ -28,12 +29,20 @@ public class PhysicalLink extends Link {
     this.bandwidthLoad = bandwidth;
   }
 
+  public double getRemainingBandwidth() {
+    return this.getBandwidthCapacity() - bandwidthLoad;
+  }
+
   public int getCost() {
     return cost;
   }
 
   public void setCost(int cost) {
     this.cost = cost;
+  }
+
+  public boolean canHost(VirtualLink virtualLink) {
+    return this.getRemainingBandwidth() >= virtualLink.getBandwidthCapacity();
   }
 
   public BigDecimal getAvailability() {
@@ -47,7 +56,6 @@ public class PhysicalLink extends Link {
    */
   // import java.util.HashMap;
   // import java.util.ArrayList;
-  // import simulator.network.components.virtual.VirtualLink;
 
   // HashMap<Integer, ArrayList<VirtualLink>> hashVirtualLinks;
 

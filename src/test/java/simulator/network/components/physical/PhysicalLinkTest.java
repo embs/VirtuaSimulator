@@ -5,6 +5,8 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import simulator.network.components.physical.PhysicalNode;
+import simulator.network.components.virtual.VirtualLink;
+import simulator.network.components.virtual.VirtualNode;
 
 public class PhysicalLinkTest extends TestCase {
 
@@ -53,5 +55,42 @@ public class PhysicalLinkTest extends TestCase {
 
   public void testGetAvailability() {
     assertNotNull(physicalLink.getAvailability());
+  }
+
+  public void testSourceNodeAttachment() {
+    assertTrue(node1.getAttachedLinks().contains(physicalLink));
+  }
+
+  public void testDestinyNodeAttachment() {
+    assertTrue(node2.getAttachedLinks().contains(physicalLink));
+  }
+
+  public void testNodeAttachedToSourceNode() {
+    assertEquals(node2, physicalLink.getNodeAttachedTo(node1));
+  }
+
+  public void testNodeAttachedToDestinyNode() {
+    assertEquals(node1, physicalLink.getNodeAttachedTo(node2));
+  }
+
+  public void testGetRemainingBandwidth() {
+    double load = 2.05;
+    physicalLink.setBandwidthLoad(load);
+    assertEquals(physicalLink.getBandwidthCapacity() - load,
+      physicalLink.getRemainingBandwidth());
+  }
+
+  public void testCanHostWhenItCan() {
+    VirtualNode virtualNode1 = new VirtualNode(1, 100);
+    VirtualNode virtualNode2 = new VirtualNode(2, 200);
+    VirtualLink virtualLink = new VirtualLink("1:2", virtualNode1, virtualNode2, 10, 30);
+    assertTrue(physicalLink.canHost(virtualLink));
+  }
+
+  public void testCanHostWhenItCannot() {
+    VirtualNode virtualNode1 = new VirtualNode(1, 100);
+    VirtualNode virtualNode2 = new VirtualNode(2, 200);
+    VirtualLink virtualLink = new VirtualLink("1:2", virtualNode1, virtualNode2, 20, 30);
+    assertFalse(physicalLink.canHost(virtualLink));
   }
 }

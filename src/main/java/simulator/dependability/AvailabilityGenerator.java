@@ -36,17 +36,15 @@ public class AvailabilityGenerator {
     return instance;
   }
 
-  public BigDecimal generateNodeAvailability() {
-    BigDecimal cpuAvailability, hdAvailability, memoryAvailability, hypervisorAvailability, routerAvailability;
+  public BigDecimal generateMachineAvailability() {
+    BigDecimal cpuAvailability, hdAvailability, memoryAvailability, routerAvailability;
     cpuAvailability = generateComponentAvailability(CPU_FAILURE_RATE, CPU_MTTR);
     hdAvailability = generateComponentAvailability(HD_FAILURE_RATE, HD_MTTR);
     memoryAvailability = generateComponentAvailability(MEMORY_FAILURE_RATE, MEMORY_MTTR);
-    hypervisorAvailability = generateComponentAvailability(HYPERVISOR_FAILURE_RATE, HYPERVISOR_MTTR);
     routerAvailability = generateComponentAvailability(ROUTER_FAILURE_RATE, ROUTER_MTTR);
 
     return cpuAvailability.multiply(hdAvailability, MATH_CONTEXT).
         multiply(memoryAvailability, MATH_CONTEXT).
-        multiply(hypervisorAvailability, MATH_CONTEXT).
         multiply(routerAvailability, MATH_CONTEXT);
   }
 

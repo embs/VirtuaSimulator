@@ -72,6 +72,8 @@ public class OptFIVNMPReader implements IVNMPReader {
     scanner.nextLine(); // 40
     scanner.nextLine(); // #Virtual Graph
     while(scanner.hasNextLine()) {
+      virtualNodes = new HashMap<Integer, VirtualNode>();
+      virtualLinks = new HashMap<String, VirtualLink>();
       l = scanner.nextLine(); // # noVertices
       int amountNodes = Integer.valueOf(scanner.nextLine());
       scanner.nextLine(); // # noArcs
@@ -96,7 +98,8 @@ public class OptFIVNMPReader implements IVNMPReader {
                                             Integer.valueOf(line[3])));
         }
       }
-      requests.add(new Request(idRequest, idRequest, 5000, virtualNodes, virtualLinks));
+      requests.add(idRequest,
+        new Request(idRequest, idRequest, 5000, virtualNodes, virtualLinks));
       idRequest++;
       while(scanner.hasNextLine() && !l.equals("#Virtual Graph")) {
         l = scanner.nextLine();

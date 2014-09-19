@@ -4,6 +4,7 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import simulator.network.components.virtual.*;
@@ -13,7 +14,7 @@ public class MappingTest extends TestCase {
 
   private Mapping mapping;
   private PhysicalNode hostingNode;
-  private PhysicalLink[] hostingLinks;
+  private ArrayList<PhysicalLink> hostingLinks;
   private VirtualNode virtualNode;
   private VirtualLink virtualLink;
 
@@ -24,11 +25,11 @@ public class MappingTest extends TestCase {
     virtualNode = new VirtualNode(1, 50);
     virtualLink = new VirtualLink("1:2", new VirtualNode(1, 50),
                                   new VirtualNode(2, 50), 5, 5);
-    hostingLinks = new PhysicalLink[5];
-    for(int i = 0; i < hostingLinks.length; i++) {
+    hostingLinks = new ArrayList<PhysicalLink>();
+    for(int i = 0; i < 5; i++) {
       String linkId = String.format("%s:%s", i, i+1);
-      hostingLinks[i] = new PhysicalLink(linkId, new PhysicalNode(i, 100),
-                                         new PhysicalNode(i+1, 100), 200, 5, 5);
+      hostingLinks.add(new PhysicalLink(linkId, new PhysicalNode(i, 100),
+                                               new PhysicalNode(i+1, 100), 200, 5, 5));
     }
   }
 
@@ -75,11 +76,11 @@ public class MappingTest extends TestCase {
 
   public void testIsLinkInUseWhenItIs() {
     mapping.addLinkMapping(virtualLink, hostingLinks);
-    assertTrue(mapping.isLinkInUse(hostingLinks[0]));
+    assertTrue(mapping.isLinkInUse(hostingLinks.get(0)));
   }
 
   public void testIsLinkInUseWhenItIsnt() {
-    assertFalse(mapping.isLinkInUse(hostingLinks[0]));
+    assertFalse(mapping.isLinkInUse(hostingLinks.get(0)));
   }
 
   public void testClearMappings() {

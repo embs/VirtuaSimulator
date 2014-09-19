@@ -58,13 +58,14 @@ public class SubstrateNetwork {
   }
 
   /*
-   * Retorna ArrayList com nós virtuais que têm capacidade maior que a
+   * Retorna ArrayList com nós físicos que têm capacidade maior que a
    * especificada como parâmetro.
    */
-  public ArrayList<PhysicalNode> getPhysicalNodes(double capacity) {
+  public ArrayList<PhysicalNode> getPhysicalNodesWithRemainingCapacityGreaterThan(
+                                                              double capacity) {
     ArrayList<PhysicalNode> capablePhysicalNodes = new ArrayList<PhysicalNode>();
     for(PhysicalNode node : physicalNodes.values()) {
-      if(node.getCapacity() - node.getLoad() > capacity) {
+      if(node.getRemainingCapacity() > capacity) {
         capablePhysicalNodes.add(node);
       }
     }

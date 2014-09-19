@@ -40,4 +40,14 @@ public class VirtualNodeTest extends TestCase {
     virtualNode.setPhysicalHostNode(hostNode);
     assertEquals(hostNode, virtualNode.getPhysicalHostNode());
   }
+
+  public void testNodesIquality() {
+    VirtualNode equalNode = new VirtualNode(1, 100);
+    assertEquals(equalNode, virtualNode);
+  }
+
+  public void testNodesInequality() {
+    VirtualNode differentNode = new VirtualNode(2, 100);
+    assertFalse(differentNode.equals(virtualNode));
+  }
 }

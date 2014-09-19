@@ -62,16 +62,19 @@ public class SubstrateNetworkTest extends TestCase {
 
   public void testGetPhysicalNodesWithCapacityGreaterThan50() {
     substrateNetwork.setHashNodes(physicalNodes);
-    assertEquals(5, substrateNetwork.getPhysicalNodes(50).size());
+    assertEquals(5, substrateNetwork.
+      getPhysicalNodesWithRemainingCapacityGreaterThan(50).size());
   }
 
   public void testGetPhysicalNodesWithCapacityGreaterThan100() {
     substrateNetwork.setHashNodes(physicalNodes);
-    assertEquals(4, substrateNetwork.getPhysicalNodes(100).size());
+    assertEquals(4, substrateNetwork.
+      getPhysicalNodesWithRemainingCapacityGreaterThan(100).size());
   }
 
   public void testGetPhysicalNodesWithCapacityGreaterThan500() {
     substrateNetwork.setHashNodes(physicalNodes);
-    assertEquals(0, substrateNetwork.getPhysicalNodes(500).size());
+    assertEquals(0, substrateNetwork.
+      getPhysicalNodesWithRemainingCapacityGreaterThan(500).size());
   }
 }

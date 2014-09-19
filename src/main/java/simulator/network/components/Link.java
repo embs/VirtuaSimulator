@@ -14,6 +14,8 @@ public abstract class Link {
     this.destinyNode = destinyNode;
     this.bandwidthCapacity = bandwidth;
     this.delay = delay;
+    sourceNode.attachLink(this);
+    destinyNode.attachLink(this);
   }
 
   public String getId() {
@@ -63,6 +65,13 @@ public abstract class Link {
       return true;
 
     return false;
+  }
+
+  public Node getNodeAttachedTo(Node node) {
+    if(node.equals(sourceNode))
+      return destinyNode;
+
+    return sourceNode;
   }
 
   public boolean equals(Object obj) {

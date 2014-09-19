@@ -1,5 +1,6 @@
 package simulator.mapping;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import simulator.network.components.physical.PhysicalLink;
@@ -12,11 +13,11 @@ import simulator.network.components.virtual.VirtualNode;
  */
 public class Mapping {
   private HashMap<VirtualNode, PhysicalNode> nodesMapping;
-  private HashMap<VirtualLink, PhysicalLink[]> linksMapping;
+  private HashMap<VirtualLink, ArrayList<PhysicalLink>> linksMapping;
 
   public Mapping() {
     nodesMapping = new HashMap<VirtualNode, PhysicalNode>();
-    linksMapping = new HashMap<VirtualLink, PhysicalLink[]>();
+    linksMapping = new HashMap<VirtualLink, ArrayList<PhysicalLink>>();
   }
 
   public void addNodeMapping(VirtualNode virtualNode, PhysicalNode physicalNode) {
@@ -26,7 +27,8 @@ public class Mapping {
     nodesMapping.put(virtualNode, physicalNode);
   }
 
-  public void addLinkMapping(VirtualLink virtualLink, PhysicalLink physicalLink[]) {
+  public void addLinkMapping(VirtualLink virtualLink,
+                                         ArrayList<PhysicalLink> physicalLink) {
     if(linksMapping.containsKey(virtualLink))
       throw new RuntimeException("Enlace virtual já está alocado.");
 
@@ -45,7 +47,7 @@ public class Mapping {
     return nodesMapping.get(virtualNode);
   }
 
-  public PhysicalLink[] getHostingLinksFor(VirtualLink virtualLink) {
+  public ArrayList<PhysicalLink> getHostingLinksFor(VirtualLink virtualLink) {
     return linksMapping.get(virtualLink);
   }
 
@@ -54,7 +56,7 @@ public class Mapping {
   }
 
   public boolean isLinkInUse(PhysicalLink link) {
-    for(PhysicalLink[] linksPath : linksMapping.values()) {
+    for(ArrayList<PhysicalLink> linksPath : linksMapping.values()) {
       for(PhysicalLink l : linksPath) {
         if(l.equals(link)) {
 

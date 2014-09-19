@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import simulator.network.components.Node;
+import simulator.network.components.virtual.VirtualNode;
 import simulator.dependability.AvailabilityGenerator;
 
 import static simulator.util.Config.COMPARE_NODES_BY_AVAILABILITY;
@@ -13,17 +14,16 @@ import static simulator.util.Config.softwareAgingScenario;
 
 public class PhysicalNode extends Node implements Comparable<PhysicalNode> {
   private double load;
-  private BigDecimal virtualMachineAvailability;
-  private BigDecimal routerAvailability;
+  private BigDecimal machineAvailability;
   private BigDecimal hypervisorAvailability;
 
   public PhysicalNode (int id, double capacity) {
     super(id, capacity);
-    this.virtualMachineAvailability = AvailabilityGenerator.getInstance().generateNodeAvailability();
-    this.routerAvailability = AvailabilityGenerator.getInstance().generateComponentAvailability(
-        AvailabilityGenerator.ROUTER_FAILURE_RATE, AvailabilityGenerator.ROUTER_MTTR);
-    this.hypervisorAvailability = AvailabilityGenerator.getInstance().generateComponentAvailability(
-        AvailabilityGenerator.HYPERVISOR_FAILURE_RATE, AvailabilityGenerator.HYPERVISOR_MTTR);
+    this.machineAvailability = AvailabilityGenerator.getInstance().
+      generateMachineAvailability();
+    this.hypervisorAvailability = AvailabilityGenerator.getInstance().
+      generateComponentAvailability(AvailabilityGenerator.HYPERVISOR_FAILURE_RATE,
+        AvailabilityGenerator.HYPERVISOR_MTTR);
   }
 
   public double getLoad() {
@@ -38,39 +38,22 @@ public class PhysicalNode extends Node implements Comparable<PhysicalNode> {
     return this.getCapacity() - this.load;
   }
 
-  public BigDecimal getHypervisorAvailability() {
-    return this.hypervisorAvailability;
+  public boolean canHost(VirtualNode virtualNode) {
+    return this.getRemainingCapacity() >= virtualNode.getCapacity();
   }
 
-  public BigDecimal getVirtualMachineAvailability() {
-    double dLoad = (load / this.getCapacity()) * 100;
-    if(dLoad > 0 && softwareAgingScenario) {
-      double expRate = Math.pow(dLoad, 2) / 10000;
-      double hypervisorDependabilityFactor = (1 - (SOFTWARE_AGING_CONSTANT * expRate));
-      BigDecimal rateFinal= BigDecimal.valueOf(hypervisorDependabilityFactor);
-      BigDecimal hypervisorAvailabilityFinal = hypervisorAvailability.multiply(rateFinal);
-
-      return virtualMachineAvailability.multiply(hypervisorAvailabilityFinal);
-    }
-
-    return virtualMachineAvailability.multiply(hypervisorAvailability);
+  public BigDecimal getNodeAvailability() {
+    return hypervisorAvailability.multiply(machineAvailability);
   }
 
-  public BigDecimal getRouterAvailability() {
-    return this.routerAvailability;
+  public BigDecimal getIntermediaryNodeAvailability() {
+    return machineAvailability;
   }
 
   @Override
-  public int compareTo(PhysicalNode x) {
-    if(COMPARE_NODES_BY_AVAILABILITY) {
-      return x.getVirtualMachineAvailability().compareTo(this.getVirtualMachineAvailability());
-    } else {
-      if((this.getCapacity() - load) / this.getCapacity()>(x.getCapacity()-x.getLoad())/x.getCapacity())
-        return -1;
-      else if((this.getCapacity()-load) / this.getCapacity() < (x.getCapacity()-x.getLoad())/x.getCapacity())
-        return 1;
-      else return 0;
-    }
+  public int compareTo(PhysicalNode node) {
+    return node.getNodeAvailability().compareTo(
+      this.getNodeAvailability());
   }
 
   /**
@@ -78,8 +61,6 @@ public class PhysicalNode extends Node implements Comparable<PhysicalNode> {
    * CÓDIGO LEGADO
    *
    */
-  // import simulator.network.components.virtual.VirtualNode;
-
   // private ArrayList<PhysicalLink> listLinks;
   // private HashMap<Integer, ArrayList<VirtualNode>> hashVirtualNodes;
   // private HashMap<Integer, ArrayList<String>> shortestPathsHash;
@@ -154,4 +135,38 @@ public class PhysicalNode extends Node implements Comparable<PhysicalNode> {
   //     HashMap<Integer, ArrayList<VirtualNode>> hashVirtualNodes) {
   //   this.hashVirtualNodes = hashVirtualNodes;
   // }
+
+  // public BigDecimal getHypervisorAvailability() {
+  //   return this.hypervisorAvailability;
+  // }
+
+  // public BigDecimal getVirtualMachineAvailability() {
+  //   double dLoad = (load / this.getCapacity()) * 100;
+  //   if(dLoad > 0 && softwareAgingScenario) {
+  //     double expRate = Math.pow(dLoad, 2) / 10000;
+  //     double hypervisorDependabilityFactor = (1 - (SOFTWARE_AGING_CONSTANT * expRate));
+  //     BigDecimal rateFinal= BigDecimal.valueOf(hypervisorDependabilityFactor);
+  //     BigDecimal hypervisorAvailabilityFinal = hypervisorAvailability.multiply(rateFinal);
+
+  //     return virtualMachineAvailability.multiply(hypervisorAvailabilityFinal);
+  //   }
+
+  //   return virtualMachineAvailability.multiply(hypervisorAvailability);
+  // }
+
+  // public BigDecimal getRouterAvailability() {
+  //   return this.routerAvailability;
+  // }
+
+  // @Override
+  // public int compareTo(PhysicalNode x) {
+  //   if(COMPARE_NODES_BY_AVAILABILITY) {
+  //     return x.getVirtualMachineAvailability().compareTo(this.getVirtualMachineAvailability());
+  //   } else {
+  //     if((this.getCapacity() - load) / this.getCapacity()>(x.getCapacity()-x.getLoad())/x.getCapacity())
+  //       return -1;
+  //     else if((this.getCapacity()-load) / this.getCapacity() < (x.getCapacity()-x.getLoad())/x.getCapacity())
+  //       return 1;
+  //     else return 0;
+  //   }
 }
