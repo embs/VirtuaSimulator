@@ -2,10 +2,11 @@ package simulator.network.components.physical;
 
 import java.math.BigDecimal;
 
+import generator.dependability.AvailabilityGenerator;
+
 import simulator.network.components.Link;
 import simulator.network.components.physical.PhysicalNode;
 import simulator.network.components.virtual.VirtualLink;
-import simulator.dependability.AvailabilityGenerator;
 
 public class PhysicalLink extends Link {
   private double bandwidthLoad;

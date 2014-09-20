@@ -4,9 +4,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import generator.dependability.AvailabilityGenerator;
+
 import simulator.network.components.Node;
 import simulator.network.components.virtual.VirtualNode;
-import simulator.dependability.AvailabilityGenerator;
 
 import static simulator.util.Config.COMPARE_NODES_BY_AVAILABILITY;
 import static simulator.util.Config.SOFTWARE_AGING_CONSTANT;

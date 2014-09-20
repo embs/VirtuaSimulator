@@ -1,4 +1,4 @@
-package simulator.dependability;
+package generator.dependability;
 
 import java.math.BigDecimal;
 import java.util.Random;
