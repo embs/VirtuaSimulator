@@ -19,6 +19,7 @@ public class PhysicalNode extends Node implements Comparable<PhysicalNode> {
 
   public PhysicalNode (int id, double capacity) {
     super(id, capacity);
+    load = 0;
     this.machineAvailability = AvailabilityGenerator.getInstance().
       generateMachineAvailability();
     this.hypervisorAvailability = AvailabilityGenerator.getInstance().
@@ -30,8 +31,12 @@ public class PhysicalNode extends Node implements Comparable<PhysicalNode> {
     return this.load;
   }
 
-  public void setLoad(double load) {
-    this.load = load;
+  public void addLoad(double load) {
+    this.load += load;
+  }
+
+  public void removeLoad(double load) {
+    this.load -= load;
   }
 
   public double getRemainingCapacity() {

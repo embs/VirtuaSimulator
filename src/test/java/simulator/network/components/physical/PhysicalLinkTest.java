@@ -75,7 +75,7 @@ public class PhysicalLinkTest extends TestCase {
 
   public void testGetRemainingBandwidth() {
     double load = 2.05;
-    physicalLink.setBandwidthLoad(load);
+    physicalLink.addBandwidthLoad(load);
     assertEquals(physicalLink.getBandwidthCapacity() - load,
       physicalLink.getRemainingBandwidth());
   }
@@ -92,5 +92,21 @@ public class PhysicalLinkTest extends TestCase {
     VirtualNode virtualNode2 = new VirtualNode(2, 200);
     VirtualLink virtualLink = new VirtualLink("1:2", virtualNode1, virtualNode2, 20, 30);
     assertFalse(physicalLink.canHost(virtualLink));
+  }
+
+  public void testAddBandwidthLoad() {
+    double initialBandwidthLoad = physicalLink.getBandwidthLoad();
+    double bandwidthLoadVar = 2.5;
+    physicalLink.addBandwidthLoad(bandwidthLoadVar);
+    assertEquals(initialBandwidthLoad + bandwidthLoadVar,
+      physicalLink.getBandwidthLoad());
+  }
+
+  public void testRemoveBandwidthLoad() {
+    double initialBandwidthLoad = physicalLink.getBandwidthLoad();
+    double bandwidthLoadVar = 2.5;
+    physicalLink.removeBandwidthLoad(bandwidthLoadVar);
+    assertEquals(initialBandwidthLoad - bandwidthLoadVar,
+      physicalLink.getBandwidthLoad());
   }
 }

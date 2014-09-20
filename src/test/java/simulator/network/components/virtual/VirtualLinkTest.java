@@ -5,8 +5,6 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import simulator.network.components.virtual.VirtualNode;
-import simulator.network.components.physical.PhysicalNode;
-import simulator.network.components.physical.PhysicalLink;
 
 public class VirtualLinkTest extends TestCase {
 
@@ -39,22 +37,6 @@ public class VirtualLinkTest extends TestCase {
 
   public void testGetBandwidthCapacity() {
     assertEquals(10.1, virtualLink.getBandwidthCapacity());
-  }
-
-  public void testGetMappedPhysicalLinksList() {
-    assertNotNull(virtualLink.getMappedPhysicalLinksList());
-  }
-
-  public void testAddPhysicalLinkToPhysicalHostLinks() {
-    PhysicalNode node1 = new PhysicalNode(1, 100);
-    PhysicalNode node2 = new PhysicalNode(2, 100);
-    PhysicalLink hostLink = new PhysicalLink("1:2", node1, node2, 50.0, 40, 100);
-    virtualLink.addPhysicalLinkToPhysicalHostLinks(hostLink);
-    assertTrue(virtualLink.isAllocated());
-  }
-
-  public void testIsAllocated() {
-    assertFalse(virtualLink.isAllocated());
   }
 
   public void testSourceNodeAttachment() {

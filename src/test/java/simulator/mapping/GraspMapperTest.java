@@ -11,7 +11,7 @@ import simulator.io.OptFIVNMPReader;
 import simulator.network.SubstrateNetwork;
 import simulator.network.components.Path;
 import simulator.network.components.virtual.*;
-import simulator.network.components.physical.PhysicalNode;
+import simulator.network.components.physical.*;
 import simulator.simulation.Request;
 
 public class GraspMapperTest extends TestCase {
@@ -125,6 +125,31 @@ public class GraspMapperTest extends TestCase {
           assertTrue(mapping.isLinkMapped(virtualLink));
         }
       }
+    }
+  }
+
+  public void testMapFreesUpResourcesOnMappingFailure() {
+    Request request = requests.get(0);
+    VirtualNode virtualNode = request.getVirtualNodes().get(0);
+    VirtualLink virtualLink = (VirtualLink) virtualNode.getAttachedLinks().get(0);
+    virtualLink.setBandwidthCapacity(9999);
+    mapper.map(request, substrateNetwork);
+    for(PhysicalNode physicalNode : substrateNetwork.getHashNodes().values()) {
+      assertEquals(0D, physicalNode.getLoad());
+    }
+    for(PhysicalLink physicalLink : substrateNetwork.getHashLinks().values()) {
+      assertEquals(0D, physicalLink.getBandwidthLoad());
+    }
+  }
+
+  public void testMapDoesNotSharePhysicalNodes() {
+    Request request = requests.get(0);
+    Mapping mapping = mapper.map(request, substrateNetwork);
+    ArrayList<Integer> hostsIds = new ArrayList<Integer>();
+    for(VirtualNode virtualNode : request.getVirtualNodes().values()) {
+      PhysicalNode hostingNode = mapping.getHostingNodeFor(virtualNode);
+      assertEquals(false, hostsIds.contains(hostingNode.getId()));
+      hostsIds.add(hostingNode.getId());
     }
   }
 }

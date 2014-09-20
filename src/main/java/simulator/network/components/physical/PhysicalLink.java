@@ -15,18 +15,23 @@ public class PhysicalLink extends Link {
   public PhysicalLink(String id, PhysicalNode sourceNode, PhysicalNode destinyNode,
                       double bandwidth, int delay, int cost) {
     super(id, sourceNode, destinyNode, bandwidth, delay);
+    bandwidthLoad = 0;
     this.cost = cost;
     this.availability = AvailabilityGenerator.getInstance().
       generateComponentAvailability(AvailabilityGenerator.LINK_FAILURE_RATE,
                                     AvailabilityGenerator.LINK_MTTR);
   }
 
-  public Double getBandwidthLoad() {
+  public double getBandwidthLoad() {
     return bandwidthLoad;
   }
 
-  public void setBandwidthLoad(Double bandwidth) {
-    this.bandwidthLoad = bandwidth;
+  public void addBandwidthLoad(double bandwidth) {
+    this.bandwidthLoad += bandwidth;
+  }
+
+  public void removeBandwidthLoad(double bandwidth) {
+    this.bandwidthLoad -= bandwidth;
   }
 
   public double getRemainingBandwidth() {

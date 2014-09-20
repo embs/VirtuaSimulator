@@ -93,4 +93,37 @@ public class MappingTest extends TestCase {
     for(PhysicalLink hostingLink : hostingLinks)
       assertFalse(mapping.isLinkInUse(hostingLink));
   }
+
+  public void testAddNodeMappingAddsLoadToPhysicalNode() {
+    mapping.addNodeMapping(virtualNode, hostingNode);
+    assertEquals(hostingNode.getCapacity() - virtualNode.getCapacity(),
+      hostingNode.getRemainingCapacity());
+  }
+
+  public void testAddLinkMappingAddsLoadToPhysicalLinks() {
+    mapping.addLinkMapping(virtualLink, hostingLinks);
+    for(PhysicalLink physicalLink : hostingLinks) {
+      assertEquals(physicalLink.getBandwidthCapacity()
+        - virtualLink.getBandwidthCapacity(), physicalLink.getRemainingBandwidth());
+    }
+  }
+
+  public void testClearMappingsRemovesLoadsFromPhysicalNodesAndLinks() {
+    mapping.addNodeMapping(virtualNode, hostingNode);
+    mapping.addLinkMapping(virtualLink, hostingLinks);
+    mapping.clearMappings();
+    assertEquals(hostingNode.getCapacity(), hostingNode.getRemainingCapacity());
+    for(PhysicalLink hostingLink : hostingLinks)
+      assertEquals(hostingLink.getBandwidthCapacity(),
+        hostingLink.getRemainingBandwidth());
+  }
+
+  public void testSamePhysicalNodeCanHostMultipleVirtualNodesFromDifferentRequests() {
+    VirtualNode nodeFromRequest1 = new VirtualNode(1, 100);
+    VirtualNode nodeFromRequest2 = new VirtualNode(1, 100);
+    mapping.addNodeMapping(nodeFromRequest1, hostingNode);
+    mapping.addNodeMapping(nodeFromRequest2, hostingNode);
+    assertEquals(hostingNode, mapping.getHostingNodeFor(nodeFromRequest1));
+    assertEquals(hostingNode, mapping.getHostingNodeFor(nodeFromRequest2));
+  }
 }

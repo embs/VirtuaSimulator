@@ -24,15 +24,19 @@ public class Mapping {
     if(nodesMapping.containsKey(virtualNode))
       throw new RuntimeException("Nó virtual já está alocado.");
 
+    physicalNode.addLoad(virtualNode.getCapacity());
     nodesMapping.put(virtualNode, physicalNode);
   }
 
   public void addLinkMapping(VirtualLink virtualLink,
-                                         ArrayList<PhysicalLink> physicalLink) {
+                                         ArrayList<PhysicalLink> physicalLinks) {
     if(linksMapping.containsKey(virtualLink))
       throw new RuntimeException("Enlace virtual já está alocado.");
 
-    linksMapping.put(virtualLink, physicalLink);
+    for(PhysicalLink physicalLink : physicalLinks) {
+      physicalLink.addBandwidthLoad(virtualLink.getBandwidthCapacity());
+    }
+    linksMapping.put(virtualLink, physicalLinks);
   }
 
   public boolean isNodeMapped(VirtualNode virtualNode) {
@@ -69,6 +73,17 @@ public class Mapping {
   }
 
   public void clearMappings() {
+    for(VirtualNode virtualNode : nodesMapping.keySet()) {
+      PhysicalNode hostingNode = nodesMapping.get(virtualNode);
+      hostingNode.removeLoad(virtualNode.getCapacity());
+    }
+    for(VirtualLink virtualLink : linksMapping.keySet()) {
+      ArrayList<PhysicalLink> hostingLinks = linksMapping.get(virtualLink);
+      for(PhysicalLink hostingLink : hostingLinks) {
+        hostingLink.removeBandwidthLoad(virtualLink.getBandwidthCapacity());
+      }
+    }
+
     nodesMapping.clear();
     linksMapping.clear();
   }

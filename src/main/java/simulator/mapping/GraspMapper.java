@@ -24,23 +24,24 @@ public class GraspMapper implements IMapper {
   private final int MIN_RCL_SIZE = 7;
   private final int MAX_SEARCH_TRIES = 20;
   public static MathContext MATH_CONTEXT = new MathContext(10, RoundingMode.HALF_UP);
-  private ArrayList<VirtualNode> discoveredVirtualNodes;
   private Random random;
 
   public GraspMapper() {
-    discoveredVirtualNodes = new ArrayList<VirtualNode>();
     random = new Random(1337);
   }
 
   public Mapping map(Request request, SubstrateNetwork substrateNetwork) {
     Mapping mapping = new Mapping();
+    ArrayList<VirtualNode> discoveredVirtualNodes = new ArrayList<VirtualNode>();
     HashMap<Integer, VirtualNode> virtualNodes = request.getVirtualNodes();
     VirtualNode firstVirtualNode = virtualNodes.get(random.nextInt(virtualNodes.size()));
     PhysicalNode firstPhysicalNode = findFirstPhysicalNodeFor(firstVirtualNode,
       substrateNetwork);
 
-    if(firstPhysicalNode == null)
+    if(firstPhysicalNode == null) {
+      mapping.clearMappings();
       return null;
+    }
 
     mapping.addNodeMapping(firstVirtualNode, firstPhysicalNode);
     discoveredVirtualNodes.add(firstVirtualNode);
@@ -60,8 +61,10 @@ public class GraspMapper implements IMapper {
           discoveredVirtualNode);
         if(!mapping.isNodeMapped(attachedNode)) {
           if(!mapBranch(discoveredVirtualNode, attachedNode,
-             (VirtualLink) attachedVirtualLink, substrateNetwork, mapping))
+             (VirtualLink) attachedVirtualLink, substrateNetwork, mapping)) {
+            mapping.clearMappings();
             return null;
+          }
 
           discoveredVirtualNodes.add(attachedNode);
         }
@@ -83,6 +86,7 @@ public class GraspMapper implements IMapper {
         if(path != null && path.canHost(virtualLink)) {
           mapping.addLinkMapping(virtualLink, path.getLinks());
         } else {
+          mapping.clearMappings();
           return null;
         }
       }
@@ -137,7 +141,7 @@ public class GraspMapper implements IMapper {
     ArrayList<PhysicalNode> candidateNodes = new ArrayList<PhysicalNode>();
     for(PhysicalNode physicalNode : substrateNetwork.getHashNodes().values()) {
       // FIXME não permite compartilhamento de nós físicos
-      if(!physicalNode.equals(mapping.getHostingNodeFor(sourceVirtualNode))
+      if(!mapping.isNodeInUse(physicalNode)
          && physicalNode.canHost(destinyVirtualNode)
          && shortestPaths.get(physicalNode).canHost(virtualLink)) { // shortestPath null?
         candidateNodes.add(physicalNode);

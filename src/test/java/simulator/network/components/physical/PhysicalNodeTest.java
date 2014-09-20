@@ -32,7 +32,7 @@ public class PhysicalNodeTest extends TestCase {
   }
 
   public void testGetRemainingCapacity() {
-    physicalNode.setLoad(50.2);
+    physicalNode.addLoad(50.2);
     assertEquals(50.0, physicalNode.getRemainingCapacity());
   }
 
@@ -67,5 +67,19 @@ public class PhysicalNodeTest extends TestCase {
   public void testAvailabilitiesComparison() {
     assertEquals(1, physicalNode.getIntermediaryNodeAvailability().compareTo(
       physicalNode.getNodeAvailability()));
+  }
+
+  public void testAddLoad() {
+    double initialLoad = physicalNode.getLoad();
+    double loadVar = 50.05;
+    physicalNode.addLoad(loadVar);
+    assertEquals(initialLoad + loadVar, physicalNode.getLoad());
+  }
+
+  public void testRemoveLoad() {
+    double initialLoad = physicalNode.getLoad();
+    double loadVar = 50.05;
+    physicalNode.removeLoad(loadVar);
+    assertEquals(initialLoad - loadVar, physicalNode.getLoad());
   }
 }
