@@ -77,4 +77,70 @@ public class SubstrateNetworkTest extends TestCase {
     assertEquals(0, substrateNetwork.
       getPhysicalNodesWithRemainingCapacityGreaterThan(500).size());
   }
+
+  public void testCollectNodesLoad() {
+    substrateNetwork.setHashNodes(physicalNodes);
+    assertEquals(physicalNodes.size(),
+      substrateNetwork.collectNodesLoad().getSize());
+  }
+
+  public void testCollectLinksBandwidthLoad() {
+    substrateNetwork.setHashLinks(physicalLinks);
+    assertEquals(physicalLinks.size(),
+      substrateNetwork.collectLinksBandwidthLoad().getSize());
+  }
+
+  public void testGetAverageNodesLoad() {
+    substrateNetwork.setHashNodes(physicalNodes);
+    for(PhysicalNode node : physicalNodes.values()) {
+      node.addLoad(10);
+    }
+    assertEquals(10D,
+      substrateNetwork.getAverageNodesLoad());
+  }
+
+  public void testGetMaximumNodesLoad() {
+    substrateNetwork.setHashNodes(physicalNodes);
+    for(PhysicalNode node : physicalNodes.values()) {
+      node.addLoad(10);
+    }
+    assertEquals(10D,
+      substrateNetwork.getMaximumNodesLoad());
+  }
+
+  public void testGetNodesLoadStandardDeviation() {
+    substrateNetwork.setHashNodes(physicalNodes);
+    for(PhysicalNode node : physicalNodes.values()) {
+      node.addLoad(10);
+    }
+    assertEquals(0D,
+      substrateNetwork.getNodesLoadStandardDeviation());
+  }
+
+  public void testGetAverageLinksBandwidthLoad() {
+    substrateNetwork.setHashLinks(physicalLinks);
+    for(PhysicalLink link : physicalLinks.values()) {
+      link.addBandwidthLoad(10);
+    }
+    assertEquals(10D,
+      substrateNetwork.getAverageLinksBandwidthLoad());
+  }
+
+  public void testGetMaximumLinksBandwidthLoad() {
+    substrateNetwork.setHashLinks(physicalLinks);
+    for(PhysicalLink link : physicalLinks.values()) {
+      link.addBandwidthLoad(10);
+    }
+    assertEquals(10D,
+      substrateNetwork.getMaximumLinksBandwidthLoad());
+  }
+
+  public void testGetLinksBandwidthLoadStandardDeviation() {
+    substrateNetwork.setHashLinks(physicalLinks);
+    for(PhysicalLink link : physicalLinks.values()) {
+      link.addBandwidthLoad(10);
+    }
+    assertEquals(0D,
+      substrateNetwork.getLinksBandwidthLoadStandardDeviation());
+  }
 }

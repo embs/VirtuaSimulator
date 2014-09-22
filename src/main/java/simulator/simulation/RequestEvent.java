@@ -43,4 +43,10 @@ public class RequestEvent implements Comparable<RequestEvent> {
     else
       throw new RuntimeException("Dois eventos ao mesmo tempo.");
   }
+
+  @Override
+  public String toString() {
+    return String.format("%s %s %s %s",
+      request.getId(), time, request.getLifeTime(), type);
+  }
 }

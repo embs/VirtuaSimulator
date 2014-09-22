@@ -3,8 +3,11 @@ package simulator.network;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.uncommons.maths.statistics.DataSet;
+
 import simulator.network.components.physical.PhysicalLink;
 import simulator.network.components.physical.PhysicalNode;
+import simulator.util.Util;
 
 public class SubstrateNetwork {
   private HashMap<Integer, PhysicalNode> physicalNodes;
@@ -73,6 +76,49 @@ public class SubstrateNetwork {
     return capablePhysicalNodes;
   }
 
+  public double getAverageNodesLoad() {
+    return Util.getAverage(collectNodesLoad());
+  }
+
+  public double getMaximumNodesLoad() {
+    return Util.getMaximum(collectNodesLoad());
+  }
+
+  public double getNodesLoadStandardDeviation() {
+    return Util.getStandardDeviation(collectNodesLoad());
+  }
+
+  public double getAverageLinksBandwidthLoad() {
+    return Util.getAverage(collectLinksBandwidthLoad());
+  }
+
+  public double getMaximumLinksBandwidthLoad() {
+    return Util.getMaximum(collectLinksBandwidthLoad());
+  }
+
+  public double getLinksBandwidthLoadStandardDeviation() {
+    return Util.getStandardDeviation(collectLinksBandwidthLoad());
+  }
+
+  protected DataSet collectNodesLoad() {
+    DataSet data = new DataSet();
+    for(PhysicalNode node : physicalNodes.values()) {
+      data.addValue(node.getLoad());
+    }
+
+    return data;
+  }
+
+  protected DataSet collectLinksBandwidthLoad() {
+    DataSet data = new DataSet();
+    for(PhysicalLink link : physicalLinks.values()) {
+      data.addValue(link.getBandwidthLoad());
+    }
+
+    return data;
+  }
+
+  @Override
   public String toString() {
     String representation = "";
     representation = representation.concat("************************************\n");

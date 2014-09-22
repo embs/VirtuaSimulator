@@ -13,12 +13,14 @@ import simulator.mapping.Mapping;
 
 public class SimulationTest extends TestCase {
 
+  private String simulationName;
   private Simulation simulation;
   private IMapper mapper;
 
   public SimulationTest(String testName) {
     super(testName);
-    simulation = new Simulation(
+    simulationName = "OptFIVNMP_20_0";
+    simulation = new Simulation(simulationName,
       new OptFIVNMPReader("/media/embs/Data/VNMP_Instances/20/eu_20_0_prob"));
     mapper = new HaterMapper();
   }
@@ -30,6 +32,10 @@ public class SimulationTest extends TestCase {
   public void testGetMappings() {
     simulation.simulate(mapper);
     HashMap<Request, Mapping> mappings = simulation.getMappings();
-    assertEquals(40, mappings.size());
+    assertEquals(0, mappings.size());
+  }
+
+  public void testGetName() {
+    assertEquals(simulationName, simulation.getName());
   }
 }
