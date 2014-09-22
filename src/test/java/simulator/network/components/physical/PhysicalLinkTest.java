@@ -46,7 +46,7 @@ public class PhysicalLinkTest extends TestCase {
   }
 
   public void testGetDelay() {
-    assertEquals(40, physicalLink.getDelay());
+    assertEquals(40D, physicalLink.getDelay());
   }
 
   public void testGetCost() {

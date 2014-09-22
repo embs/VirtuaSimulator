@@ -14,7 +14,7 @@ public class PhysicalLink extends Link {
   private BigDecimal availability;
 
   public PhysicalLink(String id, PhysicalNode sourceNode, PhysicalNode destinyNode,
-                      double bandwidth, int delay, int cost) {
+                      double bandwidth, double delay, int cost) {
     super(id, sourceNode, destinyNode, bandwidth, delay);
     bandwidthLoad = 0;
     this.cost = cost;

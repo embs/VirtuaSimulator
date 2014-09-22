@@ -6,9 +6,10 @@ public abstract class Link {
   private Node sourceNode;
   private Node destinyNode;
   private double bandwidthCapacity;
-  private int delay;
+  private double delay;
 
-  public Link(String id, Node sourceNode, Node destinyNode, double bandwidth, int delay) {
+  public Link(String id, Node sourceNode, Node destinyNode, double bandwidth,
+                                                                 double delay) {
     this.id = id;
     this.sourceNode = sourceNode;
     this.destinyNode = destinyNode;
@@ -50,11 +51,11 @@ public abstract class Link {
     this.bandwidthCapacity = bandwidthCapacity;
   }
 
-  public int getDelay() {
+  public double getDelay() {
     return delay;
   }
 
-  public void setDelay(int delay) {
+  public void setDelay(double delay) {
     this.delay = delay;
   }
 

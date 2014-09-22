@@ -9,7 +9,7 @@ import simulator.network.components.Link;
 public class VirtualLink extends Link {
 
   public VirtualLink(String id, VirtualNode sourceNode, VirtualNode destinyNode,
-                     double bandwidth, int delay) {
+                     double bandwidth, double delay) {
     super(id, sourceNode, destinyNode, bandwidth, delay);
   }
 }
