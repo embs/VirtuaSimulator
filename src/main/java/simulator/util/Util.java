@@ -23,7 +23,7 @@ public class Util {
       e.printStackTrace();
     }
 
-    return max;
+    return (data.getAggregate() == 0D ? 0D : max);
   }
 
   public static double getStandardDeviation(DataSet data) {

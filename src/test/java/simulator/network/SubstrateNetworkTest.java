@@ -95,7 +95,7 @@ public class SubstrateNetworkTest extends TestCase {
     for(PhysicalNode node : physicalNodes.values()) {
       node.addLoad(10);
     }
-    assertEquals(10D,
+    assertEquals(0.04566666666666667,
       substrateNetwork.getAverageNodesLoad());
   }
 
@@ -104,7 +104,7 @@ public class SubstrateNetworkTest extends TestCase {
     for(PhysicalNode node : physicalNodes.values()) {
       node.addLoad(10);
     }
-    assertEquals(10D,
+    assertEquals(0.1,
       substrateNetwork.getMaximumNodesLoad());
   }
 
@@ -113,32 +113,32 @@ public class SubstrateNetworkTest extends TestCase {
     for(PhysicalNode node : physicalNodes.values()) {
       node.addLoad(10);
     }
-    assertEquals(0D,
+    assertEquals(0.029013406862651928,
       substrateNetwork.getNodesLoadStandardDeviation());
   }
 
   public void testGetAverageLinksBandwidthLoad() {
     substrateNetwork.setHashLinks(physicalLinks);
     for(PhysicalLink link : physicalLinks.values()) {
-      link.addBandwidthLoad(10);
+      link.addBandwidthLoad(0.2);
     }
-    assertEquals(10D,
+    assertEquals(0.04,
       substrateNetwork.getAverageLinksBandwidthLoad());
   }
 
   public void testGetMaximumLinksBandwidthLoad() {
     substrateNetwork.setHashLinks(physicalLinks);
     for(PhysicalLink link : physicalLinks.values()) {
-      link.addBandwidthLoad(10);
+      link.addBandwidthLoad(0.2);
     }
-    assertEquals(10D,
+    assertEquals(0.04,
       substrateNetwork.getMaximumLinksBandwidthLoad());
   }
 
   public void testGetLinksBandwidthLoadStandardDeviation() {
     substrateNetwork.setHashLinks(physicalLinks);
     for(PhysicalLink link : physicalLinks.values()) {
-      link.addBandwidthLoad(10);
+      link.addBandwidthLoad(5);
     }
     assertEquals(0D,
       substrateNetwork.getLinksBandwidthLoadStandardDeviation());

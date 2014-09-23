@@ -41,7 +41,7 @@ public class RequestEvent implements Comparable<RequestEvent> {
     else if(this.time > requestEvent.time)
       return 1;
     else
-      throw new RuntimeException("Dois eventos ao mesmo tempo.");
+      return 0;
   }
 
   @Override

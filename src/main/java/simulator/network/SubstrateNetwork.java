@@ -103,7 +103,7 @@ public class SubstrateNetwork {
   protected DataSet collectNodesLoad() {
     DataSet data = new DataSet();
     for(PhysicalNode node : physicalNodes.values()) {
-      data.addValue(node.getLoad());
+      data.addValue(node.getLoad() / node.getCapacity());
     }
 
     return data;
@@ -112,7 +112,7 @@ public class SubstrateNetwork {
   protected DataSet collectLinksBandwidthLoad() {
     DataSet data = new DataSet();
     for(PhysicalLink link : physicalLinks.values()) {
-      data.addValue(link.getBandwidthLoad());
+      data.addValue(link.getBandwidthLoad() / link.getBandwidthCapacity());
     }
 
     return data;
