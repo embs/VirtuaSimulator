@@ -59,7 +59,7 @@ public class Simulation {
         mappings.get(currentRequest).clearMappings();
       }
 
-      writer.println(String.format("%s %s %s %s %s %s %s %s",
+      writer.println(String.format("%s %s %s %s %s %s %s %s %s",
         currentRequestEvent,
         (mappings.containsKey(currentRequest) ? "1" : "0"),
         substrateNetwork.getMaximumNodesLoad(),
@@ -67,7 +67,9 @@ public class Simulation {
         substrateNetwork.getMaximumLinksBandwidthLoad(),
         substrateNetwork.getAverageLinksBandwidthLoad(),
         substrateNetwork.getNodesLoadStandardDeviation(),
-        substrateNetwork.getLinksBandwidthLoadStandardDeviation()));
+        substrateNetwork.getLinksBandwidthLoadStandardDeviation(),
+        (currentRequestEvent.isArrivalEvent() && mappings.containsKey(currentRequest) ?
+          mappings.get(currentRequest).getAvailability() : "0")));
     }
     writer.close();
   }

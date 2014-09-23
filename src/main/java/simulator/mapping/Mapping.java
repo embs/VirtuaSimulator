@@ -1,5 +1,8 @@
 package simulator.mapping;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -86,6 +89,45 @@ public class Mapping {
 
     nodesMapping.clear();
     linksMapping.clear();
+  }
+
+  public BigDecimal getAvailability() {
+    BigDecimal availability = new BigDecimal(1);
+    for(VirtualNode virtualNode : nodesMapping.keySet()) {
+      PhysicalNode hostingNode = nodesMapping.get(virtualNode);
+      availability = availability.multiply(hostingNode.getNodeAvailability(),
+        MathContext.DECIMAL64);
+    }
+    ArrayList<PhysicalNode> intermediaryNodes = new ArrayList<PhysicalNode>();
+    for(VirtualLink virtualLink : linksMapping.keySet()) {
+      PhysicalNode sourcePhysicalNode = getHostingNodeFor(
+        (VirtualNode) virtualLink.getSourceNode());
+      PhysicalNode destinyPhysicalNode = getHostingNodeFor(
+        (VirtualNode) virtualLink.getDestinyNode());
+      ArrayList<PhysicalLink> hostingLinks = linksMapping.get(virtualLink);
+      for(PhysicalLink hostingLink : hostingLinks) {
+        availability = availability.multiply(hostingLink.getAvailability(),
+          MathContext.DECIMAL64);
+        PhysicalNode hostingLinkSourceNode =
+          (PhysicalNode) hostingLink.getSourceNode();
+        PhysicalNode hostingLinkDestinyNode =
+          (PhysicalNode) hostingLink.getDestinyNode();
+        PhysicalNode[] hostingLinkNodes = { hostingLinkSourceNode,
+          hostingLinkDestinyNode };
+        for(PhysicalNode hostingLinkNode : hostingLinkNodes) {
+          if(!hostingLinkNode.equals(sourcePhysicalNode)
+             && !hostingLinkNode.equals(destinyPhysicalNode)) {
+            intermediaryNodes.add(hostingLinkNode);
+          }
+        }
+      }
+    }
+    for(PhysicalNode intermediaryNode : intermediaryNodes) {
+      availability = availability.multiply(intermediaryNode.
+        getIntermediaryNodeAvailability(), MathContext.DECIMAL64);
+    }
+
+    return availability;
   }
 
   /**
