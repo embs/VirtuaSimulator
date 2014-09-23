@@ -17,6 +17,7 @@ public class Simulation {
   private PriorityQueue<RequestEvent> requestEvents;
   private SubstrateNetwork substrateNetwork;
   private HashMap<Request, Mapping> mappings;
+  private final int MAX_ALLOCATION_TRIES = 8;
 
   public Simulation(String simulationName, IVNMPReader reader) {
     name = simulationName;
@@ -41,13 +42,18 @@ public class Simulation {
       RequestEvent currentRequestEvent = requestEvents.poll();
       Request currentRequest = currentRequestEvent.getRequest();
       if(currentRequestEvent.isArrivalEvent()) { // arrival event
-        Mapping requestMapping = mapper.map(currentRequest, substrateNetwork);
-        if(requestMapping != null) {
-          mappings.put(currentRequest, requestMapping);
-          // cria evento de saída
-          requestEvents.add(new RequestEvent(currentRequest,
-                                             currentRequest.getDepartureTime(),
-                                             RequestEvent.DEPARTURE_EVENT));
+        int triesCounter = 0;
+        while(!mappings.containsKey(currentRequest)
+              && triesCounter < MAX_ALLOCATION_TRIES) {
+          Mapping requestMapping = mapper.map(currentRequest, substrateNetwork);
+          if(requestMapping != null) {
+            mappings.put(currentRequest, requestMapping);
+            // cria evento de saída
+            requestEvents.add(new RequestEvent(currentRequest,
+                                               currentRequest.getDepartureTime(),
+                                               RequestEvent.DEPARTURE_EVENT));
+          }
+          triesCounter++;
         }
       } else { // departure event
         mappings.get(currentRequest).clearMappings();
