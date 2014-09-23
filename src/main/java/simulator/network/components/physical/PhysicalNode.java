@@ -33,11 +33,17 @@ public class PhysicalNode extends Node implements Comparable<PhysicalNode> {
   }
 
   public void addLoad(double load) {
-    this.load += load;
+    this.load = (new BigDecimal(String.valueOf(this.load)).
+      add(new BigDecimal(String.valueOf(load)))).doubleValue();
+    if(load > getCapacity())
+      throw new RuntimeException("Nó físico não possui capacidade suficiente.");
   }
 
   public void removeLoad(double load) {
-    this.load -= load;
+    this.load = (new BigDecimal(String.valueOf(this.load)).
+      subtract(new BigDecimal(String.valueOf(load)))).doubleValue();
+    if(load < 0)
+      throw new RuntimeException("Carga de nó físico negativa.");
   }
 
   public double getRemainingCapacity() {

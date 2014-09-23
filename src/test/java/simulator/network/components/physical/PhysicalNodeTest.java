@@ -82,4 +82,17 @@ public class PhysicalNodeTest extends TestCase {
     physicalNode.removeLoad(loadVar);
     assertEquals(initialLoad - loadVar, physicalNode.getLoad());
   }
+
+  public void testAddLoadRounding() {
+    physicalNode.addLoad(12.435488);
+    physicalNode.addLoad(6.978488);
+    assertEquals(19.413976D, physicalNode.getLoad());
+  }
+
+  public void testRemoveLoadRounding() {
+    physicalNode.addLoad(17.409076);
+    physicalNode.removeLoad(10.430588);
+    physicalNode.removeLoad(6.978488);
+    assertEquals(0D, physicalNode.getLoad());
+  }
 }

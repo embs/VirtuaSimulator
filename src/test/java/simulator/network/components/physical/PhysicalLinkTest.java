@@ -18,7 +18,7 @@ public class PhysicalLinkTest extends TestCase {
     super(testName);
     node1 = new PhysicalNode(1, 50);
     node2 = new PhysicalNode(2, 50);
-    physicalLink = new PhysicalLink("1:2", node1, node2, 10.1, 40, 100);
+    physicalLink = new PhysicalLink("1:2", node1, node2, 20.1, 40, 100);
   }
 
   public static Test suite() {
@@ -38,7 +38,7 @@ public class PhysicalLinkTest extends TestCase {
   }
 
   public void testGetBandwidthCapacity() {
-    assertEquals(10.1, physicalLink.getBandwidthCapacity());
+    assertEquals(20.1, physicalLink.getBandwidthCapacity());
   }
 
   public void testGetBandwidthLoad() {
@@ -90,7 +90,7 @@ public class PhysicalLinkTest extends TestCase {
   public void testCanHostWhenItCannot() {
     VirtualNode virtualNode1 = new VirtualNode(1, 100);
     VirtualNode virtualNode2 = new VirtualNode(2, 200);
-    VirtualLink virtualLink = new VirtualLink("1:2", virtualNode1, virtualNode2, 20, 30);
+    VirtualLink virtualLink = new VirtualLink("1:2", virtualNode1, virtualNode2, 30, 30);
     assertFalse(physicalLink.canHost(virtualLink));
   }
 
@@ -103,10 +103,24 @@ public class PhysicalLinkTest extends TestCase {
   }
 
   public void testRemoveBandwidthLoad() {
-    double initialBandwidthLoad = physicalLink.getBandwidthLoad();
+    double initialBandwidthLoad = 10D;
     double bandwidthLoadVar = 2.5;
+    physicalLink.addBandwidthLoad(initialBandwidthLoad);
     physicalLink.removeBandwidthLoad(bandwidthLoadVar);
     assertEquals(initialBandwidthLoad - bandwidthLoadVar,
       physicalLink.getBandwidthLoad());
+  }
+
+  public void testAddBandwidthLoadRounding() {
+    physicalLink.addBandwidthLoad(12.435488);
+    physicalLink.addBandwidthLoad(6.978488);
+    assertEquals(19.413976D, physicalLink.getBandwidthLoad());
+  }
+
+  public void testRemoveBandwidthLoadRounding() {
+    physicalLink.addBandwidthLoad(17.409076);
+    physicalLink.removeBandwidthLoad(10.430588);
+    physicalLink.removeBandwidthLoad(6.978488);
+    assertEquals(0D, physicalLink.getBandwidthLoad());
   }
 }

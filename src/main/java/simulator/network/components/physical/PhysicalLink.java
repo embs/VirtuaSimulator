@@ -28,11 +28,17 @@ public class PhysicalLink extends Link {
   }
 
   public void addBandwidthLoad(double bandwidth) {
-    this.bandwidthLoad += bandwidth;
+    this.bandwidthLoad = (new BigDecimal(String.valueOf(bandwidthLoad)).
+      add(new BigDecimal(String.valueOf(bandwidth)))).doubleValue();
+    if(bandwidthLoad > getBandwidthCapacity())
+      throw new RuntimeException("Enlace físico não possui capacidade suficiente.");
   }
 
   public void removeBandwidthLoad(double bandwidth) {
-    this.bandwidthLoad -= bandwidth;
+    bandwidthLoad = (new BigDecimal(String.valueOf(bandwidthLoad)).
+      subtract(new BigDecimal(String.valueOf(bandwidth)))).doubleValue();
+    if(bandwidthLoad < 0)
+      throw new RuntimeException("Carga de enlace físico negativa.");
   }
 
   public double getRemainingBandwidth() {
