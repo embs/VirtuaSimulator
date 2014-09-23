@@ -12,7 +12,7 @@ import simulator.mapping.IMapper;
 import simulator.mapping.Mapping;
 import simulator.network.SubstrateNetwork;
 
-public class Simulation {
+public abstract class Simulation {
   private String name;
   private PriorityQueue<RequestEvent> requestEvents;
   private SubstrateNetwork substrateNetwork;
@@ -31,7 +31,7 @@ public class Simulation {
     }
   }
 
-  public void simulate(IMapper mapper) {
+  public final void simulate(IMapper mapper) {
     PrintWriter writer = null;
     try {
       writer = new PrintWriter(name + "_simulation.txt");
@@ -52,6 +52,7 @@ public class Simulation {
             requestEvents.add(new RequestEvent(currentRequest,
                                                currentRequest.getDepartureTime(),
                                                RequestEvent.DEPARTURE_EVENT));
+            updatePhysicalNodesAge();
           }
           triesCounter++;
         }
@@ -81,4 +82,6 @@ public class Simulation {
   public String getName() {
     return name;
   }
+
+  protected abstract void updatePhysicalNodesAge();
 }

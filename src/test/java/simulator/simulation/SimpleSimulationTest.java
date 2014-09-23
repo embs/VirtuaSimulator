@@ -11,22 +11,22 @@ import simulator.mapping.IMapper;
 import simulator.mapping.HaterMapper;
 import simulator.mapping.Mapping;
 
-public class SimulationTest extends TestCase {
+public class SimpleSimulationTest extends TestCase {
 
   private String simulationName;
   private Simulation simulation;
   private IMapper mapper;
 
-  public SimulationTest(String testName) {
+  public SimpleSimulationTest(String testName) {
     super(testName);
     simulationName = "OptFIVNMP_20_0";
-    simulation = new Simulation(simulationName,
+    simulation = new SimpleSimulation(simulationName,
       new OptFIVNMPReader("/media/embs/Data/VNMP_Instances/20/eu_20_0_prob"));
     mapper = new HaterMapper();
   }
 
   public static Test suite() {
-    return new TestSuite(SimulationTest.class);
+    return new TestSuite(SimpleSimulationTest.class);
   }
 
   public void testGetMappings() {
