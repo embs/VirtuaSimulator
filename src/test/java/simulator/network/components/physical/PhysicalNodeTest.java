@@ -95,4 +95,27 @@ public class PhysicalNodeTest extends TestCase {
     physicalNode.removeLoad(6.978488);
     assertEquals(0D, physicalNode.getLoad());
   }
+
+  public void testInitialStartTime() {
+    assertEquals(0, physicalNode.getStartTime());
+  }
+
+  public void testInitialReleaseTime() {
+    assertEquals(0, physicalNode.getReleaseTime());
+  }
+
+  public void testSetStartTime() {
+    physicalNode.setStartTime(15);
+    assertEquals(15, physicalNode.getStartTime());
+  }
+
+  public void testSetReleaseTime() {
+    physicalNode.setReleaseTime(150);
+    assertEquals(150, physicalNode.getReleaseTime());
+  }
+
+  public void testGetUpTime() {
+    physicalNode.setStartTime(15);
+    assertEquals(185, physicalNode.getUpTime(200));
+  }
 }

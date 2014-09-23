@@ -79,6 +79,10 @@ public class Mapping {
     for(VirtualNode virtualNode : nodesMapping.keySet()) {
       PhysicalNode hostingNode = nodesMapping.get(virtualNode);
       hostingNode.removeLoad(virtualNode.getCapacity());
+      if(hostingNode.getLoad() == 0) {
+        hostingNode.setStartTime(0);
+        hostingNode.setReleaseTime(0);
+      }
     }
     for(VirtualLink virtualLink : linksMapping.keySet()) {
       ArrayList<PhysicalLink> hostingLinks = linksMapping.get(virtualLink);

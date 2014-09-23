@@ -16,7 +16,7 @@ public abstract class Simulation {
   private String name;
   private PriorityQueue<RequestEvent> requestEvents;
   private SubstrateNetwork substrateNetwork;
-  private HashMap<Request, Mapping> mappings;
+  protected HashMap<Request, Mapping> mappings;
   private final int MAX_ALLOCATION_TRIES = 8;
 
   public Simulation(String simulationName, IVNMPReader reader) {
@@ -52,13 +52,13 @@ public abstract class Simulation {
             requestEvents.add(new RequestEvent(currentRequest,
                                                currentRequest.getDepartureTime(),
                                                RequestEvent.DEPARTURE_EVENT));
-            updatePhysicalNodesAge();
           }
           triesCounter++;
         }
       } else { // departure event
         mappings.get(currentRequest).clearMappings();
       }
+      updatePhysicalNodesAge(currentRequestEvent);
 
       writer.println(String.format("%s %s %s %s %s %s %s %s %s",
         currentRequestEvent,
@@ -83,5 +83,5 @@ public abstract class Simulation {
     return name;
   }
 
-  protected abstract void updatePhysicalNodesAge();
+  protected abstract void updatePhysicalNodesAge(RequestEvent requestEvent);
 }

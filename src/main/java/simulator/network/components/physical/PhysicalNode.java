@@ -17,6 +17,8 @@ public class PhysicalNode extends Node implements Comparable<PhysicalNode> {
   private double load;
   private BigDecimal machineAvailability;
   private BigDecimal hypervisorAvailability;
+  private int startTime;
+  private int releaseTime;
 
   public PhysicalNode (int id, double capacity) {
     super(id, capacity);
@@ -26,6 +28,7 @@ public class PhysicalNode extends Node implements Comparable<PhysicalNode> {
     this.hypervisorAvailability = AvailabilityGenerator.getInstance().
       generateComponentAvailability(AvailabilityGenerator.HYPERVISOR_FAILURE_RATE,
         AvailabilityGenerator.HYPERVISOR_MTTR);
+    startTime = releaseTime = 0;
   }
 
   public double getLoad() {
@@ -60,6 +63,26 @@ public class PhysicalNode extends Node implements Comparable<PhysicalNode> {
 
   public BigDecimal getIntermediaryNodeAvailability() {
     return machineAvailability;
+  }
+
+  public int getStartTime() {
+    return startTime;
+  }
+
+  public void setStartTime(int time) {
+    startTime = time;
+  }
+
+  public int getReleaseTime() {
+    return releaseTime;
+  }
+
+  public void setReleaseTime(int time) {
+    releaseTime = time;
+  }
+
+  public int getUpTime(int currentTime) {
+    return currentTime - startTime;
   }
 
   @Override

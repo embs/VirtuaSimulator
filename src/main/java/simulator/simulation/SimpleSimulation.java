@@ -7,5 +7,5 @@ public class SimpleSimulation extends Simulation {
     super(simulationName, reader);
   }
 
-  protected void updatePhysicalNodesAge() {}
+  protected void updatePhysicalNodesAge(RequestEvent requestEvent) {}
 }
