@@ -158,7 +158,8 @@ public class GraspMapper implements IMapper {
         random.nextInt(candidateNodes.size()));
       Path path = shortestPaths.get(candidateDestinyPhysicalNode);
       if(bestPath == null
-         || path.getAvailability().compareTo(bestPath.getAvailability()) > 0) {
+         || path.getAvailability(false, 0).compareTo(
+          bestPath.getAvailability(false, 0)) > 0) {
         bestPath = path;
       }
       candidateNodes.remove(candidateDestinyPhysicalNode);

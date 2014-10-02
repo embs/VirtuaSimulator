@@ -26,4 +26,11 @@ public class AgedSimulation extends Simulation {
       }
     }
   }
+
+  protected String printMappingAvailability(RequestEvent requestEvent) {
+    Request request = requestEvent.getRequest();
+    Mapping mapping = mappings.get(request);
+
+    return mapping.getAvailability(true, requestEvent.getTime()).toString();
+  }
 }

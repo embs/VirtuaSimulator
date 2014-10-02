@@ -75,7 +75,7 @@ public class PathTest extends TestCase {
       multiply(physicalLink1.getAvailability(), mathContext).multiply(
         physicalLink2.getAvailability(), mathContext);
     assertEquals(availability.round(new MathContext(8)).doubleValue(),
-      path.getAvailability().round(new MathContext(8)).doubleValue());
+      path.getAvailability(false, 0).round(new MathContext(8)).doubleValue());
   }
 
   public void testGetLinks() {

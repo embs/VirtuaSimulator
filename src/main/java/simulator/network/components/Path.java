@@ -58,7 +58,7 @@ public class Path {
   }
 
   // FIXME considera nós intermediários
-  public BigDecimal getAvailability() {
+  public BigDecimal getAvailability(boolean aged, int currentTime) {
     MathContext mathContext = new MathContext(10, RoundingMode.HALF_UP);
     BigDecimal availability = new BigDecimal(1, mathContext);
     ArrayList<PhysicalNode> intermediaryNodes = new ArrayList<PhysicalNode>();
@@ -77,8 +77,11 @@ public class Path {
       availability = availability.multiply(
         intermediaryNode.getIntermediaryNodeAvailability(), mathContext);
     }
-    availability = availability.multiply(sourceNode.getNodeAvailability(),
-      mathContext).multiply(destinyNode.getNodeAvailability(), mathContext);
+    availability = availability.multiply(
+      (aged ? sourceNode.getAgedNodeAvailability(currentTime)
+        : sourceNode.getNodeAvailability()), mathContext).multiply(
+      (aged ? destinyNode.getAgedNodeAvailability(currentTime)
+        : destinyNode.getNodeAvailability()), mathContext);
 
     return availability;
   }

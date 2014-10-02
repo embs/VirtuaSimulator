@@ -70,7 +70,7 @@ public abstract class Simulation {
         substrateNetwork.getNodesLoadStandardDeviation(),
         substrateNetwork.getLinksBandwidthLoadStandardDeviation(),
         (currentRequestEvent.isArrivalEvent() && mappings.containsKey(currentRequest) ?
-          mappings.get(currentRequest).getAvailability() : "0")));
+          printMappingAvailability(currentRequestEvent) : "0")));
     }
     writer.close();
   }
@@ -84,4 +84,5 @@ public abstract class Simulation {
   }
 
   protected abstract void updatePhysicalNodesAge(RequestEvent requestEvent);
+  protected abstract String printMappingAvailability(RequestEvent requestEvent);
 }

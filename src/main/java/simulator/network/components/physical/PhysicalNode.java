@@ -61,6 +61,19 @@ public class PhysicalNode extends Node implements Comparable<PhysicalNode> {
     return hypervisorAvailability.multiply(machineAvailability);
   }
 
+  public BigDecimal getAgedNodeAvailability(int currentTime) {
+    double lambda = 1D / 4000;
+    double rate = Math.pow(Math.E, -1 * lambda * currentTime);
+    System.out.println("e = " + Math.E);
+    System.out.println("lambda = " + lambda);
+    System.out.println("-lambda = " + (-1 * lambda));
+    System.out.println("T = " + currentTime);
+    System.out.println("-lambda*T = " + (-1 * lambda * currentTime));
+    System.out.println("rate = " + rate);
+
+    return getNodeAvailability().multiply(new BigDecimal(rate));
+  }
+
   public BigDecimal getIntermediaryNodeAvailability() {
     return machineAvailability;
   }
