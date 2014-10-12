@@ -38,6 +38,7 @@ public class Simulation {
     } catch(FileNotFoundException e) {
       e.printStackTrace();
     }
+    long startTime = System.currentTimeMillis();
     while(!requestEvents.isEmpty()) {
       RequestEvent currentRequestEvent = requestEvents.poll();
       Request currentRequest = currentRequestEvent.getRequest();
@@ -71,6 +72,7 @@ public class Simulation {
         (currentRequestEvent.isArrivalEvent() && mappings.containsKey(currentRequest) ?
           mappings.get(currentRequest).getAvailability() : "0")));
     }
+    writer.println(System.currentTimeMillis() - startTime);
     writer.close();
   }
 
