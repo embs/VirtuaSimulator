@@ -17,17 +17,21 @@ import simulator.network.components.virtual.VirtualNode;
 public class Mapping {
   private HashMap<VirtualNode, PhysicalNode> nodesMapping;
   private HashMap<VirtualLink, ArrayList<PhysicalLink>> linksMapping;
+  private boolean handleResourcesLoad;
 
   public Mapping() {
     nodesMapping = new HashMap<VirtualNode, PhysicalNode>();
     linksMapping = new HashMap<VirtualLink, ArrayList<PhysicalLink>>();
+    handleResourcesLoad = true;
   }
 
   public void addNodeMapping(VirtualNode virtualNode, PhysicalNode physicalNode) {
     if(nodesMapping.containsKey(virtualNode))
       throw new RuntimeException("Nó virtual já está alocado.");
 
-    physicalNode.addLoad(virtualNode.getCapacity());
+    if(handleResourcesLoad) {
+      physicalNode.addLoad(virtualNode.getCapacity());
+    }
     nodesMapping.put(virtualNode, physicalNode);
   }
 
@@ -36,8 +40,10 @@ public class Mapping {
     if(linksMapping.containsKey(virtualLink))
       throw new RuntimeException("Enlace virtual já está alocado.");
 
-    for(PhysicalLink physicalLink : physicalLinks) {
-      physicalLink.addBandwidthLoad(virtualLink.getBandwidthCapacity());
+    if(handleResourcesLoad) {
+      for(PhysicalLink physicalLink : physicalLinks) {
+        physicalLink.addBandwidthLoad(virtualLink.getBandwidthCapacity());
+      }
     }
     linksMapping.put(virtualLink, physicalLinks);
   }
@@ -76,14 +82,16 @@ public class Mapping {
   }
 
   public void clearMappings() {
-    for(VirtualNode virtualNode : nodesMapping.keySet()) {
-      PhysicalNode hostingNode = nodesMapping.get(virtualNode);
-      hostingNode.removeLoad(virtualNode.getCapacity());
-    }
-    for(VirtualLink virtualLink : linksMapping.keySet()) {
-      ArrayList<PhysicalLink> hostingLinks = linksMapping.get(virtualLink);
-      for(PhysicalLink hostingLink : hostingLinks) {
-        hostingLink.removeBandwidthLoad(virtualLink.getBandwidthCapacity());
+    if(handleResourcesLoad) {
+      for(VirtualNode virtualNode : nodesMapping.keySet()) {
+        PhysicalNode hostingNode = nodesMapping.get(virtualNode);
+        hostingNode.removeLoad(virtualNode.getCapacity());
+      }
+      for(VirtualLink virtualLink : linksMapping.keySet()) {
+        ArrayList<PhysicalLink> hostingLinks = linksMapping.get(virtualLink);
+        for(PhysicalLink hostingLink : hostingLinks) {
+          hostingLink.removeBandwidthLoad(virtualLink.getBandwidthCapacity());
+        }
       }
     }
 
@@ -128,6 +136,10 @@ public class Mapping {
     }
 
     return availability;
+  }
+
+  public void deactiveResourcesHandling() {
+    handleResourcesLoad = false;
   }
 
   /**
