@@ -36,4 +36,26 @@ public class Util {
 
     return sd;
   }
+
+  public static double getError(DataSet data) {
+    double err = 0;
+    try {
+      err = 1.96 * data.getStandardDeviation() / Math.sqrt(data.getSize());
+    } catch(EmptyDataSetException e) {
+      e.printStackTrace();
+    }
+
+    return err;
+  }
+
+  public static double getRateError(DataSet data) {
+    double err = 0;
+    try {
+      err = 1.96 * Math.sqrt(data.getArithmeticMean() / data.getSize());
+    } catch(EmptyDataSetException e) {
+      e.printStackTrace();
+    }
+
+    return err;
+  }
 }
