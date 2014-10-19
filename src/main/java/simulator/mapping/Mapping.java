@@ -142,6 +142,21 @@ public class Mapping {
     handleResourcesLoad = false;
   }
 
+  public double getNodeSharingRate(int nodesNumber) {
+    ArrayList<PhysicalNode> nodesInUse = new ArrayList<PhysicalNode>();
+    ArrayList<PhysicalNode> nodesBeingShared = new ArrayList<PhysicalNode>();
+    ArrayList<PhysicalNode> touchedNodes = new ArrayList<PhysicalNode>();
+    for(PhysicalNode physicalNode : nodesMapping.values()) {
+      if(nodesInUse.contains(physicalNode) && !touchedNodes.contains(physicalNode)) {
+        nodesBeingShared.add(physicalNode);
+        touchedNodes.add(physicalNode);
+      }
+      nodesInUse.add(physicalNode);
+    }
+
+    return (double) nodesBeingShared.size() / nodesNumber;
+  }
+
   /**
    *
    * CÓDIGO LEGADO

@@ -14,7 +14,7 @@ import simulator.util.Util;
 public class GraphicateMetricsAveragesAndErrors {
   public static void main(String[] args) {
     String[] nodeClasses = { "20", "30", "50", "100" };
-    String[] approaches = { "HRA", "Greddy", "DViNE" };
+    String[] approaches = { "HRA", "HRASharingNodes", "Greddy", "DViNE" };
     String[] metrics = { "acceptanceRate", "averageNodesLoad", "averageLinksLoad",
       "executionTime", "averageAvailability" };
     DataSet[][][] metricsData = aggregateTraces(nodeClasses, approaches, metrics);
@@ -30,28 +30,34 @@ public class GraphicateMetricsAveragesAndErrors {
     DataSet[][][] allData = new DataSet[nodeClasses.length][approaches.length][metrics.length];
     for(int i = 0; i < nodeClasses.length; i++) {
       // VirtuaTraces
-      File baseDir = new File("/media/embs/Data/VNMP_Instances/" + nodeClasses[i]);
-      DataSet[] metricsData = new DataSet[metrics.length];
-      for(int x = 0; x < metricsData.length; x++) {
-        metricsData[x] = new DataSet();
-      }
-      for(int j = 0; j < 30; j++) {
-        VirtuaSimulatorTraceReader reader = new VirtuaSimulatorTraceReader();
-        reader.readTrace(baseDir.getAbsolutePath() + "/eu_" +
-          nodeClasses[i] + "_" + j + "_prob_simulation.txt");
-        for(int k = 0; k < metrics.length; k++) {
-          metricsData[k].addValue((Double) reader.get(metrics[k]));
+      String[] virtuaTracesBaseDirs = {
+        "/media/embs/Data/VirtuaSimulationOptFIVNMPs/",
+        "/media/embs/Data/VirtuaSimulationSharingNodesOptFIVNMPs"
+      };
+      for(int a = 0; a < virtuaTracesBaseDirs.length; a++) {
+        File baseDir = new File(virtuaTracesBaseDirs[a]);
+        DataSet[] metricsData = new DataSet[metrics.length];
+        for(int x = 0; x < metricsData.length; x++) {
+          metricsData[x] = new DataSet();
         }
+        for(int j = 0; j < 30; j++) {
+          VirtuaSimulatorTraceReader reader = new VirtuaSimulatorTraceReader();
+          reader.readTrace(baseDir.getAbsolutePath() + "/eu_" +
+            nodeClasses[i] + "_" + j + "_prob_simulation.txt");
+          for(int k = 0; k < metrics.length; k++) {
+            metricsData[k].addValue((Double) reader.get(metrics[k]));
+          }
+        }
+        allData[i][a] = metricsData;
       }
-      allData[i][0] = metricsData;
 
       // ViNETraces
-      String[] approachesNames = { "HRA", "", ".dvine" };
-      for(int a = 1; a < approachesNames.length; a++) {
+      String[] approachesNames = { "HRA", "HRASharingNodes", "", ".dvine" };
+      for(int a = 2; a < approachesNames.length; a++) {
         String approach = approachesNames[a];
-        baseDir = new File("/media/embs/Data/OptFIVNMP_Instances_ViNE_format/" +
+        File baseDir = new File("/media/embs/Data/OptFIVNMP_Instances_ViNE_format/" +
           nodeClasses[i]);
-        metricsData = new DataSet[metrics.length];
+        DataSet[] metricsData = new DataSet[metrics.length];
         for(int x = 0; x < metricsData.length; x++) {
           metricsData[x] = new DataSet();
         }
@@ -78,7 +84,7 @@ public class GraphicateMetricsAveragesAndErrors {
                                         String[] approaches, String[] metrics) {
     Graph[] graphs = new Graph[metrics.length];
     for(int i = 0; i < metrics.length; i++) {
-      graphs[i] = new Graph("Gráfico para a métrica " + metrics[i], 8, 3);
+      graphs[i] = new Graph("Gráfico para a métrica " + metrics[i], 8, 4);
       for(int j = 0; j < nodeClasses.length; j++) {
         graphs[i].setLineHeader(j, nodeClasses[j]);
         graphs[i].setLineHeader(j+4, nodeClasses[j] + "-err");

@@ -16,12 +16,15 @@ import simulator.simulation.Simulation;
 public class RunFirstScenario {
   public static void main(String[] args) {
     File baseDir = new File("/media/embs/Data/VNMP_Instances/");
+    String outDir = "/media/embs/Data/VirtuaSimulationSharingNodesOptFIVNMPs/";
     for(File problemsDir : baseDir.listFiles()) {
       for(File problemFile : problemsDir.listFiles()) {
         String filename = problemFile.getAbsolutePath();
         OptFIVNMPReader reader = new OptFIVNMPReader(filename);
-        Simulation simulation = new Simulation(filename, reader);
+        Simulation simulation = new Simulation(outDir + problemFile.getName(),
+          reader);
         GraspMapper mapper = new GraspMapper();
+        mapper.allowNodeSharing();
         simulation.simulate(mapper);
       }
     }

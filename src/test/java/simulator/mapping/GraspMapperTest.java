@@ -142,7 +142,7 @@ public class GraspMapperTest extends TestCase {
     }
   }
 
-  public void testMapDoesNotSharePhysicalNodes() {
+  public void testMapDoesNotSharePhysicalNodesByDefault() {
     Request request = requests.get(0);
     Mapping mapping = mapper.map(request, substrateNetwork);
     ArrayList<Integer> hostsIds = new ArrayList<Integer>();

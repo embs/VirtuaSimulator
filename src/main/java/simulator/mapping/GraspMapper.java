@@ -25,9 +25,15 @@ public class GraspMapper implements IMapper {
   private final int MAX_SEARCH_TRIES = 20;
   public static MathContext MATH_CONTEXT = new MathContext(10, RoundingMode.HALF_UP);
   private Random random;
+  protected boolean allowNodeSharing;
 
   public GraspMapper() {
     random = new Random(1337);
+    allowNodeSharing = false;
+  }
+
+  public void allowNodeSharing() {
+    allowNodeSharing = true;
   }
 
   public Mapping map(Request request, SubstrateNetwork substrateNetwork) {
@@ -80,14 +86,17 @@ public class GraspMapper implements IMapper {
           (VirtualNode) virtualLink.getSourceNode());
         PhysicalNode destinyPhysicalNode = mapping.getHostingNodeFor(
           (VirtualNode) virtualLink.getDestinyNode());
-        HashMap<PhysicalNode, Path> paths = getPathsFromNode(sourcePhysicalNode,
-          substrateNetwork);
-        Path path = paths.get(destinyPhysicalNode);
-        if(path != null && path.canHost(virtualLink)) {
-          mapping.addLinkMapping(virtualLink, path.getLinks());
-        } else {
-          mapping.clearMappings();
-          return null;
+        // Origem e destino podem ser iguais por conta do compartilhamento
+        if(!sourcePhysicalNode.equals(destinyPhysicalNode)) {
+          HashMap<PhysicalNode, Path> paths = getPathsFromNode(sourcePhysicalNode,
+            substrateNetwork);
+          Path path = paths.get(destinyPhysicalNode);
+          if(path != null && path.canHost(virtualLink)) {
+            mapping.addLinkMapping(virtualLink, path.getLinks());
+          } else {
+            mapping.clearMappings();
+            return null;
+          }
         }
       }
     }
@@ -140,11 +149,13 @@ public class GraspMapper implements IMapper {
         virtualLink);
     ArrayList<PhysicalNode> candidateNodes = new ArrayList<PhysicalNode>();
     for(PhysicalNode physicalNode : substrateNetwork.getHashNodes().values()) {
-      // FIXME não permite compartilhamento de nós físicos
-      if(!mapping.isNodeInUse(physicalNode)
-         && physicalNode.canHost(destinyVirtualNode)
-         && shortestPaths.get(physicalNode).canHost(virtualLink)) { // shortestPath null?
-        candidateNodes.add(physicalNode);
+      if(physicalNode.canHost(destinyVirtualNode)
+         && shortestPaths.get(physicalNode) != null
+         && shortestPaths.get(physicalNode).canHost(virtualLink)) {
+        if(allowNodeSharing)
+          candidateNodes.add(physicalNode);
+        else if(!mapping.isNodeInUse(physicalNode))
+          candidateNodes.add(physicalNode);
       }
     }
     Collections.sort(candidateNodes);
@@ -165,13 +176,28 @@ public class GraspMapper implements IMapper {
       triesCounter++;
     }
 
-    if(bestPath == null)
-      return false;
+    if(bestPath == null) {
+      if(allowNodeSharing && sourcePhysicalNode.canHost(destinyVirtualNode)) {
+        mapping.addNodeMapping(destinyVirtualNode, sourcePhysicalNode);
 
-    mapping.addNodeMapping(destinyVirtualNode, bestPath.getDestinyNode());
-    mapping.addLinkMapping(virtualLink, bestPath.getLinks());
+        return true;
+      }
+    } else { // bestPath != null
+      if(allowNodeSharing && sourcePhysicalNode.canHost(destinyVirtualNode)
+         && sourcePhysicalNode.getNodeAvailability().compareTo(
+          bestPath.getAvailability()) > 0) {
+          mapping.addNodeMapping(destinyVirtualNode, sourcePhysicalNode);
 
-    return true;
+          return true;
+      } else {
+        mapping.addNodeMapping(destinyVirtualNode, bestPath.getDestinyNode());
+        mapping.addLinkMapping(virtualLink, bestPath.getLinks());
+
+        return true;
+      }
+    }
+
+    return false;
   }
 
   // HashMap<DestinyNode, Path>
