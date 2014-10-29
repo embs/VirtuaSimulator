@@ -14,13 +14,16 @@ import simulator.simulation.Request;
 
 public class CreateVirtuaVNMPs {
   public static void main(String[] args) {
-    createVirtuaVNMP("vVNMP1.txt");
+    String baseDir = "/media/embs/Data/VirtuaVNMPs/";
+    for(int i = 0; i < 30; i++) {
+      createVirtuaVNMP(baseDir + String.format("vnmp_%s.txt", i));
+    }
   }
 
   private static void createVirtuaVNMP(String fileName) {
     SubstrateNetwork substrateNetwork = new SubstrateNetworkGenerator().generate(50);
     ArrayList<Request> requests = new VirtualNetworksGenerator().
-      generateVirtualNetworks(30);
+      generateVirtualNetworks(40);
     try {
       PrintWriter writer = new PrintWriter(fileName);
       writer.println(substrateNetwork.getAmountNodes() + " "

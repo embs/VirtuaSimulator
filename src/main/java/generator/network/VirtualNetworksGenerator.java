@@ -26,21 +26,26 @@ public class VirtualNetworksGenerator {
     int requestsPer100UnitsTime = randomizer.nextPoisson();
     for(int idRequest = 0; idRequest < numberOfNetworks; idRequest++) {
       HashMap<Integer,VirtualNode> nodes = new HashMap<Integer, VirtualNode>();
-      int numberOfNodes = randomizer.nextInt(9) + 2;
-      for(int i = 0; i < numberOfNodes; i++) {
-        nodes.put(i, nodeGenerator.generateVirtualNode(i));
-      }
-
       HashMap<String, VirtualLink> links = new HashMap<String, VirtualLink>();
-      for(VirtualNode source : nodes.values()) {
-        for(VirtualNode destiny : nodes.values()) {
-          if(!source.equals(destiny) && source.getId() > destiny.getId()
-             && randomizer.nextBoolean()) {
-            String linkId = String.format("%s:%s", source.getId(), destiny.getId());
-            links.put(linkId, linkGenerator.generateVirtualLink(linkId, source,
-              destiny));
+      int numberOfNodes = randomizer.nextInt(9) + 2;
+
+      int degreeSum = 0;
+      for(int i = 0; i < numberOfNodes; i++) {
+        VirtualNode newNode = nodeGenerator.generateVirtualNode(i);
+        while(newNode.getAttachedLinks().size() == 0 && i != 0) {
+          for(VirtualNode node : nodes.values()) {
+            if(degreeSum == 0 || randomizer.nextInt(degreeSum) < node.getAttachedLinks().size()) {
+              degreeSum += 2;
+              String newLinkId = String.format("%s:%s",
+                Math.max(node.getId(), newNode.getId()),
+                Math.min(node.getId(), newNode.getId()));
+              VirtualLink newLink = linkGenerator.generateVirtualLink(newLinkId,
+                newNode, node);
+              links.put(newLinkId, newLink);
+            }
           }
         }
+        nodes.put(i, newNode);
       }
 
       int creationTime = baseTime + randomizer.nextInt(100) + 1;

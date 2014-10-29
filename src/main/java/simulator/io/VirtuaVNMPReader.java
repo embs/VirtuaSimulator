@@ -52,7 +52,7 @@ public class VirtuaVNMPReader implements IVNMPReader {
                           new PhysicalLink(linkId, physicalNodes.get(sourceNodeId),
                                            physicalNodes.get(destinyNodeId),
                                            Double.valueOf(tokens[2]),
-                                           Integer.valueOf(tokens[3]),
+                                           Double.valueOf(tokens[3]),
                                            Integer.valueOf(tokens[4])));
       }
     }
@@ -90,7 +90,7 @@ public class VirtuaVNMPReader implements IVNMPReader {
                             new VirtualLink(linkId, virtualNodes.get(sourceNodeId),
                                             virtualNodes.get(destinyNodeId),
                                             Double.valueOf(tokens[2]),
-                                            Integer.valueOf(tokens[3])));
+                                            Double.valueOf(tokens[3])));
         }
       }
       requests.add(idRequest,
