@@ -11,10 +11,10 @@ import org.uncommons.maths.statistics.DataSet;
 
 import simulator.util.Util;
 
-public class GraphicateMetricsAveragesAndErrors {
+public class GraphicateMetricsAveragesAndErrorsForSecondScenario {
   public static void main(String[] args) {
     String[] nodeClasses = { "20", "30", "50", "100" };
-    String[] approaches = { "HRA", "HRASharingNodes", "Greedy", "DViNE" };
+    String[] approaches = { "HRA", "Greedy", "DViNE" };
     String[] metrics = { "acceptanceRate", "averageNodesLoad", "averageLinksLoad",
       "executionTime", "averageAvailability" };
     DataSet[][][] metricsData = aggregateTraces(nodeClasses, approaches, metrics);
@@ -31,8 +31,7 @@ public class GraphicateMetricsAveragesAndErrors {
     for(int i = 0; i < nodeClasses.length; i++) {
       // VirtuaTraces
       String[] virtuaTracesBaseDirs = {
-        "/media/embs/Data/VirtuaSimulationOptFIVNMPs/",
-        "/media/embs/Data/VirtuaSimulationSharingNodesOptFIVNMPs"
+        "/media/embs/Data/VirtuaSimulationVirtuaVNMPs/"
       };
       for(int a = 0; a < virtuaTracesBaseDirs.length; a++) {
         File baseDir = new File(virtuaTracesBaseDirs[a]);
@@ -42,8 +41,8 @@ public class GraphicateMetricsAveragesAndErrors {
         }
         for(int j = 0; j < 30; j++) {
           VirtuaSimulatorTraceReader reader = new VirtuaSimulatorTraceReader();
-          reader.readTrace(baseDir.getAbsolutePath() + "/eu_" +
-            nodeClasses[i] + "_" + j + "_prob_simulation.txt");
+          reader.readTrace(baseDir.getAbsolutePath() + "/vnmp_" + nodeClasses[i]
+            + "_" + j + "_simulation.txt");
           for(int k = 0; k < metrics.length; k++) {
             metricsData[k].addValue((Double) reader.get(metrics[k]));
           }
@@ -52,10 +51,10 @@ public class GraphicateMetricsAveragesAndErrors {
       }
 
       // ViNETraces
-      String[] approachesNames = { "HRA", "HRASharingNodes", "", ".dvine" };
-      for(int a = 2; a < approachesNames.length; a++) {
+      String[] approachesNames = { "HRA", ".greedy", ".dvine" };
+      for(int a = 1; a < approachesNames.length; a++) {
         String approach = approachesNames[a];
-        File baseDir = new File("/media/embs/Data/OptFIVNMP_Instances_ViNE_format/" +
+        File baseDir = new File("/media/embs/Data/vine-yard-virtua-vnmps/" +
           nodeClasses[i]);
         DataSet[] metricsData = new DataSet[metrics.length];
         for(int x = 0; x < metricsData.length; x++) {
@@ -63,8 +62,8 @@ public class GraphicateMetricsAveragesAndErrors {
         }
         for(int j = 0; j < 30; j++) {
           ViNEYardTraceReader reader = new ViNEYardTraceReader();
-          String s = baseDir.getAbsolutePath() + "/eu_" + nodeClasses[i] + "_" +
-            j + "_prob/";
+          String s = baseDir.getAbsolutePath() + "/vnmp_" + nodeClasses[i] + "_"
+            + j + "/";
           reader.readTrace(s + "MySimINFOCOM2009" + approach + ".out",
             s + "time" + approach + ".out");
           reader.readMappings(s + "sub.txt", s + "requests",
@@ -84,7 +83,7 @@ public class GraphicateMetricsAveragesAndErrors {
                                         String[] approaches, String[] metrics) {
     Graph[] graphs = new Graph[metrics.length];
     for(int i = 0; i < metrics.length; i++) {
-      graphs[i] = new Graph("Gráfico para a métrica " + metrics[i], 8, 4);
+      graphs[i] = new Graph("Gráfico para a métrica " + metrics[i], 8, 3);
       for(int j = 0; j < nodeClasses.length; j++) {
         graphs[i].setLineHeader(j, nodeClasses[j]);
         graphs[i].setLineHeader(j+4, nodeClasses[j] + "-err");

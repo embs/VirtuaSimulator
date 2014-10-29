@@ -27,6 +27,20 @@ public class ViNEYardTraceReader {
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }
+
+    // Workaround para o problema de segmentation fault dos VNMPs com 20 nós no dvine
+    if(!scanner.hasNextLine()) {
+      metrics.put("acceptedRequests", 0);
+      metrics.put("acceptanceRate", 0.0);
+      metrics.put("averageNodesLoad", 0.0);
+      metrics.put("averageLinksLoad", 0.0);
+      metrics.put("nodesLoadStandardDeviation", 0.0);
+      metrics.put("linksLoadStandardDeviation", 0.0);
+      readExecutionTimeFile(executionTimeFilename);
+
+      return metrics;
+    }
+
     scanner.nextLine(); // desconsidera linha de cabeçalho
     int requestsTotal = 0;
     int acceptedRequestsTotal = 0;
@@ -80,6 +94,12 @@ public class ViNEYardTraceReader {
       availabilityData.addValue(mapping.getAvailability().doubleValue());
     }
 
+    if(availabilityData.getSize() == 0) {
+      metrics.put("averageAvailability", 0.0);
+
+      return;
+    }
+
     metrics.put("averageAvailability", Util.getAverage(availabilityData));
   }
 
@@ -90,8 +110,16 @@ public class ViNEYardTraceReader {
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }
-    scanner.nextLine(); // primeira linha, em branco
-    String timeLine = scanner.nextLine().split("\t")[1];
+    String firstLine = scanner.nextLine(); // primeira linha, em branco
+    // Workaround para o problema com o glpsol: not found
+    String timeLine = firstLine;
+    if(firstLine.startsWith("sh")) {
+      while(timeLine.startsWith("sh"))
+        timeLine = scanner.nextLine();
+      scanner.nextLine();
+    }
+
+    timeLine = scanner.nextLine().split("\t")[1];
     long min = Long.valueOf(timeLine.split("m")[0]);
     double sec = Double.valueOf(timeLine.split("m")[1].split("s")[0]);
     min = TimeUnit.SECONDS.convert(min, TimeUnit.MINUTES);

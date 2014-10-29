@@ -16,16 +16,23 @@ import simulator.simulation.Request;
 
 public class CreateVirtuaVNMPsWithViNEFormat {
   public static void main(String[] args) {
-    String baseDir = "/media/embs/Data/vine-yard-virtua-vnmps/problems/";
-    for(int i = 0; i < 30; i++) {
-      createSubstrateNetwork(baseDir + String.format("vnmp_%s/", i));
-      createVirtualNetworkRequests(baseDir + String.format("vnmp_%s/requests/", i));
+    int[] nodeClasses = { 20, 30, 50, 100 };
+    for(int nodeClass : nodeClasses) {
+      String baseDir = "/media/embs/Data/vine-yard-virtua-vnmps/" + nodeClass + "/";
+      new File(baseDir).mkdir();
+      for(int i = 0; i < 30; i++) {
+        createSubstrateNetwork(baseDir + String.format("vnmp_%s_%s/", nodeClass, i),
+          nodeClass);
+        createVirtualNetworkRequests(baseDir + String.format("vnmp_%s_%s/requests/",
+          nodeClass, i));
+      }
     }
   }
 
-  private static void createSubstrateNetwork(String baseDir) {
+  private static void createSubstrateNetwork(String baseDir, int numberOfNodes) {
     new File(baseDir).mkdir();
-    SubstrateNetwork substrateNetwork = new SubstrateNetworkGenerator().generate(50);
+    SubstrateNetwork substrateNetwork = new SubstrateNetworkGenerator().
+      generate(numberOfNodes);
     Random random = new Random();
 
     String substrateNetworkFileName = baseDir + "sub.txt";

@@ -3,6 +3,7 @@ package generator.tasks;
 import generator.network.SubstrateNetworkGenerator;
 import generator.network.VirtualNetworksGenerator;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -14,14 +15,19 @@ import simulator.simulation.Request;
 
 public class CreateVirtuaVNMPs {
   public static void main(String[] args) {
-    String baseDir = "/media/embs/Data/VirtuaVNMPs/";
-    for(int i = 0; i < 30; i++) {
-      createVirtuaVNMP(baseDir + String.format("vnmp_%s.txt", i));
+    int[] nodeClasses = { 20, 30, 50, 100 };
+    for(int nodeClass : nodeClasses) {
+      String baseDir = "/media/embs/Data/VirtuaVNMPs/" + nodeClass + "/";
+      new File(baseDir).mkdir();
+      for(int i = 0; i < 30; i++) {
+        createVirtuaVNMP(baseDir + String.format("vnmp_%s_%s.txt", nodeClass, i),
+          nodeClass);
+      }
     }
   }
 
-  private static void createVirtuaVNMP(String fileName) {
-    SubstrateNetwork substrateNetwork = new SubstrateNetworkGenerator().generate(50);
+  private static void createVirtuaVNMP(String fileName, int numberOfNodes) {
+    SubstrateNetwork substrateNetwork = new SubstrateNetworkGenerator().generate(numberOfNodes);
     ArrayList<Request> requests = new VirtualNetworksGenerator().
       generateVirtualNetworks(40);
     try {
