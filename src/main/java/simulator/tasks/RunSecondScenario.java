@@ -19,7 +19,7 @@ public class RunSecondScenario {
     for(File problemFile : baseDir.listFiles()) {
       String filename = problemFile.getAbsolutePath();
       VirtuaVNMPReader reader = new VirtuaVNMPReader(filename);
-      Simulation simulation = new Simulation(outDir + problemFile.getName(),
+      Simulation simulation = new Simulation(outDir + problemFile.getName().split(".txt")[0],
         reader);
       GraspMapper mapper = new GraspMapper();
       // mapper.allowNodeSharing();
