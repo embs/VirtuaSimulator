@@ -160,4 +160,14 @@ public class Mapping {
 
     return (double) nodesBeingShared.size() / nodesNumber;
   }
+
+  public void updateNodesStartAndReleaseTimes(int startTime, int releaseTime) {
+    for(PhysicalNode node : nodesMapping.values()) {
+      if(node.getStartTime() == -1)
+        node.setStartTime(startTime);
+
+      if(node.getReleaseTime() < releaseTime)
+        node.setReleaseTime(releaseTime);
+    }
+  }
 }

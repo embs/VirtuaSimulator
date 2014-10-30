@@ -10,13 +10,18 @@ import org.uncommons.maths.statistics.DataSet;
 
 import simulator.mapping.Mapping;
 import simulator.simulation.Request;
+import simulator.util.Clock;
 import simulator.util.Util;
 
 public class ViNEYardTraceReader {
   private HashMap<String, Object> metrics;
+  private HashMap<Integer, Integer> eventsTimes;
+  private HashMap<Integer, Integer> eventsReleaseTimes;
 
   public ViNEYardTraceReader() {
     metrics = new HashMap<String, Object>();
+    eventsTimes = new HashMap<Integer, Integer>();
+    eventsReleaseTimes = new HashMap<Integer, Integer>();
   }
 
   public HashMap<String, Object> readTrace(String traceFilename,
@@ -53,6 +58,11 @@ public class ViNEYardTraceReader {
       if(tokens[3].equals("0")) { // requisição chegando
         requestsTotal++;
         if(tokens[4].equals("1")) { // requisição aceita
+          int eventIndex = Integer.valueOf(tokens[0]);
+          int eventTime = Integer.valueOf(tokens[1]);
+          int eventDuration = Integer.valueOf(tokens[2]);
+          eventsTimes.put(eventIndex, eventTime);
+          eventsReleaseTimes.put(eventIndex, eventTime + eventDuration);
           acceptedRequestsTotal++;
         }
       }
@@ -90,7 +100,11 @@ public class ViNEYardTraceReader {
       requestsFolderFilename);
     HashMap<Request, Mapping> mappings = reader.readMappings(mappingsFilename);
     DataSet availabilityData = new DataSet();
-    for(Mapping mapping : mappings.values()) {
+    for(Request request : mappings.keySet()) {
+      Mapping mapping = mappings.get(request);
+      Clock.instance().setTime(eventsTimes.get(request.getId()));
+      int currentTime = Clock.instance().time();
+      mapping.updateNodesStartAndReleaseTimes(currentTime, eventsReleaseTimes.get(request.getId()));
       availabilityData.addValue(mapping.getAvailability().doubleValue());
     }
 
