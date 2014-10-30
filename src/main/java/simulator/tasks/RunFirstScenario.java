@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import simulator.io.OptFIVNMPReader;
 import simulator.mapping.GraspMapper;
-import simulator.simulation.Simulation;
+import simulator.simulation.SimpleSimulation;
 
 /*
  * Primeiro cenário: apenas simulação de eventos discretos -- sem Software Aging,
@@ -21,7 +21,7 @@ public class RunFirstScenario {
       for(File problemFile : problemsDir.listFiles()) {
         String filename = problemFile.getAbsolutePath();
         OptFIVNMPReader reader = new OptFIVNMPReader(filename);
-        Simulation simulation = new Simulation(outDir + problemFile.getName(),
+        SimpleSimulation simulation = new SimpleSimulation(outDir + problemFile.getName(),
           reader);
         GraspMapper mapper = new GraspMapper();
         mapper.allowNodeSharing();

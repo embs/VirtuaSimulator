@@ -11,6 +11,7 @@ import simulator.io.IVNMPReader;
 import simulator.mapping.IMapper;
 import simulator.mapping.Mapping;
 import simulator.network.SubstrateNetwork;
+import simulator.util.Clock;
 
 public abstract class Simulation {
   private String name;
@@ -59,6 +60,7 @@ public abstract class Simulation {
       } else { // departure event
         mappings.get(currentRequest).clearMappings();
       }
+      Clock.instance().setTime(currentRequestEvent.getTime());
       updatePhysicalNodesAge(currentRequestEvent);
 
       writer.println(String.format("%s %s %s %s %s %s %s %s %s %s",
@@ -71,7 +73,7 @@ public abstract class Simulation {
         substrateNetwork.getNodesLoadStandardDeviation(),
         substrateNetwork.getLinksBandwidthLoadStandardDeviation(),
         (currentRequestEvent.isArrivalEvent() && mappings.containsKey(currentRequest) ?
-          printMappingAvailability(currentRequestEvent) : "0"),
+          mappings.get(currentRequest).getAvailability() : "0.0"),
         (currentRequestEvent.isArrivalEvent() && mappings.containsKey(currentRequest) ?
           mappings.get(currentRequest).getNodeSharingRate(currentRequest.getAmountNodes()) : "0.0")
         ));
@@ -89,5 +91,4 @@ public abstract class Simulation {
   }
 
   protected abstract void updatePhysicalNodesAge(RequestEvent requestEvent);
-  protected abstract String printMappingAvailability(RequestEvent requestEvent);
 }

@@ -8,6 +8,7 @@ import generator.dependability.AvailabilityGenerator;
 
 import simulator.network.components.Node;
 import simulator.network.components.virtual.VirtualNode;
+import simulator.util.Clock;
 
 import static simulator.util.Config.COMPARE_NODES_BY_AVAILABILITY;
 import static simulator.util.Config.SOFTWARE_AGING_CONSTANT;
@@ -29,7 +30,7 @@ public class PhysicalNode extends Node implements Comparable<PhysicalNode> {
     this.hypervisorAvailability = AvailabilityGenerator.getInstance().
       generateComponentAvailability(AvailabilityGenerator.HYPERVISOR_FAILURE_RATE,
         AvailabilityGenerator.HYPERVISOR_MTTR);
-    startTime = releaseTime = 0;
+    startTime = releaseTime = -1;
     this.operatingSystemAvailability = AvailabilityGenerator.getInstance().
       generateComponentAvailability(AvailabilityGenerator.OPERATING_SYSTEM_MTTF,
         AvailabilityGenerator.OPERATING_SYSTEM_MTTR);
@@ -62,21 +63,17 @@ public class PhysicalNode extends Node implements Comparable<PhysicalNode> {
   }
 
   public BigDecimal getNodeAvailability() {
-    return hypervisorAvailability.multiply(machineAvailability).multiply(
-      operatingSystemAvailability);
-  }
-
-  public BigDecimal getAgedNodeAvailability(int currentTime) {
+    int upTime = getUpTime();
     double lambda = 1D / 4000;
-    double rate = Math.pow(Math.E, -1 * lambda * currentTime);
-    System.out.println("e = " + Math.E);
-    System.out.println("lambda = " + lambda);
-    System.out.println("-lambda = " + (-1 * lambda));
-    System.out.println("T = " + currentTime);
-    System.out.println("-lambda*T = " + (-1 * lambda * currentTime));
-    System.out.println("rate = " + rate);
+    double rate;
+    if(upTime > 0) {
+      rate = Math.pow(Math.E, -1 * lambda * upTime);
+    } else {
+      rate = 1;
+    }
 
-    return getNodeAvailability().multiply(new BigDecimal(rate));
+    return hypervisorAvailability.multiply(machineAvailability).multiply(
+      operatingSystemAvailability).multiply(new BigDecimal(rate));
   }
 
   public BigDecimal getIntermediaryNodeAvailability() {
@@ -99,7 +96,11 @@ public class PhysicalNode extends Node implements Comparable<PhysicalNode> {
     releaseTime = time;
   }
 
-  public int getUpTime(int currentTime) {
+  public int getUpTime() {
+    int currentTime = Clock.instance().time();
+    if(startTime == -1)
+      return 0;
+
     return currentTime - startTime;
   }
 

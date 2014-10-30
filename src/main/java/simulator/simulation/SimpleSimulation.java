@@ -9,11 +9,4 @@ public class SimpleSimulation extends Simulation {
   }
 
   protected void updatePhysicalNodesAge(RequestEvent requestEvent) {}
-
-  protected String printMappingAvailability(RequestEvent requestEvent) {
-    Request request = requestEvent.getRequest();
-    Mapping mapping = mappings.get(request);
-
-    return mapping.getAvailability(false, 0).toString();
-  }
 }

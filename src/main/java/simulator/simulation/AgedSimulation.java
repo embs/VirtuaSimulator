@@ -17,7 +17,7 @@ public class AgedSimulation extends Simulation {
       Mapping mapping = mappings.get(request);
       for(VirtualNode virtualNode : request.getVirtualNodes().values()) {
         PhysicalNode hostingNode = mapping.getHostingNodeFor(virtualNode);
-        if(hostingNode.getStartTime() == 0) {
+        if(hostingNode.getStartTime() == -1) {
           hostingNode.setStartTime(request.getCreationTime());
         }
         if(hostingNode.getReleaseTime() < request.getDepartureTime()) {
@@ -25,12 +25,5 @@ public class AgedSimulation extends Simulation {
         }
       }
     }
-  }
-
-  protected String printMappingAvailability(RequestEvent requestEvent) {
-    Request request = requestEvent.getRequest();
-    Mapping mapping = mappings.get(request);
-
-    return mapping.getAvailability(true, requestEvent.getTime()).toString();
   }
 }

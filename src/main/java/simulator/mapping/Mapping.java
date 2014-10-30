@@ -87,8 +87,8 @@ public class Mapping {
         PhysicalNode hostingNode = nodesMapping.get(virtualNode);
         hostingNode.removeLoad(virtualNode.getCapacity());
         if(hostingNode.getLoad() == 0) {
-          hostingNode.setStartTime(0);
-          hostingNode.setReleaseTime(0);
+          hostingNode.setStartTime(-1);
+          hostingNode.setReleaseTime(-1);
         }
       }
       for(VirtualLink virtualLink : linksMapping.keySet()) {
@@ -103,13 +103,12 @@ public class Mapping {
     linksMapping.clear();
   }
 
-  public BigDecimal getAvailability(boolean aged, int currentTime) {
+  public BigDecimal getAvailability() {
     BigDecimal availability = new BigDecimal(1);
     for(VirtualNode virtualNode : nodesMapping.keySet()) {
       PhysicalNode hostingNode = nodesMapping.get(virtualNode);
-      availability = availability.multiply(
-        (aged ? hostingNode.getAgedNodeAvailability(currentTime)
-          : hostingNode.getNodeAvailability()), MathContext.DECIMAL64);
+      availability = availability.multiply(hostingNode.getNodeAvailability(),
+        MathContext.DECIMAL64);
     }
     ArrayList<PhysicalNode> intermediaryNodes = new ArrayList<PhysicalNode>();
     for(VirtualLink virtualLink : linksMapping.keySet()) {

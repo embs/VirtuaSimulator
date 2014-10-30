@@ -31,7 +31,7 @@ public class GraphicateMetricsAveragesAndErrorsForSecondScenario {
     for(int i = 0; i < nodeClasses.length; i++) {
       // VirtuaTraces
       String[] virtuaTracesBaseDirs = {
-        "/media/embs/Data/VirtuaSimulationVirtuaVNMPs/"
+        "/media/embs/Data/VirtuaSimulationVirtuaVNMPsWithSA/"
       };
       for(int a = 0; a < virtuaTracesBaseDirs.length; a++) {
         File baseDir = new File(virtuaTracesBaseDirs[a]);
