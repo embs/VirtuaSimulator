@@ -161,23 +161,4 @@ public class Mapping {
 
     return (double) nodesBeingShared.size() / nodesNumber;
   }
-
-  /**
-   *
-   * CÓDIGO LEGADO
-   *
-   */
-  // add node mapping
-    // physicalNode.allocVirtualNode(request.getId(), virtualNode);
-    // virtualNode.setPhysicalHostNode(physicalNode);
-
-  // clear mappings
-    // for(PhysicalNode node : nodesMapping.values()) {
-    //   node.desAllocRequest(request.getId());
-    // }
-    // for(PhysicalLink[] linksPath : linksMapping.values()) {
-    //   for(PhysicalLink link : linksPath) {
-    //     link.desAllocVirtualLink(request.getId());
-    //   }
-    // }
 }

@@ -137,41 +137,4 @@ public class SubstrateNetwork {
 
     return representation;
   }
-
-  /**
-   *
-   * CÓDIGO LEGADO
-   *
-   */
-  // import simulator.network.components.physical.CoordinatedNode;
-  // import simulator.network.components.virtual.VirtualLink;
-  // import simulator.network.components.virtual.VirtualNode;
-
-  // private HashMap<String, VirtualLink> hashVirtualLinks;
-
-  // construtor
-    // this.hashVirtualLinks = new HashMap<String, VirtualLink>();
-
-  // public SubstrateNetwork(HashMap<Integer, PhysicalNode> physicalNodes, HashMap<String, PhysicalLink> physicalLinks, HashMap<String, VirtualLink> hashVirtualLinks) {
-  //   this.physicalNodes = physicalNodes;
-  //   this.physicalLinks = physicalLinks;
-  //   // this.hashVirtualLinks = hashVirtualLinks;
-  //   this.amountNodes = physicalNodes.size();
-  //   this.amountLinks = physicalLinks.size();
-  // }
-
-  // public HashMap<String, VirtualLink> getHashVirtualLinks() {
-  //   return hashVirtualLinks;
-  // }
-
-  // public void setHashVirtualLinks(HashMap<String, VirtualLink> hashVirtualLinks) {
-  //   this.hashVirtualLinks = hashVirtualLinks;
-  // }
-
-  // toString
-      // if(physicalNode instanceof CoordinatedNode) {
-      //   CoordinatedNode coordinatedNode = (CoordinatedNode) physicalNode;
-      //   representation = representation.concat(String.format("\tX: %d, Y: %d\n",
-      //       coordinatedNode.getX(), coordinatedNode.getY()));
-      // }
 }
