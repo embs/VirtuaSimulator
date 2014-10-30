@@ -23,21 +23,27 @@ public class SubstrateNetworkGenerator {
 
   public SubstrateNetwork generate(int numberOfNodes) {
     HashMap<Integer, PhysicalNode> nodes = new HashMap<Integer, PhysicalNode>();
-    for(int i = 0; i < numberOfNodes; i++) {
-      nodes.put(i, nodeGenerator.generatePhysicalNode(i));
-    }
-
     HashMap<String, PhysicalLink> links = new HashMap<String, PhysicalLink>();
-    for(PhysicalNode source : nodes.values()) {
-      for(PhysicalNode destiny : nodes.values()) {
-        if(!source.equals(destiny) && source.getId() > destiny.getId()
-           && randomizer.nextBoolean()) {
-          String linkId = String.format("%s:%s", destiny.getId(), source.getId());
-          links.put(linkId,
-            linkGenerator.generatePhysicalLink(linkId, source, destiny));
+
+    int degreeSum = 0;
+    for(int i = 0; i < numberOfNodes; i++) {
+      PhysicalNode newNode = nodeGenerator.generatePhysicalNode(i);
+      while(newNode.getAttachedLinks().size() == 0 && i != 0) {
+        for(PhysicalNode node : nodes.values()) {
+          if(degreeSum == 0 || randomizer.nextInt(degreeSum) < node.getAttachedLinks().size()) {
+            degreeSum += 2;
+            String newLinkId = String.format("%s:%s",
+              Math.max(node.getId(), newNode.getId()),
+              Math.min(node.getId(), newNode.getId()));
+            PhysicalLink newLink = linkGenerator.generatePhysicalLink(newLinkId,
+              newNode, node);
+            links.put(newLinkId, newLink);
+          }
         }
       }
+      nodes.put(i, newNode);
     }
+
 
     return new SubstrateNetwork(nodes, links);
   }

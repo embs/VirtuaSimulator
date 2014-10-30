@@ -9,14 +9,14 @@ import simulator.network.components.physical.PhysicalNode;
 import simulator.network.components.virtual.VirtualLink;
 
 public class PhysicalLink extends Link {
-  private double bandwidthLoad;
+  private BigDecimal bandwidthLoad;
   private int cost;
   private BigDecimal availability;
 
   public PhysicalLink(String id, PhysicalNode sourceNode, PhysicalNode destinyNode,
                       double bandwidth, double delay, int cost) {
     super(id, sourceNode, destinyNode, bandwidth, delay);
-    bandwidthLoad = 0;
+    bandwidthLoad = new BigDecimal(0);
     this.cost = cost;
     this.availability = AvailabilityGenerator.getInstance().
       generateComponentAvailability(AvailabilityGenerator.LINK_FAILURE_RATE,
@@ -24,25 +24,23 @@ public class PhysicalLink extends Link {
   }
 
   public double getBandwidthLoad() {
-    return bandwidthLoad;
+    return bandwidthLoad.doubleValue();
   }
 
   public void addBandwidthLoad(double bandwidth) {
-    this.bandwidthLoad = (new BigDecimal(String.valueOf(bandwidthLoad)).
-      add(new BigDecimal(String.valueOf(bandwidth)))).doubleValue();
-    if(bandwidthLoad > getBandwidthCapacity())
+    bandwidthLoad = bandwidthLoad.add(BigDecimal.valueOf(bandwidth));
+    if(bandwidthLoad.doubleValue() > getBandwidthCapacity())
       throw new RuntimeException("Enlace físico não possui capacidade suficiente.");
   }
 
   public void removeBandwidthLoad(double bandwidth) {
-    bandwidthLoad = (new BigDecimal(String.valueOf(bandwidthLoad)).
-      subtract(new BigDecimal(String.valueOf(bandwidth)))).doubleValue();
-    if(bandwidthLoad < 0)
+    bandwidthLoad = bandwidthLoad.subtract(BigDecimal.valueOf(bandwidth));
+    if(bandwidthLoad.doubleValue() < 0)
       throw new RuntimeException("Carga de enlace físico negativa.");
   }
 
   public double getRemainingBandwidth() {
-    return this.getBandwidthCapacity() - bandwidthLoad;
+    return BigDecimal.valueOf(this.getBandwidthCapacity()).subtract(bandwidthLoad).doubleValue();
   }
 
   public int getCost() {

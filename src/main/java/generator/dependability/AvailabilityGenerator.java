@@ -18,6 +18,8 @@ public class AvailabilityGenerator {
   private final int CPU_MTTR = 1;
   private final int HD_MTTR = 1;
   private final int MEMORY_MTTR = 1;
+  private final static int NETWORK_INTERFACE_CARD_MTTF = 6200000;
+  private final static int NETWORK_INTERFACE_CARD_MTTR = 1;
 
   public final static int HYPERVISOR_FAILURE_RATE = 2880;
   public final static int HYPERVISOR_MTTR = 2;
@@ -25,6 +27,8 @@ public class AvailabilityGenerator {
   public final static int ROUTER_MTTR = 1;
   public final static int LINK_FAILURE_RATE = 19996;
   public final static int LINK_MTTR = 12;
+  public final static int OPERATING_SYSTEM_MTTF = 1440;
+  public final static int OPERATING_SYSTEM_MTTR = 2;
 
   private AvailabilityGenerator() {
     randomGenerator = new Random(SEED);
@@ -37,15 +41,19 @@ public class AvailabilityGenerator {
   }
 
   public BigDecimal generateMachineAvailability() {
-    BigDecimal cpuAvailability, hdAvailability, memoryAvailability, routerAvailability;
+    BigDecimal cpuAvailability, hdAvailability, memoryAvailability,
+      routerAvailability, networkCardAvailability;
     cpuAvailability = generateComponentAvailability(CPU_FAILURE_RATE, CPU_MTTR);
     hdAvailability = generateComponentAvailability(HD_FAILURE_RATE, HD_MTTR);
     memoryAvailability = generateComponentAvailability(MEMORY_FAILURE_RATE, MEMORY_MTTR);
     routerAvailability = generateComponentAvailability(ROUTER_FAILURE_RATE, ROUTER_MTTR);
+    networkCardAvailability = generateComponentAvailability(
+      NETWORK_INTERFACE_CARD_MTTF, NETWORK_INTERFACE_CARD_MTTR);
 
     return cpuAvailability.multiply(hdAvailability, MATH_CONTEXT).
         multiply(memoryAvailability, MATH_CONTEXT).
-        multiply(routerAvailability, MATH_CONTEXT);
+        multiply(routerAvailability, MATH_CONTEXT).
+        multiply(networkCardAvailability, MATH_CONTEXT);
   }
 
   public BigDecimal generateComponentAvailability(int failureRate, int mttr) {

@@ -126,4 +126,16 @@ public class MappingTest extends TestCase {
     assertEquals(hostingNode, mapping.getHostingNodeFor(nodeFromRequest1));
     assertEquals(hostingNode, mapping.getHostingNodeFor(nodeFromRequest2));
   }
+
+  public void testDeactiveResourcesHandlingAllowsBreakingNodesConstraints() {
+    mapping.deactiveResourcesHandling();
+    virtualNode.setCapacity(hostingNode.getCapacity() + 1);
+    mapping.addNodeMapping(virtualNode, hostingNode);
+  }
+
+  public void testDeactiveResourcesHandlingAllowsBreakingLinksConstraints() {
+    mapping.deactiveResourcesHandling();
+    virtualLink.setBandwidthCapacity(hostingLinks.get(0).getBandwidthCapacity() + 1);
+    mapping.addLinkMapping(virtualLink, hostingLinks);
+  }
 }

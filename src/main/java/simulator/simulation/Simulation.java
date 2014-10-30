@@ -38,6 +38,7 @@ public abstract class Simulation {
     } catch(FileNotFoundException e) {
       e.printStackTrace();
     }
+    long startTime = System.currentTimeMillis();
     while(!requestEvents.isEmpty()) {
       RequestEvent currentRequestEvent = requestEvents.poll();
       Request currentRequest = currentRequestEvent.getRequest();
@@ -60,7 +61,7 @@ public abstract class Simulation {
       }
       updatePhysicalNodesAge(currentRequestEvent);
 
-      writer.println(String.format("%s %s %s %s %s %s %s %s %s",
+      writer.println(String.format("%s %s %s %s %s %s %s %s %s %s",
         currentRequestEvent,
         (mappings.containsKey(currentRequest) ? "1" : "0"),
         substrateNetwork.getMaximumNodesLoad(),
@@ -70,8 +71,12 @@ public abstract class Simulation {
         substrateNetwork.getNodesLoadStandardDeviation(),
         substrateNetwork.getLinksBandwidthLoadStandardDeviation(),
         (currentRequestEvent.isArrivalEvent() && mappings.containsKey(currentRequest) ?
-          printMappingAvailability(currentRequestEvent) : "0")));
+          printMappingAvailability(currentRequestEvent) : "0"),
+        (currentRequestEvent.isArrivalEvent() && mappings.containsKey(currentRequest) ?
+          mappings.get(currentRequest).getNodeSharingRate(currentRequest.getAmountNodes()) : "0.0")
+        ));
     }
+    writer.println(System.currentTimeMillis() - startTime);
     writer.close();
   }
 
