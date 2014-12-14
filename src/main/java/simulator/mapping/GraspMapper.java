@@ -5,6 +5,7 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -159,6 +160,22 @@ public class GraspMapper implements IMapper {
       }
     }
     Collections.sort(candidateNodes);
+    // Collections.sort(candidateNodes, new Comparator<PhysicalNode>() {
+    //   public int compare(PhysicalNode node1, PhysicalNode node2) {
+    //     int node1ReleaseTime = node1.getReleaseTime();
+    //     int node2ReleaseTime = node2.getReleaseTime();
+    //     if(node1ReleaseTime == -1 && node2ReleaseTime != -1)
+    //       return -1;
+    //     else if(node1ReleaseTime != -1 && node2ReleaseTime == -1)
+    //       return 1;
+    //     else if(node1.getReleaseTime() > node2.getReleaseTime())
+    //       return -1;
+    //     else if(node1.getReleaseTime() < node2.getReleaseTime())
+    //       return 1;
+    //     else
+    //       return 0;
+    //   }
+    // });
     candidateNodes = capListNodes(candidateNodes);
 
     // Seleciona melhor caminho de acordo com a disponibilidade

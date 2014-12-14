@@ -43,6 +43,7 @@ public abstract class Simulation {
     while(!requestEvents.isEmpty()) {
       RequestEvent currentRequestEvent = requestEvents.poll();
       Request currentRequest = currentRequestEvent.getRequest();
+      Clock.instance().setTime(currentRequestEvent.getTime());
       if(currentRequestEvent.isArrivalEvent()) { // arrival event
         int triesCounter = 0;
         while(!mappings.containsKey(currentRequest)
@@ -60,7 +61,6 @@ public abstract class Simulation {
       } else { // departure event
         mappings.get(currentRequest).clearMappings();
       }
-      Clock.instance().setTime(currentRequestEvent.getTime());
       updatePhysicalNodesAge(currentRequestEvent);
 
       writer.println(String.format("%s %s %s %s %s %s %s %s %s %s",

@@ -14,7 +14,7 @@ import simulator.util.Util;
 public class GraphicateMetricsAveragesAndErrorsForSecondScenario {
   public static void main(String[] args) {
     String[] nodeClasses = { "20", "30", "50", "100" };
-    String[] approaches = { "HRA", "Greedy", "DViNE" };
+    String[] approaches = { "HRA", "RejuvenatingHRA", "Greedy", "DViNE" };
     String[] metrics = { "acceptanceRate", "averageNodesLoad", "averageLinksLoad",
       "executionTime", "averageAvailability" };
     DataSet[][][] metricsData = aggregateTraces(nodeClasses, approaches, metrics);
@@ -31,7 +31,8 @@ public class GraphicateMetricsAveragesAndErrorsForSecondScenario {
     for(int i = 0; i < nodeClasses.length; i++) {
       // VirtuaTraces
       String[] virtuaTracesBaseDirs = {
-        "/media/embs/Data/VirtuaSimulationVirtuaVNMPsWithSA/"
+        "/media/embs/Data/VirtuaSimulationVirtuaVNMPsWithSA/",
+        "/media/embs/Data/VirtuaSimulationVirtuaVNMPsWithSAnSR/"
       };
       for(int a = 0; a < virtuaTracesBaseDirs.length; a++) {
         File baseDir = new File(virtuaTracesBaseDirs[a]);
@@ -51,9 +52,8 @@ public class GraphicateMetricsAveragesAndErrorsForSecondScenario {
       }
 
       // ViNETraces
-      String[] approachesNames = { "HRA", ".greedy", ".dvine" };
-      for(int a = 1; a < approachesNames.length; a++) {
-        String approach = approachesNames[a];
+      for(int a = 2; a < approaches.length; a++) {
+        String approach = approaches[a];
         File baseDir = new File("/media/embs/Data/vine-yard-virtua-vnmps/" +
           nodeClasses[i]);
         DataSet[] metricsData = new DataSet[metrics.length];
@@ -64,10 +64,10 @@ public class GraphicateMetricsAveragesAndErrorsForSecondScenario {
           ViNEYardTraceReader reader = new ViNEYardTraceReader();
           String s = baseDir.getAbsolutePath() + "/vnmp_" + nodeClasses[i] + "_"
             + j + "/";
-          reader.readTrace(s + "MySimINFOCOM2009" + approach + ".out",
-            s + "time" + approach + ".out");
+          reader.readTrace(s + "MySimINFOCOM2009." + approach.toLowerCase() + ".out",
+            s + "time." + approach.toLowerCase() + ".out");
           reader.readMappings(s + "sub.txt", s + "requests",
-            s + "mappings" + approach + ".out");
+            s + "mappings." + approach.toLowerCase() + ".out");
           for(int k = 0; k < metrics.length; k++) {
             metricsData[k].addValue((Double) reader.get(metrics[k]));
           }
@@ -83,7 +83,7 @@ public class GraphicateMetricsAveragesAndErrorsForSecondScenario {
                                         String[] approaches, String[] metrics) {
     Graph[] graphs = new Graph[metrics.length];
     for(int i = 0; i < metrics.length; i++) {
-      graphs[i] = new Graph("Gráfico para a métrica " + metrics[i], 8, 3);
+      graphs[i] = new Graph("Gráfico para a métrica " + metrics[i], 8, 4);
       for(int j = 0; j < nodeClasses.length; j++) {
         graphs[i].setLineHeader(j, nodeClasses[j]);
         graphs[i].setLineHeader(j+4, nodeClasses[j] + "-err");
