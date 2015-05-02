@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.HashMap;
 
 import simulator.network.components.physical.PhysicalLink;
@@ -100,13 +101,10 @@ public class Mapping {
   }
 
   public BigDecimal getAvailability() {
-    BigDecimal availability = new BigDecimal(1);
-    for(VirtualNode virtualNode : nodesMapping.keySet()) {
-      PhysicalNode hostingNode = nodesMapping.get(virtualNode);
-      availability = availability.multiply(hostingNode.getNodeAvailability(),
-        MathContext.DECIMAL64);
-    }
-    ArrayList<PhysicalNode> intermediaryNodes = new ArrayList<PhysicalNode>();
+    LinkedHashSet<PhysicalLink> uniqPhysicalLinks =
+      new LinkedHashSet<PhysicalLink>();
+    LinkedHashSet<PhysicalNode> uniqIntermediaryNodes =
+      new LinkedHashSet<PhysicalNode>();
     for(VirtualLink virtualLink : linksMapping.keySet()) {
       PhysicalNode sourcePhysicalNode = getHostingNodeFor(
         (VirtualNode) virtualLink.getSourceNode());
@@ -114,8 +112,7 @@ public class Mapping {
         (VirtualNode) virtualLink.getDestinyNode());
       ArrayList<PhysicalLink> hostingLinks = linksMapping.get(virtualLink);
       for(PhysicalLink hostingLink : hostingLinks) {
-        availability = availability.multiply(hostingLink.getAvailability(),
-          MathContext.DECIMAL64);
+        uniqPhysicalLinks.add(hostingLink);
         PhysicalNode hostingLinkSourceNode =
           (PhysicalNode) hostingLink.getSourceNode();
         PhysicalNode hostingLinkDestinyNode =
@@ -125,12 +122,22 @@ public class Mapping {
         for(PhysicalNode hostingLinkNode : hostingLinkNodes) {
           if(!hostingLinkNode.equals(sourcePhysicalNode)
              && !hostingLinkNode.equals(destinyPhysicalNode)) {
-            intermediaryNodes.add(hostingLinkNode);
+            uniqIntermediaryNodes.add(hostingLinkNode);
           }
         }
       }
     }
-    for(PhysicalNode intermediaryNode : intermediaryNodes) {
+
+    BigDecimal availability = new BigDecimal(1);
+    for(PhysicalNode hostingNode : uniqPhysicalNodes()) {
+      availability = availability.multiply(hostingNode.getNodeAvailability(),
+        MathContext.DECIMAL64);
+    }
+    for(PhysicalLink hostingLink : uniqPhysicalLinks) {
+      availability = availability.multiply(hostingLink.getAvailability(),
+        MathContext.DECIMAL64);
+    }
+    for(PhysicalNode intermediaryNode : uniqIntermediaryNodes) {
       availability = availability.multiply(intermediaryNode.
         getIntermediaryNodeAvailability(), MathContext.DECIMAL64);
     }
@@ -155,5 +162,10 @@ public class Mapping {
     }
 
     return (double) nodesBeingShared.size() / nodesNumber;
+  }
+
+  private ArrayList<PhysicalNode> uniqPhysicalNodes() {
+    return new ArrayList<PhysicalNode>(
+      new LinkedHashSet<PhysicalNode>(nodesMapping.values()));
   }
 }

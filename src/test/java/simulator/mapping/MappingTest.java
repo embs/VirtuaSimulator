@@ -4,6 +4,8 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import java.math.BigDecimal;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -137,5 +139,55 @@ public class MappingTest extends TestCase {
     mapping.deactiveResourcesHandling();
     virtualLink.setBandwidthCapacity(hostingLinks.get(0).getBandwidthCapacity() + 1);
     mapping.addLinkMapping(virtualLink, hostingLinks);
+  }
+
+  public void testGetAvailabilityReturnsNumberGreaterThanZero() {
+    assertTrue(mapping.getAvailability().doubleValue() > 0D);
+  }
+
+  public void testGetAvailabilityTakesIntoAccountUniqPhysicalNodesOnly() {
+    mapping.addNodeMapping(new VirtualNode(1, 100), hostingNode);
+    mapping.addNodeMapping(new VirtualNode(2, 100), hostingNode);
+    assertEquals(
+      hostingNode.getNodeAvailability().doubleValue(),
+      mapping.getAvailability().doubleValue());
+  }
+
+  public void testGetAvailabilityTakesIntoAccountUniqPhysicalLinksOnly() {
+    VirtualNode virtualNode1 = new VirtualNode(1, 50);
+    VirtualNode virtualNode2 = new VirtualNode(2, 50);
+    VirtualLink virtualLink1 = new VirtualLink("1:2", virtualNode1, virtualNode2, 5, 5);
+    VirtualLink virtualLink2 = new VirtualLink("2:1", virtualNode2, virtualNode1, 5, 5);
+    PhysicalNode hostingNode1 = new PhysicalNode(1, 100);
+    PhysicalNode hostingNode2 = new PhysicalNode(2, 100);
+    hostingLinks = new ArrayList<PhysicalLink>();
+    hostingLinks.add(new PhysicalLink("1:2", hostingNode1, hostingNode2, 200, 5, 5));
+    mapping.addNodeMapping(virtualNode1, hostingNode1);
+    mapping.addNodeMapping(virtualNode2, hostingNode2);
+    mapping.addLinkMapping(virtualLink1, hostingLinks);
+    mapping.addLinkMapping(virtualLink2, hostingLinks);
+    BigDecimal expected = hostingNode1.getNodeAvailability().multiply(
+      hostingNode2.getNodeAvailability());
+    for(PhysicalLink link : hostingLinks) {
+      expected = expected.multiply(link.getAvailability());
+    }
+
+    assertEquals(expected.doubleValue(), mapping.getAvailability().doubleValue());
+  }
+
+  public void testGetAvailabilityTakesIntoAccountUniqIntermediaryNodesOnly() {
+    VirtualNode virtualNode1 = new VirtualNode(1, 50);
+    VirtualNode virtualNode2 = new VirtualNode(2, 50);
+    VirtualLink virtualLink1 = new VirtualLink("1:2", virtualNode1, virtualNode2, 5, 5);
+    PhysicalNode interNode = new PhysicalNode(1, 100);
+    hostingLinks = new ArrayList<PhysicalLink>();
+    hostingLinks.add(new PhysicalLink("1:2", interNode, interNode, 200, 5, 5));
+    mapping.addLinkMapping(virtualLink1, hostingLinks);
+    BigDecimal expected = interNode.getIntermediaryNodeAvailability();
+    for(PhysicalLink link : hostingLinks) {
+      expected = expected.multiply(link.getAvailability());
+    }
+
+    assertEquals(expected.doubleValue(), mapping.getAvailability().doubleValue());
   }
 }
