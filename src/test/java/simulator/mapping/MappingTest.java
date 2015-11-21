@@ -5,6 +5,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -172,7 +173,11 @@ public class MappingTest extends TestCase {
       expected = expected.multiply(link.getAvailability());
     }
 
-    assertEquals(expected.doubleValue(), mapping.getAvailability().doubleValue());
+    int scale = 10;
+    RoundingMode mode = RoundingMode.HALF_UP;
+    expected = expected.setScale(scale, mode);
+    BigDecimal actual = mapping.getAvailability().setScale(scale, mode);
+    assertEquals(expected.doubleValue(), actual.doubleValue());
   }
 
   public void testGetAvailabilityTakesIntoAccountUniqIntermediaryNodesOnly() {
