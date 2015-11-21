@@ -9,10 +9,6 @@ public class VirtuaSimulatorTraceReaderTest extends TestCase {
   private VirtuaSimulatorTraceReader reader;
   private HashMap<String, Object> metrics;
 
-  public VirtuaSimulatorTraceReaderTest(String testName) {
-    super(testName);
-  }
-
   public void setUp() {
     reader = new VirtuaSimulatorTraceReader();
     metrics = reader.readTrace(

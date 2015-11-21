@@ -10,10 +10,6 @@ public class OptFIVNMPReaderTest extends TestCase {
   private OptFIVNMPReader reader;
   private Request request;
 
-  public OptFIVNMPReaderTest(String testName) {
-    super(testName);
-  }
-
   protected void setUp() {
     reader = new OptFIVNMPReader("src/test/resources/OptFI/VNMPs/eu_20_0_prob");
     request = reader.getVirtualNetworkRequests().get(0);

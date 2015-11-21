@@ -9,10 +9,6 @@ public class ViNEYardTraceReaderTest extends TestCase {
   private ViNEYardTraceReader reader;
   private HashMap<String, Object> metrics;
 
-  public ViNEYardTraceReaderTest(String testName) {
-    super(testName);
-  }
-
   public void setUp() {
     reader = new ViNEYardTraceReader();
     metrics = reader.readTrace(

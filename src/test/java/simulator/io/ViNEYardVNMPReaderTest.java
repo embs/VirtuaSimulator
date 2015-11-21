@@ -12,10 +12,6 @@ public class ViNEYardVNMPReaderTest extends TestCase {
   private SubstrateNetwork substrateNetwork;
   private Request request;
 
-  public ViNEYardVNMPReaderTest(String testName) {
-    super(testName);
-  }
-
   public void setUp() {
     reader = new ViNEYardVNMPReader(
       "src/test/resources/ViNEYard/substrate/sub-50.txt",

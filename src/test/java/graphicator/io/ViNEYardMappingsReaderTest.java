@@ -12,10 +12,6 @@ public class ViNEYardMappingsReaderTest extends TestCase {
   private ViNEYardMappingsReader reader;
   private HashMap<Request, Mapping> mappings;
 
-  public ViNEYardMappingsReaderTest(String testName) {
-    super(testName);
-  }
-
   public void setUp() {
     reader = new ViNEYardMappingsReader(
       "src/test/resources/ViNEYard/substrate/sub-100.txt",

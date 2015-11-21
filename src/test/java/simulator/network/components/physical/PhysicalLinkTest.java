@@ -12,10 +12,6 @@ public class PhysicalLinkTest extends TestCase {
   private PhysicalNode node2;
   private PhysicalLink physicalLink;
 
-  public PhysicalLinkTest(String testName) {
-    super(testName);
-  }
-
   public void setUp() {
     node1 = new PhysicalNode(1, 50);
     node2 = new PhysicalNode(2, 50);

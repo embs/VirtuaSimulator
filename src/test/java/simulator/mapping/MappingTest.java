@@ -19,10 +19,6 @@ public class MappingTest extends TestCase {
   private VirtualNode virtualNode;
   private VirtualLink virtualLink;
 
-  public MappingTest(String testName) {
-    super(testName);
-  }
-
   public void setUp() {
     mapping = new Mapping();
     hostingNode = new PhysicalNode(1, 100);

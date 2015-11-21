@@ -12,10 +12,6 @@ public class RequestTest extends TestCase {
   private HashMap<Integer, VirtualNode> virtualNodes;
   private HashMap<String, VirtualLink> virtualLinks;
 
-  public RequestTest(String testName) {
-    super(testName);
-  }
-
   public void setUp() {
     request = new Request(1, 1, 100);
     virtualNodes = new HashMap<Integer, VirtualNode>();

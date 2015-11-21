@@ -6,10 +6,6 @@ public class VirtualNodeTest extends TestCase {
 
   private VirtualNode virtualNode;
 
-  public VirtualNodeTest(String testName) {
-    super(testName);
-  }
-
   public void setUp() {
     virtualNode = new VirtualNode(1, 100.2);
   }

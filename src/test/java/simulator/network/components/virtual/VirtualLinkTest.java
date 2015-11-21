@@ -10,10 +10,6 @@ public class VirtualLinkTest extends TestCase {
   private VirtualNode node2;
   private VirtualLink virtualLink;
 
-  public VirtualLinkTest(String testName) {
-    super(testName);
-  }
-
   public void setUp() {
     node1 = new VirtualNode(1, 50.2);
     node2 = new VirtualNode(2, 50.0);

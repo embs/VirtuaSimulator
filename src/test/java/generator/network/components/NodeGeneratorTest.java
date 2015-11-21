@@ -12,10 +12,6 @@ public class NodeGeneratorTest extends TestCase {
   private PhysicalNode generatedPhysicalNode;
   private VirtualNode generatedVirtualNode;
 
-  public NodeGeneratorTest(String testName) {
-    super(testName);
-  }
-
   public void setUp() {
     nodeGenerator = new NodeGenerator();
     nodeId = 1;

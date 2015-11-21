@@ -18,10 +18,6 @@ public class GraspMapperTest extends TestCase {
   private SubstrateNetwork substrateNetwork;
   private ArrayList<Request> requests;
 
-  public GraspMapperTest(String testName) {
-    super(testName);
-  }
-
   public void setUp() {
     mapper = new GraspMapper();
     substrateNetwork = new SubstrateNetwork();

@@ -6,10 +6,6 @@ public class RandomizerTest extends TestCase {
 
   private Randomizer randomizer;
 
-  public RandomizerTest(String testName) {
-    super(testName);
-  }
-
   public void setUp() {
     randomizer = Randomizer.getInstance();
   }

@@ -6,10 +6,6 @@ public class DynamicGraphTest extends TestCase {
 
   private DynamicGraph graph;
 
-  public DynamicGraphTest(String testName) {
-    super(testName);
-  }
-
   public void setUp() {
     graph = new DynamicGraph("acceptanceRate over time", 2);
     graph.setColumnHeader(0, "tempo");

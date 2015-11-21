@@ -16,10 +16,6 @@ public class SimulationTest extends TestCase {
   private Simulation simulation;
   private IMapper mapper;
 
-  public SimulationTest(String testName) {
-    super(testName);
-  }
-
   public void setUp() {
     simulationName = "OptFIVNMP_20_0";
     simulation = new Simulation(simulationName,

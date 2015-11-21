@@ -12,10 +12,6 @@ public class SubstrateNetworkTest extends TestCase {
   private HashMap<Integer, PhysicalNode> physicalNodes;
   private HashMap<String, PhysicalLink> physicalLinks;
 
-  public SubstrateNetworkTest(String testName) {
-    super(testName);
-  }
-
   public void setUp() {
     substrateNetwork = new SubstrateNetwork();
     physicalNodes = new HashMap<Integer, PhysicalNode>();

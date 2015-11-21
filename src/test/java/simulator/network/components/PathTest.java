@@ -21,10 +21,6 @@ public class PathTest extends TestCase {
   private VirtualNode n1;
   private VirtualNode n2;
 
-  public PathTest(String testName) {
-    super(testName);
-  }
-
   public void setUp() {
     physicalNode1 = new PhysicalNode(1, 100);
     physicalNode2 = new PhysicalNode(2, 100);

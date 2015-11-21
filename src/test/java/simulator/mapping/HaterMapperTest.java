@@ -13,10 +13,6 @@ public class HaterMapperTest extends TestCase {
   private SubstrateNetwork substrateNetwork;
   private Request poorRequest;
 
-  public HaterMapperTest(String testName) {
-    super(testName);
-  }
-
   public void setUp() {
     mapper = new HaterMapper();
     substrateNetwork = new SubstrateNetwork();

@@ -6,10 +6,6 @@ public class GraphTest extends TestCase {
 
   private Graph graph;
 
-  public GraphTest(String testName) {
-    super(testName);
-  }
-
   public void setUp() {
     graph = new Graph("TestGraph", 4, 3);
     graph.setLineHeader(0, "20 nós");

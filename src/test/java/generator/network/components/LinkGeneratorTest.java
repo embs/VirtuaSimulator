@@ -17,10 +17,6 @@ public class LinkGeneratorTest extends TestCase {
   private VirtualLink generatedVirtualLink;
   private String linkId;
 
-  public LinkGeneratorTest(String testName) {
-    super(testName);
-  }
-
   public void setUp() {
     nodeGenerator = new NodeGenerator();
     linkGenerator = new LinkGenerator();
