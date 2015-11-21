@@ -14,7 +14,7 @@ public class VirtuaVNMPReaderTest extends TestCase {
 
   public VirtuaVNMPReaderTest(String testName) {
     super(testName);
-    reader = new VirtuaVNMPReader("/media/embs/Data/VirtuaVNMPs/vVNMP1.txt");
+    reader = new VirtuaVNMPReader("src/test/resources/VirtuaVNMPs/vVNMP1.txt");
     request = reader.getVirtualNetworkRequests().get(0);
   }
 

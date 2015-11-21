@@ -17,8 +17,8 @@ public class ViNEYardVNMPReaderTest extends TestCase {
   public ViNEYardVNMPReaderTest(String testName) {
     super(testName);
     reader = new ViNEYardVNMPReader(
-      "/home/embs/Code/vine-yard/sub-50.txt",
-      "/home/embs/Code/vine-yard/r-2000-50-20-10-10-10-50");
+      "src/test/resources/vine-yard/sub-50.txt",
+      "src/test/resources/vine-yard/requests");
     substrateNetwork = reader.getSubstrateNetwork();
     request = reader.getVirtualNetworkRequests().get(0);
   }

@@ -51,9 +51,6 @@ Running tests for a single test class:
 $ mvn test -Dtest=GraphTest.java # run tests in GraphTest.java
 ```
 
-PS.: test cases depend on a lot of stuff. All dependencies must be supplied or
-tests won't pass.
-
 ### Contributing
 
 * Fork;
