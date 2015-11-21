@@ -1,8 +1,6 @@
 package simulator.mapping;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -34,10 +32,6 @@ public class MappingTest extends TestCase {
       hostingLinks.add(new PhysicalLink(linkId, new PhysicalNode(i, 100),
                                                new PhysicalNode(i+1, 100), 200, 5, 5));
     }
-  }
-
-  public static Test suite() {
-    return new TestSuite(MappingTest.class);
   }
 
   public void testAddNodeMapping() {

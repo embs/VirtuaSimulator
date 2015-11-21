@@ -2,9 +2,7 @@ package graphicator.io;
 
 import java.util.HashMap;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 public class VirtuaSimulatorTraceReaderTest extends TestCase {
 
@@ -16,10 +14,6 @@ public class VirtuaSimulatorTraceReaderTest extends TestCase {
     reader = new VirtuaSimulatorTraceReader();
     metrics = reader.readTrace(
       "src/test/resources/VirtuaSimulator/traces/eu_20_0_prob_simulation.txt");
-  }
-
-  public static Test suite() {
-    return new TestSuite(VirtuaSimulatorTraceReaderTest.class);
   }
 
   public void testAcceptedRequests() {

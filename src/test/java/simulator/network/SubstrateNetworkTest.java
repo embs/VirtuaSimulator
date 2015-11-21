@@ -1,8 +1,6 @@
 package simulator.network;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import java.util.HashMap;
 
@@ -28,10 +26,6 @@ public class SubstrateNetworkTest extends TestCase {
                                                    physicalNodes.get(5), 5, 5, 5);
       physicalLinks.put(linkId, physicalLink);
     }
-  }
-
-  public static Test suite() {
-    return new TestSuite(SubstrateNetworkTest.class);
   }
 
   public void testGetHashNodes() {

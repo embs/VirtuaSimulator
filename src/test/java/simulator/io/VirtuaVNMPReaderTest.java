@@ -1,8 +1,6 @@
 package simulator.io;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import simulator.network.components.physical.PhysicalNode;
 import simulator.simulation.Request;
@@ -16,10 +14,6 @@ public class VirtuaVNMPReaderTest extends TestCase {
     super(testName);
     reader = new VirtuaVNMPReader("src/test/resources/VirtuaSimulator/VNMPs/vVNMP1.txt");
     request = reader.getVirtualNetworkRequests().get(0);
-  }
-
-  public static Test suite() {
-    return new TestSuite(VirtuaVNMPReaderTest.class);
   }
 
   public void testNumberOfSubstrateNodes() {

@@ -1,8 +1,6 @@
 package generator.network.components;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import simulator.network.components.physical.PhysicalNode;
 import simulator.network.components.virtual.VirtualNode;
@@ -20,10 +18,6 @@ public class NodeGeneratorTest extends TestCase {
     nodeId = 1;
     generatedPhysicalNode = nodeGenerator.generatePhysicalNode(nodeId);
     generatedVirtualNode = nodeGenerator.generateVirtualNode(nodeId);
-  }
-
-  public static Test suite() {
-    return new TestSuite(NodeGeneratorTest.class);
   }
 
   public void testGeneratedPhysicalNodeId() {

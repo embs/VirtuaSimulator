@@ -1,8 +1,6 @@
 package graphicator.graphs;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 public class GraphTest extends TestCase {
 
@@ -22,10 +20,6 @@ public class GraphTest extends TestCase {
     graph.setLine(1, new String[]{ "4", "5", "6" });
     graph.setLine(2, new String[]{ "7", "8", "9" });
     graph.setLine(3, new String[]{ "10", "11", "12" });
-  }
-
-  public static Test suite() {
-    return new TestSuite(GraphTest.class);
   }
 
   public void testGraphTableLinesHeaders() {

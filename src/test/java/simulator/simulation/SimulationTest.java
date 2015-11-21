@@ -1,8 +1,6 @@
 package simulator.simulation;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import java.io.File;
 import java.util.HashMap;
@@ -31,10 +29,6 @@ public class SimulationTest extends TestCase {
     if(outputFile.exists()) {
       outputFile.delete();
     }
-  }
-
-  public static Test suite() {
-    return new TestSuite(SimulationTest.class);
   }
 
   public void testGetMappings() {

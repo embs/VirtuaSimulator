@@ -1,8 +1,6 @@
 package generator.util;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 public class RandomizerTest extends TestCase {
 
@@ -11,10 +9,6 @@ public class RandomizerTest extends TestCase {
   public RandomizerTest(String testName) {
     super(testName);
     randomizer = Randomizer.getInstance();
-  }
-
-  public static Test suite() {
-    return new TestSuite(RandomizerTest.class);
   }
 
   public void testNextInt() {

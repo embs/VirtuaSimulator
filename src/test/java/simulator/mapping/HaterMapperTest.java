@@ -1,8 +1,6 @@
 package simulator.mapping;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import java.util.HashMap;
 
@@ -20,10 +18,6 @@ public class HaterMapperTest extends TestCase {
     mapper = new HaterMapper();
     substrateNetwork = new SubstrateNetwork();
     poorRequest = new Request(0, 0, 0);
-  }
-
-  public static Test suite() {
-    return new TestSuite(HaterMapperTest.class);
   }
 
   public void testAddNodeMapping() {

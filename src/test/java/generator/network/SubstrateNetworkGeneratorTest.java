@@ -1,8 +1,6 @@
 package generator.network;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import simulator.network.SubstrateNetwork;
 
@@ -17,10 +15,6 @@ public class SubstrateNetworkGeneratorTest extends TestCase {
     substrateNetworkGenerator = new SubstrateNetworkGenerator();
     numberOfNodes = 50;
     generatedSubstrateNetwork = substrateNetworkGenerator.generate(numberOfNodes);
-  }
-
-  public static Test suite() {
-    return new TestSuite(SubstrateNetworkGeneratorTest.class);
   }
 
   public void testGeneratedSubstrateNetworkNumberOfNodes() {

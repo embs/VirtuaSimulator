@@ -1,8 +1,6 @@
 package graphicator.graphs;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 public class DynamicGraphTest extends TestCase {
 
@@ -13,10 +11,6 @@ public class DynamicGraphTest extends TestCase {
     graph = new DynamicGraph("acceptanceRate over time", 2);
     graph.setColumnHeader(0, "tempo");
     graph.setColumnHeader(1, "aceitação");
-  }
-
-  public static Test suite() {
-    return new TestSuite(DynamicGraphTest.class);
   }
 
   public void testAddLine() {

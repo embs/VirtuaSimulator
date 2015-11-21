@@ -5,9 +5,7 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import simulator.network.components.physical.*;
 import simulator.network.components.virtual.*;
@@ -35,10 +33,6 @@ public class PathTest extends TestCase {
     path.addLink(physicalLink2);
     n1 = new VirtualNode(1, 100);
     n2 = new VirtualNode(2, 200);
-  }
-
-  public static Test suite() {
-    return new TestSuite(PathTest.class);
   }
 
   public void testGetTotalDelay() {

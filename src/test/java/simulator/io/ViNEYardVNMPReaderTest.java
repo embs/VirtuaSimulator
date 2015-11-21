@@ -1,8 +1,6 @@
 package simulator.io;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import simulator.network.SubstrateNetwork;
 import simulator.network.components.physical.PhysicalNode;
@@ -21,10 +19,6 @@ public class ViNEYardVNMPReaderTest extends TestCase {
       "src/test/resources/ViNEYard/requests/1");
     substrateNetwork = reader.getSubstrateNetwork();
     request = reader.getVirtualNetworkRequests().get(0);
-  }
-
-  public static Test suite() {
-    return new TestSuite(ViNEYardVNMPReaderTest.class);
   }
 
   public void testNumberOfSubstrateNodes() {

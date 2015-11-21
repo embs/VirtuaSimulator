@@ -1,8 +1,6 @@
 package simulator.network.components.virtual;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import simulator.network.components.virtual.VirtualNode;
 
@@ -17,10 +15,6 @@ public class VirtualLinkTest extends TestCase {
     node1 = new VirtualNode(1, 50.2);
     node2 = new VirtualNode(2, 50.0);
     virtualLink = new VirtualLink("1:2", node1, node2, 10.1, 40);
-  }
-
-  public static Test suite() {
-    return new TestSuite(VirtualLinkTest.class);
   }
 
   public void testGetId() {

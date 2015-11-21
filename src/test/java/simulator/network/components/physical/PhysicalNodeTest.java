@@ -1,8 +1,6 @@
 package simulator.network.components.physical;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import simulator.network.components.virtual.VirtualNode;
 
@@ -13,10 +11,6 @@ public class PhysicalNodeTest extends TestCase {
   public PhysicalNodeTest(String testName) {
     super(testName);
     physicalNode = new PhysicalNode(1, 100.2);
-  }
-
-  public static Test suite() {
-    return new TestSuite(PhysicalNodeTest.class);
   }
 
   public void testGetId() {

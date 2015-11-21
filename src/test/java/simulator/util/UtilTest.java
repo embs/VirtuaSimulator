@@ -1,8 +1,6 @@
 package simulator.util;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import org.uncommons.maths.statistics.DataSet;
 
@@ -14,10 +12,6 @@ public class UtilTest extends TestCase {
     super(testName);
     double[] values = { 2.2, 5.0, 150.52 };
     data = new DataSet(values);
-  }
-
-  public static Test suite() {
-    return new TestSuite(UtilTest.class);
   }
 
   public void testGetAverage() {

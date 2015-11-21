@@ -1,8 +1,6 @@
 package simulator.network.components.virtual;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 public class VirtualNodeTest extends TestCase {
 
@@ -11,10 +9,6 @@ public class VirtualNodeTest extends TestCase {
   public VirtualNodeTest(String testName) {
     super(testName);
     virtualNode = new VirtualNode(1, 100.2);
-  }
-
-  public static Test suite() {
-    return new TestSuite(VirtualNodeTest.class);
   }
 
   public void testGetId() {

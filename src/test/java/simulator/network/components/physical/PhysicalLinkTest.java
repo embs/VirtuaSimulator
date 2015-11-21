@@ -1,8 +1,6 @@
 package simulator.network.components.physical;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import simulator.network.components.physical.PhysicalNode;
 import simulator.network.components.virtual.VirtualLink;
@@ -19,10 +17,6 @@ public class PhysicalLinkTest extends TestCase {
     node1 = new PhysicalNode(1, 50);
     node2 = new PhysicalNode(2, 50);
     physicalLink = new PhysicalLink("1:2", node1, node2, 20.1, 40, 100);
-  }
-
-  public static Test suite() {
-    return new TestSuite(PhysicalLinkTest.class);
   }
 
   public void testGetId() {

@@ -1,8 +1,6 @@
 package simulator.mapping;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,10 +26,6 @@ public class GraspMapperTest extends TestCase {
       "src/test/resources/OptFI/VNMPs/eu_20_0_prob");
     substrateNetwork = reader.getSubstrateNetwork();
     requests = reader.getVirtualNetworkRequests();
-  }
-
-  public static Test suite() {
-    return new TestSuite(GraspMapperTest.class);
   }
 
   public void testFindFirstPhysicalNodeFor() {

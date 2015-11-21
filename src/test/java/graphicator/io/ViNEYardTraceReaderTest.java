@@ -2,9 +2,7 @@ package graphicator.io;
 
 import java.util.HashMap;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 public class ViNEYardTraceReaderTest extends TestCase {
 
@@ -17,10 +15,6 @@ public class ViNEYardTraceReaderTest extends TestCase {
     metrics = reader.readTrace(
       "src/test/resources/ViNEYard/traces/MySimINFOCOM2009.out",
       "src/test/resources/ViNEYard/traces/time.out");
-  }
-
-  public static Test suite() {
-    return new TestSuite(ViNEYardTraceReaderTest.class);
   }
 
   public void testAcceptedRequests() {

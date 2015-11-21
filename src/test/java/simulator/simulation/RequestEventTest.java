@@ -1,8 +1,6 @@
 package simulator.simulation;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 public class RequestEventTest extends TestCase {
 
@@ -13,10 +11,6 @@ public class RequestEventTest extends TestCase {
     super(testName);
     request = new Request(1, 2, 3);
     event = new RequestEvent(request, 2, RequestEvent.ARRIVAL_EVENT);
-  }
-
-  public static Test suite() {
-    return new TestSuite(RequestEventTest.class);
   }
 
   public void testGetRequest() {

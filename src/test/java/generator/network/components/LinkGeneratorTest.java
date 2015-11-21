@@ -1,8 +1,6 @@
 package generator.network.components;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import simulator.network.components.physical.*;
 import simulator.network.components.virtual.*;
@@ -32,10 +30,6 @@ public class LinkGeneratorTest extends TestCase {
     destinyVirtualNode = nodeGenerator.generateVirtualNode(2);
     generatedVirtualLink = linkGenerator.generateVirtualLink(linkId,
       sourceVirtualNode, destinyVirtualNode);
-  }
-
-  public static Test suite() {
-    return new TestSuite(LinkGeneratorTest.class);
   }
 
   public void testGeneratedPhysicalLinkId() {

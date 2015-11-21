@@ -1,8 +1,6 @@
 package simulator.io;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import simulator.network.components.physical.PhysicalNode;
 import simulator.simulation.Request;
@@ -16,10 +14,6 @@ public class OptFIVNMPReaderTest extends TestCase {
     super(testName);
     reader = new OptFIVNMPReader("src/test/resources/OptFI/VNMPs/eu_20_0_prob");
     request = reader.getVirtualNetworkRequests().get(0);
-  }
-
-  public static Test suite() {
-    return new TestSuite(OptFIVNMPReaderTest.class);
   }
 
   public void testNumberOfSubstrateNodes() {

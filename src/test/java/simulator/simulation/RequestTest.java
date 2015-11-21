@@ -1,8 +1,6 @@
 package simulator.simulation;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import java.util.HashMap;
 
@@ -28,10 +26,6 @@ public class RequestTest extends TestCase {
                                                  virtualNodes.get(5), 5, 5);
       virtualLinks.put(linkId, virtualLink);
     }
-  }
-
-  public static Test suite() {
-    return new TestSuite(RequestTest.class);
   }
 
   public void testGetVirtualNodes() {
