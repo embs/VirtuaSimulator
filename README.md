@@ -1,65 +1,62 @@
 # VirtuaSimulator
 
-Setup básico:
-* Git;
+VirtuaSimulator provides facilities for virtual embedded networks simulation and
+assessment. It focuses primarily on network dependability attributes.
+
+Setup:
 * Java;
 * Maven;
 
-### Estrutura do Código
-
-Três módulos:
+### Code Modules
 
 1. Generator;
 2. Graphicator;
 3. Simulator;
 
 #### Generator
-Responsável pela geração de entradas para simulações (e.g.: redes substrato e
-redes físicas).
+Generate random input for simulation experiments. It may, for instance, generate
+random substrate networks and virtual network requests for an environment of
+network virtualization.
 
 #### Graphicator
-Responsável pela criação de arquivos em formatos apropriados para visualização
-gráfica (através de ferramentas como o LibreOffice, por exemplo) gerados a partir
-da leitura dos arquivos de saída das simulações.
+Create formatted files for properly data visualization. It takes simulation's
+output and generates files that may serve as input for tools like LibreOffice.
 
 #### Simulator
-Responsável pela execução das simulações de mapeamento de redes virtuais numa
-rede infraestrutural física. Também é o modulo em que residem implementações de
-abordagens para alocação de recursos em ambientes de virtualização de redes.
+Simulate embedding of virtual network requests onto a substrate physical network.
+It also disposes implementation for allocation approaches -- in other words, for
+Virtual Network Mapping Problem solvers.
 
-Obs.: cada módulo possui uma pasta `tasks` em que residem arquivos que podem
-ser executados através do Maven. As tasks servem de interface para pesquisadores
-e curiosos que querem utilizar os serviços providos pelo VirtuaSimulator.
+#### Tasks
+Each module owns some tasks that serve as sample simulator utilization.
 
-### Executando as tasks
-Com o maven:
+### Executing tasks
+Run tasks with Maven exec plugin:
 ```bash
 $ mvn clean compile exec:java -Dexec.mainClass=generator.tasks.CreateVirtuaVNMPs
 ```
-Esse comando:
+In summary:
 
-1. Remove todos os arquivos previamente compilados, se existirem (`clean`);
-2. Compila o projeto (`compile`);
-3. Executa a classe passada como parâmetro através da flag `-Dexec.mainClass`;
+1. `clean` removes all previously compiled files -- if any;
+2. `compile` compiles the source code;
+3. `exec:java` invokes Java main from class passed through `-Dexec.mainClass`;
 
-### Rodando os testes
-Com o maven:
+### Running the tests
+
 ```bash
 $ mvn test
 ```
-É possível executar os testes de uma única classe:
+Running tests for a single test class:
 ```bash
-$ mvn test -Dtest=GraphTest.java
+$ mvn test -Dtest=GraphTest.java # run tests in GraphTest.java
 ```
-Em que `GraphTest.java` é o nome do arquivo em que se encontra a suíte de testes
-a ser executada.
 
-Obs.: os testes possuem muitas dependências de arquivos. Para que todos sejam
-executados com sucesso (e sem falhas), é necessário fazer o setup de todo o sistema
-de arquivos de acordo com as demandas de cada teste.
+PS.: test cases depend on a lot of stuff. All dependencies must be supplied or
+tests won't pass.
 
-### Contribuindo
+### Contributing
 
 * Fork;
-* Novo branch;
-* Pull request;
+* Create new branch;
+* Fix some messy thing or implement a new awesome feature;
+* Issue a pull request;
