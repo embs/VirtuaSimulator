@@ -4,6 +4,7 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import java.io.File;
 import java.util.HashMap;
 
 import simulator.io.OptFIVNMPReader;
@@ -23,6 +24,13 @@ public class SimulationTest extends TestCase {
     simulation = new Simulation(simulationName,
       new OptFIVNMPReader("src/test/resources/OptFI/VNMPs/eu_20_0_prob"));
     mapper = new HaterMapper();
+  }
+
+  protected void tearDown() {
+    File outputFile = new File("OptFIVNMP_20_0_simulation.txt");
+    if(outputFile.exists()) {
+      outputFile.delete();
+    }
   }
 
   public static Test suite() {
