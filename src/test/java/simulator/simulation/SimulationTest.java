@@ -21,7 +21,7 @@ public class SimulationTest extends TestCase {
     super(testName);
     simulationName = "OptFIVNMP_20_0";
     simulation = new Simulation(simulationName,
-      new OptFIVNMPReader("/media/embs/Data/VNMP_Instances/20/eu_20_0_prob"));
+      new OptFIVNMPReader("src/test/resources/OptFI/VNMPs/eu_20_0_prob"));
     mapper = new HaterMapper();
   }
 

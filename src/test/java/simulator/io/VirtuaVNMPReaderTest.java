@@ -14,7 +14,7 @@ public class VirtuaVNMPReaderTest extends TestCase {
 
   public VirtuaVNMPReaderTest(String testName) {
     super(testName);
-    reader = new VirtuaVNMPReader("src/test/resources/VirtuaVNMPs/vVNMP1.txt");
+    reader = new VirtuaVNMPReader("src/test/resources/VirtuaSimulator/VNMPs/vVNMP1.txt");
     request = reader.getVirtualNetworkRequests().get(0);
   }
 
@@ -23,7 +23,7 @@ public class VirtuaVNMPReaderTest extends TestCase {
   }
 
   public void testNumberOfSubstrateNodes() {
-    assertEquals(50, reader.getSubstrateNetwork().getAmountNodes());
+    assertEquals(20, reader.getSubstrateNetwork().getAmountNodes());
   }
 
   public void testNumberOfSubstrateLinks() {
@@ -31,7 +31,7 @@ public class VirtuaVNMPReaderTest extends TestCase {
   }
 
   public void testGetVirtualNetworkRequests() {
-    assertEquals(30, reader.getVirtualNetworkRequests().size());
+    assertEquals(40, reader.getVirtualNetworkRequests().size());
   }
 
   public void testFirstVirtualNetworkRequestNullity() {

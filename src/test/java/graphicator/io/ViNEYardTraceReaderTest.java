@@ -15,8 +15,8 @@ public class ViNEYardTraceReaderTest extends TestCase {
     super(testName);
     reader = new ViNEYardTraceReader();
     metrics = reader.readTrace(
-      "/media/embs/Data/OptFIVNMP_Instances_ViNE_format/20/eu_20_0_prob/MySimINFOCOM2009.out",
-      "/media/embs/Data/OptFIVNMP_Instances_ViNE_format/20/eu_20_0_prob/time.out");
+      "src/test/resources/ViNEYard/traces/MySimINFOCOM2009.out",
+      "src/test/resources/ViNEYard/traces/time.out");
   }
 
   public static Test suite() {

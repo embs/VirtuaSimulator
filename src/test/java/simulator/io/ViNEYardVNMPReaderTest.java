@@ -17,8 +17,8 @@ public class ViNEYardVNMPReaderTest extends TestCase {
   public ViNEYardVNMPReaderTest(String testName) {
     super(testName);
     reader = new ViNEYardVNMPReader(
-      "src/test/resources/vine-yard/sub-50.txt",
-      "src/test/resources/vine-yard/requests");
+      "src/test/resources/ViNEYard/substrate/sub-50.txt",
+      "src/test/resources/ViNEYard/requests/1");
     substrateNetwork = reader.getSubstrateNetwork();
     request = reader.getVirtualNetworkRequests().get(0);
   }
@@ -51,7 +51,7 @@ public class ViNEYardVNMPReaderTest extends TestCase {
   }
 
   public void testGetVirtualNetworkRequests() {
-    assertEquals(2000, reader.getVirtualNetworkRequests().size());
+    assertEquals(1, reader.getVirtualNetworkRequests().size());
   }
 
   public void testFirstVirtualNetworkRequestNullity() {
@@ -59,28 +59,28 @@ public class ViNEYardVNMPReaderTest extends TestCase {
   }
 
   public void testFirstVirtualNetworkRequestId() {
-    assertEquals(1508, request.getId());
+    assertEquals(492, request.getId());
   }
 
   public void testFirstVirtualNetworkRequestNumberOfNodes() {
-    assertEquals(8, request.getAmountNodes());
+    assertEquals(16, request.getAmountNodes());
   }
 
   public void testFirstVirtualNetworkRequestNumberOfLinks() {
-    assertEquals(8, request.getAmountLinks());
+    assertEquals(24, request.getAmountLinks());
   }
 
   public void testFirstVirtualNetworkRequestFirstNodeCapacity() {
-    assertEquals(6.662476, request.getVirtualNodes().get(0).getCapacity());
+    assertEquals(3.740279, request.getVirtualNodes().get(0).getCapacity());
   }
 
   public void testFirstVirtualNetworkRequestFirstLinkBandwidthCapacity() {
-    assertEquals(10.430588, request.getVirtualLinks().get("4:0").
+    assertEquals(10.307391, request.getVirtualLinks().get("9:0").
       getBandwidthCapacity());
   }
 
   public void testFirstVirtualNetworkRequestFirstLinkDelay() {
-    assertEquals(43.785719, request.getVirtualLinks().get("4:0").
+    assertEquals(70.310927, request.getVirtualLinks().get("9:0").
       getDelay());
   }
 }

@@ -17,10 +17,10 @@ public class ViNEYardMappingsReaderTest extends TestCase {
   public ViNEYardMappingsReaderTest(String testName) {
     super(testName);
     reader = new ViNEYardMappingsReader(
-    	"/media/embs/Data/OptFIVNMP_Instances_ViNE_format/100/eu_100_0_prob/sub.txt",
-    	"/media/embs/Data/OptFIVNMP_Instances_ViNE_format/100/eu_100_0_prob/requests");
+    	"src/test/resources/ViNEYard/substrate/sub-100.txt",
+    	"src/test/resources/ViNEYard/requests/40");
     mappings = reader.readMappings(
-    	"/media/embs/Data/OptFIVNMP_Instances_ViNE_format/100/eu_100_0_prob/mappings.out");
+    	"src/test/resources/ViNEYard/mappings/mappings.out");
   }
 
   public static Test suite() {

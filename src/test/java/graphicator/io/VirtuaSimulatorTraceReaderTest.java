@@ -15,7 +15,7 @@ public class VirtuaSimulatorTraceReaderTest extends TestCase {
     super(testName);
     reader = new VirtuaSimulatorTraceReader();
     metrics = reader.readTrace(
-      "/media/embs/Data/VirtuaSimulationOptFIVNMPs/eu_20_0_prob_simulation.txt");
+      "src/test/resources/VirtuaSimulator/traces/eu_20_0_prob_simulation.txt");
   }
 
   public static Test suite() {

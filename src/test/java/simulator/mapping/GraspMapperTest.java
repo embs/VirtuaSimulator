@@ -25,7 +25,7 @@ public class GraspMapperTest extends TestCase {
     mapper = new GraspMapper();
     substrateNetwork = new SubstrateNetwork();
     OptFIVNMPReader reader = new OptFIVNMPReader(
-      "/media/embs/Data/VNMP_Instances/20/eu_20_0_prob");
+      "src/test/resources/OptFI/VNMPs/eu_20_0_prob");
     substrateNetwork = reader.getSubstrateNetwork();
     requests = reader.getVirtualNetworkRequests();
   }
