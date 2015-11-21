@@ -18,6 +18,9 @@ public class SimulationTest extends TestCase {
 
   public SimulationTest(String testName) {
     super(testName);
+  }
+
+  public void setUp() {
     simulationName = "OptFIVNMP_20_0";
     simulation = new Simulation(simulationName,
       new OptFIVNMPReader("src/test/resources/OptFI/VNMPs/eu_20_0_prob"));

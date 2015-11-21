@@ -21,6 +21,9 @@ public class MappingTest extends TestCase {
 
   public MappingTest(String testName) {
     super(testName);
+  }
+
+  public void setUp() {
     mapping = new Mapping();
     hostingNode = new PhysicalNode(1, 100);
     virtualNode = new VirtualNode(1, 50);

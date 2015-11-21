@@ -14,6 +14,9 @@ public class RequestTest extends TestCase {
 
   public RequestTest(String testName) {
     super(testName);
+  }
+
+  public void setUp() {
     request = new Request(1, 1, 100);
     virtualNodes = new HashMap<Integer, VirtualNode>();
     virtualLinks = new HashMap<String, VirtualLink>();

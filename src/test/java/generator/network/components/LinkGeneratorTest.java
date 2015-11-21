@@ -19,6 +19,9 @@ public class LinkGeneratorTest extends TestCase {
 
   public LinkGeneratorTest(String testName) {
     super(testName);
+  }
+
+  public void setUp() {
     nodeGenerator = new NodeGenerator();
     linkGenerator = new LinkGenerator();
     sourcePhysicalNode = nodeGenerator.generatePhysicalNode(1);

@@ -11,6 +11,9 @@ public class VirtuaSimulatorTraceReaderTest extends TestCase {
 
   public VirtuaSimulatorTraceReaderTest(String testName) {
     super(testName);
+  }
+
+  public void setUp() {
     reader = new VirtuaSimulatorTraceReader();
     metrics = reader.readTrace(
       "src/test/resources/VirtuaSimulator/traces/eu_20_0_prob_simulation.txt");

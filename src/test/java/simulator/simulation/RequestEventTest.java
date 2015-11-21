@@ -9,6 +9,9 @@ public class RequestEventTest extends TestCase {
 
   public RequestEventTest(String testName) {
     super(testName);
+  }
+
+  public void setUp() {
     request = new Request(1, 2, 3);
     event = new RequestEvent(request, 2, RequestEvent.ARRIVAL_EVENT);
   }

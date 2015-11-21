@@ -8,6 +8,9 @@ public class VirtualNodeTest extends TestCase {
 
   public VirtualNodeTest(String testName) {
     super(testName);
+  }
+
+  public void setUp() {
     virtualNode = new VirtualNode(1, 100.2);
   }
 

@@ -11,6 +11,9 @@ public class ViNEYardTraceReaderTest extends TestCase {
 
   public ViNEYardTraceReaderTest(String testName) {
     super(testName);
+  }
+
+  public void setUp() {
     reader = new ViNEYardTraceReader();
     metrics = reader.readTrace(
       "src/test/resources/ViNEYard/traces/MySimINFOCOM2009.out",

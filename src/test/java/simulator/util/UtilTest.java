@@ -10,6 +10,9 @@ public class UtilTest extends TestCase {
 
   public UtilTest(String testName) {
     super(testName);
+  }
+
+  protected void setUp() {
     double[] values = { 2.2, 5.0, 150.52 };
     data = new DataSet(values);
   }

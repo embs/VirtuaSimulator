@@ -12,6 +12,9 @@ public class SubstrateNetworkGeneratorTest extends TestCase {
 
   public SubstrateNetworkGeneratorTest(String testName) {
     super(testName);
+  }
+
+  public void setUp() {
     substrateNetworkGenerator = new SubstrateNetworkGenerator();
     numberOfNodes = 50;
     generatedSubstrateNetwork = substrateNetworkGenerator.generate(numberOfNodes);

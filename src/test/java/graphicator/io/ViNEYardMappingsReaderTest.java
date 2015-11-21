@@ -14,11 +14,14 @@ public class ViNEYardMappingsReaderTest extends TestCase {
 
   public ViNEYardMappingsReaderTest(String testName) {
     super(testName);
+  }
+
+  public void setUp() {
     reader = new ViNEYardMappingsReader(
-    	"src/test/resources/ViNEYard/substrate/sub-100.txt",
-    	"src/test/resources/ViNEYard/requests/40");
+      "src/test/resources/ViNEYard/substrate/sub-100.txt",
+      "src/test/resources/ViNEYard/requests/40");
     mappings = reader.readMappings(
-    	"src/test/resources/ViNEYard/mappings/mappings.out");
+      "src/test/resources/ViNEYard/mappings/mappings.out");
   }
 
   public void testMappings() {

@@ -20,6 +20,9 @@ public class GraspMapperTest extends TestCase {
 
   public GraspMapperTest(String testName) {
     super(testName);
+  }
+
+  public void setUp() {
     mapper = new GraspMapper();
     substrateNetwork = new SubstrateNetwork();
     OptFIVNMPReader reader = new OptFIVNMPReader(

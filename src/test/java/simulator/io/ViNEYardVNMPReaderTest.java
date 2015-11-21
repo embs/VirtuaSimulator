@@ -14,6 +14,9 @@ public class ViNEYardVNMPReaderTest extends TestCase {
 
   public ViNEYardVNMPReaderTest(String testName) {
     super(testName);
+  }
+
+  public void setUp() {
     reader = new ViNEYardVNMPReader(
       "src/test/resources/ViNEYard/substrate/sub-50.txt",
       "src/test/resources/ViNEYard/requests/1");

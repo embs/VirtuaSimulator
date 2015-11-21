@@ -12,6 +12,9 @@ public class VirtuaVNMPReaderTest extends TestCase {
 
   public VirtuaVNMPReaderTest(String testName) {
     super(testName);
+  }
+
+  public void setUp() {
     reader = new VirtuaVNMPReader("src/test/resources/VirtuaSimulator/VNMPs/vVNMP1.txt");
     request = reader.getVirtualNetworkRequests().get(0);
   }

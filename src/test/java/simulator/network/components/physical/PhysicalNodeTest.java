@@ -10,6 +10,9 @@ public class PhysicalNodeTest extends TestCase {
 
   public PhysicalNodeTest(String testName) {
     super(testName);
+  }
+
+  public void setUp() {
     physicalNode = new PhysicalNode(1, 100.2);
   }
 

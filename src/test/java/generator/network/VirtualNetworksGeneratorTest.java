@@ -14,6 +14,9 @@ public class VirtualNetworksGeneratorTest extends TestCase {
 
   public VirtualNetworksGeneratorTest(String testName) {
     super(testName);
+  }
+
+  public void setUp() {
     virtualNetworksGenerator = new VirtualNetworksGenerator();
     numberOfNetworks = 30;
     generatedRequests = virtualNetworksGenerator.generateVirtualNetworks(

@@ -23,6 +23,9 @@ public class PathTest extends TestCase {
 
   public PathTest(String testName) {
     super(testName);
+  }
+
+  public void setUp() {
     physicalNode1 = new PhysicalNode(1, 100);
     physicalNode2 = new PhysicalNode(2, 100);
     physicalNode3 = new PhysicalNode(3, 100);

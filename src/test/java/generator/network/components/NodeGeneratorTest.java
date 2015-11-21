@@ -14,6 +14,9 @@ public class NodeGeneratorTest extends TestCase {
 
   public NodeGeneratorTest(String testName) {
     super(testName);
+  }
+
+  public void setUp() {
     nodeGenerator = new NodeGenerator();
     nodeId = 1;
     generatedPhysicalNode = nodeGenerator.generatePhysicalNode(nodeId);

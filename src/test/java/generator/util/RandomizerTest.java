@@ -8,6 +8,9 @@ public class RandomizerTest extends TestCase {
 
   public RandomizerTest(String testName) {
     super(testName);
+  }
+
+  public void setUp() {
     randomizer = Randomizer.getInstance();
   }
 

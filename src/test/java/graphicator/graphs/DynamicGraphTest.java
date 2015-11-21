@@ -8,6 +8,9 @@ public class DynamicGraphTest extends TestCase {
 
   public DynamicGraphTest(String testName) {
     super(testName);
+  }
+
+  public void setUp() {
     graph = new DynamicGraph("acceptanceRate over time", 2);
     graph.setColumnHeader(0, "tempo");
     graph.setColumnHeader(1, "aceitação");
