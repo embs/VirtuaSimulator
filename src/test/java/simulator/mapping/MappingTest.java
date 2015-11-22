@@ -18,6 +18,8 @@ public class MappingTest extends TestCase {
   private ArrayList<PhysicalLink> hostingLinks;
   private VirtualNode virtualNode;
   private VirtualLink virtualLink;
+  private final int SCALE = 10;
+  private final RoundingMode ROUNDING_MODE = RoundingMode.HALF_UP;
 
   public void setUp() {
     mapping = new Mapping();
@@ -166,11 +168,7 @@ public class MappingTest extends TestCase {
       expected = expected.multiply(link.getAvailability());
     }
 
-    int scale = 10;
-    RoundingMode mode = RoundingMode.HALF_UP;
-    expected = expected.setScale(scale, mode);
-    BigDecimal actual = mapping.getAvailability().setScale(scale, mode);
-    assertEquals(expected.doubleValue(), actual.doubleValue());
+    assertEquals(round(expected), round(mapping.getAvailability()));
   }
 
   public void testGetAvailabilityTakesIntoAccountUniqIntermediaryNodesOnly() {
@@ -186,6 +184,10 @@ public class MappingTest extends TestCase {
       expected = expected.multiply(link.getAvailability());
     }
 
-    assertEquals(expected.doubleValue(), mapping.getAvailability().doubleValue());
+    assertEquals(round(expected), round(mapping.getAvailability()));
+  }
+
+  private BigDecimal round(BigDecimal bigDecimal) {
+    return bigDecimal.setScale(SCALE, ROUNDING_MODE);
   }
 }
