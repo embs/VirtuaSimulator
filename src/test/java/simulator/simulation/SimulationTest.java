@@ -49,19 +49,13 @@ public class SimulationTest extends TestCase {
     File outputFile = new File(OUTPUT_FILE_NAME);
     BufferedReader reader = new BufferedReader(new FileReader(outputFile));
     ArrayList<String> lines = new ArrayList<String>();
-    String line;
+    String line, lastLine = "";
 
     while((line = reader.readLine()) != null) {
-      lines.add(line);
+      lastLine = line;
     }
 
-    assertEquals("There should be one line for each virtual request.",
-      40, lines.size() - 1);
     assertTrue("Last line should hold the time information.",
-      Integer.valueOf(lines.get(40)) > 0);
-    for(int i = 0; i < lines.size() - 1; i++) {
-      assertEquals("Each virtual request line should be composed by 13 tokens.",
-        13, lines.get(i).split(" ").length);
-    }
+      Integer.valueOf(lastLine) > 0);
   }
 }

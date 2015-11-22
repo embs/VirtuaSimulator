@@ -1,13 +1,12 @@
 package simulator.simulation;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.HashMap;
 
 import simulator.io.IVNMPReader;
+import simulator.io.Tracer;
 import simulator.mapping.IMapper;
 import simulator.mapping.Mapping;
 import simulator.network.SubstrateNetwork;
@@ -32,13 +31,9 @@ public class Simulation {
   }
 
   public void simulate(IMapper mapper) {
-    PrintWriter writer = null;
-    try {
-      writer = new PrintWriter(name + "_simulation.txt");
-    } catch(FileNotFoundException e) {
-      e.printStackTrace();
-    }
+    Tracer tracer = new Tracer(name + "_simulation.txt");
     long startTime = System.currentTimeMillis();
+
     while(!requestEvents.isEmpty()) {
       RequestEvent currentRequestEvent = requestEvents.poll();
       Request currentRequest = currentRequestEvent.getRequest();
@@ -59,24 +54,10 @@ public class Simulation {
       } else { // departure event
         mappings.get(currentRequest).clearMappings();
       }
-
-      writer.println(String.format("%s %s %s %s %s %s %s %s %s %s",
-        currentRequestEvent,
-        (mappings.containsKey(currentRequest) ? "1" : "0"),
-        substrateNetwork.getMaximumNodesLoad(),
-        substrateNetwork.getAverageNodesLoad(),
-        substrateNetwork.getMaximumLinksBandwidthLoad(),
-        substrateNetwork.getAverageLinksBandwidthLoad(),
-        substrateNetwork.getNodesLoadStandardDeviation(),
-        substrateNetwork.getLinksBandwidthLoadStandardDeviation(),
-        (currentRequestEvent.isArrivalEvent() && mappings.containsKey(currentRequest) ?
-          mappings.get(currentRequest).getAvailability() : "0.0"),
-        (currentRequestEvent.isArrivalEvent() && mappings.containsKey(currentRequest) ?
-          mappings.get(currentRequest).getNodeSharingRate(currentRequest.getAmountNodes()) : "0.0")
-        ));
+      tracer.trace(substrateNetwork, mappings, currentRequestEvent);
     }
-    writer.println(System.currentTimeMillis() - startTime);
-    writer.close();
+    tracer.println(System.currentTimeMillis() - startTime);
+    tracer.close();
   }
 
   public HashMap<Request, Mapping> getMappings() {
