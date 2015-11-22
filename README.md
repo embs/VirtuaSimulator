@@ -57,3 +57,7 @@ $ mvn test -Dtest=GraphTest.java # run tests in GraphTest.java
 * Create new branch;
 * Fix some messy thing or implement a new awesome feature;
 * Issue a pull request;
+
+<a href="mailto:edmatheus.santana@gmail.com?subject=[VirtuaSimulator]%20Pair%20program%20with%20me" title="Pair program with me!">
+  <img  src="http://pairprogramwith.me/badge.png" alt="Pair program with me!" />
+</a>
