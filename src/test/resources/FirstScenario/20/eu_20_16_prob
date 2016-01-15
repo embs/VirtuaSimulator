@@ -1,0 +1,2022 @@
+#Substrate Graph
+# noVertices
+20
+# noArcs
+40
+# Vertices: id cost cpu group
+0 20 6511 32
+1 9 8283 32
+2 41 8287 32
+3 47 3582 32
+4 25 2422 32
+5 28 9499 32
+6 17 2895 32
+7 9 12390 14
+8 2 7353 37
+9 30 7738 37
+10 50 6265 14
+11 34 7414 37
+12 33 6099 37
+13 41 3841 37
+14 32 3009 37
+15 5 5858 37
+16 16 3278 14
+17 50 3697 32
+18 3 3094 14
+19 6 4016 14
+# Arcs: idS idT bandwidth cost delay
+0 1 3242 45 26
+1 0 2051 45 30
+0 5 2398 24 9
+5 0 3761 47 33
+1 2 2349 27 6
+2 1 1378 16 37
+1 3 775 42 14
+3 1 609 12 11
+2 4 831 27 26
+4 2 531 38 32
+4 6 602 48 20
+6 4 285 21 6
+5 7 2507 47 33
+7 5 4248 10 30
+5 17 816 3 33
+17 5 810 13 9
+7 8 1355 27 11
+8 7 2220 37 29
+7 10 2358 50 11
+10 7 1729 2 25
+7 18 843 23 36
+18 7 568 46 23
+7 11 1436 18 17
+11 7 3076 2 29
+8 9 1459 29 40
+9 8 1005 22 30
+9 11 2373 27 5
+11 9 775 27 32
+9 13 1012 35 30
+13 9 820 2 37
+9 14 444 17 37
+14 9 906 32 6
+10 16 766 44 17
+16 10 459 42 13
+10 19 1222 46 20
+19 10 1091 32 8
+11 12 1713 30 23
+12 11 1763 3 23
+12 15 1148 43 18
+15 12 857 2 33
+# noSlices
+40
+#Virtual Graph
+# noVertices
+5
+# noArcs
+4
+# Vertices: id cpu
+0 234
+1 198
+2 126
+3 162
+4 144
+# Arcs: idS idT bandwidth delay
+0 1 66 233
+0 2 42 233
+1 3 54 233
+1 4 48 233
+# Mapping
+34
+# Mapping pairs
+1 19
+1 16
+1 15
+1 14
+1 9
+1 8
+1 7
+1 17
+1 6
+1 13
+1 0
+4 4
+1 1
+3 0
+1 4
+2 10
+1 12
+2 16
+4 6
+2 7
+4 3
+1 11
+3 5
+1 3
+2 18
+3 2
+3 1
+1 18
+1 10
+1 5
+2 19
+4 17
+1 2
+0 12
+# Substrate Size
+20
+# Slice Type
+0
+#Virtual Graph
+# noVertices
+5
+# noArcs
+4
+# Vertices: id cpu
+0 450
+1 390
+2 420
+3 360
+4 390
+# Arcs: idS idT bandwidth delay
+0 1 130 233
+0 2 140 233
+1 3 120 233
+1 4 130 233
+# Mapping
+34
+# Mapping pairs
+1 19
+1 16
+1 15
+1 14
+1 9
+1 8
+1 7
+1 17
+1 6
+1 13
+1 0
+4 4
+1 1
+3 0
+1 4
+2 10
+1 12
+2 16
+4 6
+2 7
+4 3
+1 11
+3 5
+1 3
+2 18
+3 2
+3 1
+1 18
+1 10
+1 5
+2 19
+4 17
+1 2
+0 12
+# Substrate Size
+20
+# Slice Type
+0
+#Virtual Graph
+# noVertices
+5
+# noArcs
+4
+# Vertices: id cpu
+0 60
+1 48
+2 60
+3 24
+4 36
+# Arcs: idS idT bandwidth delay
+0 1 16 233
+0 2 20 233
+2 3 8 233
+2 4 12 233
+# Mapping
+34
+# Mapping pairs
+2 13
+2 12
+2 11
+2 10
+2 14
+2 9
+2 6
+2 15
+2 5
+2 3
+2 8
+2 1
+2 2
+4 4
+2 16
+4 6
+2 7
+4 3
+3 0
+1 7
+2 0
+1 16
+1 10
+4 17
+2 19
+2 4
+1 19
+0 11
+3 5
+2 17
+3 2
+2 18
+1 18
+3 1
+# Substrate Size
+20
+# Slice Type
+0
+#Virtual Graph
+# noVertices
+5
+# noArcs
+4
+# Vertices: id cpu
+0 228
+1 228
+2 144
+3 216
+4 192
+# Arcs: idS idT bandwidth delay
+0 1 76 233
+0 2 48 233
+0 3 72 233
+0 4 64 233
+# Mapping
+17
+# Mapping pairs
+4 15
+4 13
+4 12
+3 4
+3 3
+2 5
+3 17
+2 1
+2 2
+2 0
+1 7
+3 6
+1 16
+1 18
+1 10
+1 19
+0 9
+# Substrate Size
+20
+# Slice Type
+0
+#Virtual Graph
+# noVertices
+5
+# noArcs
+4
+# Vertices: id cpu
+0 306
+1 216
+2 234
+3 126
+4 252
+# Arcs: idS idT bandwidth delay
+0 1 72 233
+0 2 78 233
+0 3 42 233
+0 4 84 233
+# Mapping
+17
+# Mapping pairs
+4 15
+4 13
+4 12
+3 4
+3 3
+2 5
+3 17
+2 1
+2 2
+2 0
+1 7
+3 6
+1 16
+1 18
+1 10
+1 19
+0 9
+# Substrate Size
+20
+# Slice Type
+0
+#Virtual Graph
+# noVertices
+5
+# noArcs
+4
+# Vertices: id cpu
+0 108
+1 63
+2 45
+3 99
+4 36
+# Arcs: idS idT bandwidth delay
+0 1 21 233
+0 2 15 233
+0 3 33 233
+0 4 12 233
+# Mapping
+17
+# Mapping pairs
+4 15
+4 13
+4 12
+3 4
+2 5
+3 17
+2 1
+2 2
+2 0
+1 7
+3 6
+1 16
+1 18
+1 10
+1 19
+3 3
+0 14
+# Substrate Size
+20
+# Slice Type
+0
+#Virtual Graph
+# noVertices
+6
+# noArcs
+5
+# Vertices: id cpu
+0 240
+1 168
+2 240
+3 120
+4 192
+5 240
+# Arcs: idS idT bandwidth delay
+0 1 56 233
+0 2 80 233
+0 3 40 233
+2 4 64 233
+2 5 80 233
+# Mapping
+37
+# Mapping pairs
+2 15
+2 13
+2 12
+2 11
+2 10
+2 14
+2 9
+2 6
+2 5
+2 3
+2 2
+4 4
+5 13
+2 7
+4 6
+2 16
+4 3
+3 0
+2 0
+1 7
+5 15
+1 16
+3 5
+1 18
+3 1
+3 2
+2 17
+2 18
+2 4
+1 19
+5 12
+1 10
+4 17
+2 19
+2 8
+2 1
+0 8
+# Substrate Size
+20
+# Slice Type
+0
+#Virtual Graph
+# noVertices
+5
+# noArcs
+4
+# Vertices: id cpu
+0 540
+1 180
+2 330
+3 420
+4 420
+# Arcs: idS idT bandwidth delay
+0 1 60 233
+0 2 110 233
+0 3 140 233
+0 4 140 233
+# Mapping
+17
+# Mapping pairs
+4 15
+4 13
+4 12
+3 4
+3 3
+2 5
+2 2
+2 0
+1 7
+3 6
+1 16
+1 18
+1 10
+1 19
+3 17
+2 1
+0 8
+# Substrate Size
+20
+# Slice Type
+0
+#Virtual Graph
+# noVertices
+6
+# noArcs
+5
+# Vertices: id cpu
+0 198
+1 198
+2 144
+3 162
+4 144
+5 126
+# Arcs: idS idT bandwidth delay
+0 1 66 233
+0 2 48 233
+1 3 54 233
+1 4 48 233
+0 5 42 233
+# Mapping
+37
+# Mapping pairs
+1 17
+1 15
+1 14
+1 9
+1 8
+1 7
+1 6
+1 2
+1 13
+1 0
+5 15
+1 16
+1 1
+4 4
+5 13
+3 0
+1 4
+2 10
+1 12
+2 16
+4 6
+2 7
+4 3
+1 11
+3 5
+1 3
+2 18
+3 2
+3 1
+1 18
+5 12
+1 19
+1 10
+1 5
+2 19
+4 17
+0 8
+# Substrate Size
+20
+# Slice Type
+0
+#Virtual Graph
+# noVertices
+6
+# noArcs
+5
+# Vertices: id cpu
+0 450
+1 270
+2 420
+3 150
+4 150
+5 120
+# Arcs: idS idT bandwidth delay
+0 1 90 233
+0 2 140 233
+0 3 50 233
+3 4 50 233
+3 5 40 233
+# Mapping
+37
+# Mapping pairs
+3 19
+3 18
+3 17
+3 16
+3 15
+3 14
+3 13
+3 12
+3 11
+3 8
+3 7
+3 6
+3 5
+3 0
+3 4
+4 6
+4 3
+2 5
+2 1
+3 10
+3 9
+2 2
+4 4
+5 13
+1 7
+2 0
+5 15
+1 16
+3 2
+3 1
+1 18
+1 19
+5 12
+1 10
+4 17
+3 3
+0 14
+# Substrate Size
+20
+# Slice Type
+0
+#Virtual Graph
+# noVertices
+5
+# noArcs
+4
+# Vertices: id cpu
+0 14
+1 5
+2 2
+3 4
+4 3
+# Arcs: idS idT bandwidth delay
+0 1 5 119
+0 2 2 174
+0 3 4 122
+0 4 3 112
+# Mapping
+9
+# Mapping pairs
+4 13
+2 6
+2 4
+1 11
+3 5
+3 1
+1 14
+0 19
+4 15
+# Substrate Size
+20
+# Slice Type
+1
+#Virtual Graph
+# noVertices
+5
+# noArcs
+4
+# Vertices: id cpu
+0 13
+1 4
+2 1
+3 3
+4 5
+# Arcs: idS idT bandwidth delay
+0 1 4 41
+0 2 1 118
+0 3 3 150
+0 4 5 57
+# Mapping
+9
+# Mapping pairs
+4 16
+3 3
+2 1
+2 0
+1 12
+3 4
+1 15
+0 11
+4 10
+# Substrate Size
+20
+# Slice Type
+1
+#Virtual Graph
+# noVertices
+5
+# noArcs
+4
+# Vertices: id cpu
+0 16
+1 5
+2 3
+3 5
+4 3
+# Arcs: idS idT bandwidth delay
+0 1 5 97
+0 2 3 70
+0 3 5 46
+0 4 3 137
+# Mapping
+9
+# Mapping pairs
+3 15
+3 12
+2 18
+2 7
+4 3
+1 5
+4 17
+1 0
+0 9
+# Substrate Size
+20
+# Slice Type
+1
+#Virtual Graph
+# noVertices
+6
+# noArcs
+5
+# Vertices: id cpu
+0 14
+1 4
+2 2
+3 2
+4 4
+5 2
+# Arcs: idS idT bandwidth delay
+0 1 4 33
+0 2 2 91
+0 3 2 174
+0 4 4 50
+0 5 2 122
+# Mapping
+11
+# Mapping pairs
+5 1
+5 5
+4 11
+3 6
+3 4
+2 15
+2 12
+1 10
+4 8
+1 7
+0 19
+# Substrate Size
+20
+# Slice Type
+1
+#Virtual Graph
+# noVertices
+6
+# noArcs
+5
+# Vertices: id cpu
+0 14
+1 5
+2 1
+3 1
+4 5
+5 2
+# Arcs: idS idT bandwidth delay
+0 1 5 104
+0 2 1 120
+0 3 1 128
+0 4 5 61
+0 5 2 74
+# Mapping
+11
+# Mapping pairs
+5 11
+4 18
+4 19
+3 3
+2 2
+2 1
+3 17
+5 9
+1 15
+0 10
+1 13
+# Substrate Size
+20
+# Slice Type
+1
+#Virtual Graph
+# noVertices
+5
+# noArcs
+4
+# Vertices: id cpu
+0 9
+1 2
+2 1
+3 1
+4 5
+# Arcs: idS idT bandwidth delay
+0 1 2 100
+0 2 1 114
+0 3 1 50
+0 4 5 141
+# Mapping
+9
+# Mapping pairs
+4 15
+4 12
+2 19
+1 8
+1 11
+3 1
+3 5
+0 3
+2 10
+# Substrate Size
+20
+# Slice Type
+1
+#Virtual Graph
+# noVertices
+5
+# noArcs
+4
+# Vertices: id cpu
+0 10
+1 4
+2 3
+3 1
+4 2
+# Arcs: idS idT bandwidth delay
+0 1 4 86
+0 2 3 102
+0 3 1 40
+0 4 2 126
+# Mapping
+9
+# Mapping pairs
+4 3
+3 11
+3 8
+2 13
+2 12
+1 5
+4 17
+1 0
+0 18
+# Substrate Size
+20
+# Slice Type
+1
+#Virtual Graph
+# noVertices
+6
+# noArcs
+5
+# Vertices: id cpu
+0 13
+1 1
+2 1
+3 4
+4 4
+5 3
+# Arcs: idS idT bandwidth delay
+0 1 1 161
+0 2 1 103
+0 3 4 52
+0 4 4 76
+0 5 3 51
+# Mapping
+11
+# Mapping pairs
+5 7
+4 18
+4 19
+3 15
+3 13
+5 10
+2 0
+1 4
+1 17
+2 5
+0 14
+# Substrate Size
+20
+# Slice Type
+1
+#Virtual Graph
+# noVertices
+6
+# noArcs
+5
+# Vertices: id cpu
+0 13
+1 2
+2 1
+3 4
+4 1
+5 5
+# Arcs: idS idT bandwidth delay
+0 1 2 61
+0 2 1 112
+0 3 4 119
+0 4 1 69
+0 5 5 111
+# Mapping
+11
+# Mapping pairs
+4 19
+4 18
+5 3
+3 9
+2 13
+2 15
+3 14
+1 16
+5 6
+1 7
+0 5
+# Substrate Size
+20
+# Slice Type
+1
+#Virtual Graph
+# noVertices
+6
+# noArcs
+5
+# Vertices: id cpu
+0 11
+1 1
+2 3
+3 1
+4 5
+5 1
+# Arcs: idS idT bandwidth delay
+0 1 1 99
+0 2 3 192
+0 3 1 160
+0 4 5 107
+0 5 1 67
+# Mapping
+11
+# Mapping pairs
+5 11
+4 19
+4 18
+3 0
+2 17
+3 1
+2 4
+1 7
+5 8
+1 16
+0 13
+# Substrate Size
+20
+# Slice Type
+1
+#Virtual Graph
+# noVertices
+6
+# noArcs
+24
+# Vertices: id cpu
+0 308
+1 428
+2 466
+3 378
+4 372
+5 264
+# Arcs: idS idT bandwidth delay
+0 1 59 233
+0 2 69 233
+1 2 52 233
+1 3 35 233
+2 3 54 233
+2 4 52 233
+3 4 68 233
+3 5 12 233
+4 5 39 233
+4 0 62 233
+5 2 27 233
+5 1 42 233
+1 0 69 233
+2 0 29 233
+2 1 40 233
+3 1 59 233
+3 2 50 233
+4 2 22 233
+4 3 63 233
+5 3 27 233
+5 4 36 233
+0 4 26 233
+2 5 58 233
+1 5 58 233
+# Mapping
+20
+# Mapping pairs
+5 19
+5 18
+4 15
+4 13
+4 12
+3 4
+2 5
+2 2
+2 0
+1 7
+1 10
+3 6
+1 16
+3 3
+0 14
+3 17
+2 1
+0 8
+0 9
+0 11
+# Substrate Size
+20
+# Slice Type
+2
+#Virtual Graph
+# noVertices
+6
+# noArcs
+24
+# Vertices: id cpu
+0 352
+1 380
+2 330
+3 366
+4 254
+5 292
+# Arcs: idS idT bandwidth delay
+0 1 49 233
+0 2 27 233
+1 2 43 233
+1 3 21 233
+2 3 22 233
+2 4 56 233
+3 0 68 233
+3 5 48 233
+4 5 58 233
+4 1 45 233
+5 0 39 233
+5 1 64 233
+1 0 20 233
+2 0 24 233
+2 1 63 233
+3 1 36 233
+3 2 31 233
+4 2 24 233
+0 3 34 233
+5 3 20 233
+5 4 23 233
+1 4 56 233
+0 5 66 233
+1 5 50 233
+# Mapping
+20
+# Mapping pairs
+5 19
+5 18
+4 15
+4 13
+4 12
+3 4
+2 5
+2 2
+2 0
+1 7
+1 10
+3 6
+1 16
+3 3
+0 14
+3 17
+2 1
+0 8
+0 9
+0 11
+# Substrate Size
+20
+# Slice Type
+2
+#Virtual Graph
+# noVertices
+6
+# noArcs
+24
+# Vertices: id cpu
+0 358
+1 302
+2 360
+3 290
+4 398
+5 368
+# Arcs: idS idT bandwidth delay
+0 1 53 233
+0 2 24 233
+1 2 44 233
+1 3 36 233
+2 5 31 233
+2 4 39 233
+3 4 32 233
+3 0 62 233
+4 5 61 233
+4 0 50 233
+5 0 26 233
+5 1 25 233
+1 0 27 233
+2 0 43 233
+2 1 67 233
+3 1 51 233
+5 2 69 233
+4 2 52 233
+4 3 36 233
+0 3 12 233
+5 4 64 233
+0 4 63 233
+0 5 27 233
+1 5 44 233
+# Mapping
+20
+# Mapping pairs
+5 19
+5 18
+4 15
+4 13
+4 12
+3 4
+2 5
+2 2
+2 0
+1 7
+1 10
+3 6
+1 16
+3 3
+0 14
+3 17
+2 1
+0 8
+0 9
+0 11
+# Substrate Size
+20
+# Slice Type
+2
+#Virtual Graph
+# noVertices
+5
+# noArcs
+10
+# Vertices: id cpu
+0 86
+1 122
+2 154
+3 152
+4 80
+# Arcs: idS idT bandwidth delay
+0 1 29 233
+1 2 45 233
+2 3 46 233
+3 4 53 233
+4 0 13 233
+1 0 16 233
+2 1 31 233
+3 2 23 233
+4 3 27 233
+0 4 14 233
+# Mapping
+20
+# Mapping pairs
+4 15
+4 13
+4 12
+3 4
+2 5
+2 2
+2 0
+1 7
+3 6
+1 16
+1 10
+1 19
+3 3
+0 14
+2 1
+0 8
+3 17
+0 9
+1 18
+0 11
+# Substrate Size
+20
+# Slice Type
+2
+#Virtual Graph
+# noVertices
+5
+# noArcs
+10
+# Vertices: id cpu
+0 220
+1 192
+2 100
+3 90
+4 206
+# Arcs: idS idT bandwidth delay
+0 1 43 233
+1 2 33 233
+2 0 10 233
+3 4 45 233
+4 0 58 233
+1 0 63 233
+2 1 40 233
+0 2 39 233
+4 3 45 233
+0 4 28 233
+# Mapping
+20
+# Mapping pairs
+4 15
+4 13
+4 12
+3 4
+2 5
+2 2
+2 0
+1 7
+3 6
+1 16
+1 10
+1 19
+3 3
+0 14
+2 1
+0 8
+3 17
+0 9
+1 18
+0 11
+# Substrate Size
+20
+# Slice Type
+2
+#Virtual Graph
+# noVertices
+5
+# noArcs
+10
+# Vertices: id cpu
+0 152
+1 204
+2 114
+3 90
+4 198
+# Arcs: idS idT bandwidth delay
+0 1 18 233
+1 2 58 233
+2 3 27 233
+3 4 11 233
+4 0 32 233
+1 0 44 233
+2 1 30 233
+3 2 34 233
+4 3 67 233
+0 4 58 233
+# Mapping
+20
+# Mapping pairs
+4 15
+4 13
+4 12
+3 4
+2 5
+2 2
+2 0
+1 7
+3 6
+1 16
+1 10
+1 19
+3 3
+0 14
+2 1
+0 8
+3 17
+0 9
+1 18
+0 11
+# Substrate Size
+20
+# Slice Type
+2
+#Virtual Graph
+# noVertices
+5
+# noArcs
+10
+# Vertices: id cpu
+0 192
+1 172
+2 184
+3 182
+4 76
+# Arcs: idS idT bandwidth delay
+0 1 55 233
+1 2 20 233
+2 3 58 233
+3 4 47 233
+4 0 13 233
+1 0 66 233
+2 1 34 233
+3 2 44 233
+4 3 25 233
+0 4 41 233
+# Mapping
+20
+# Mapping pairs
+4 15
+4 13
+4 12
+3 4
+2 5
+2 2
+2 0
+1 7
+3 6
+1 16
+1 10
+1 19
+3 3
+0 14
+2 1
+0 8
+3 17
+0 9
+1 18
+0 11
+# Substrate Size
+20
+# Slice Type
+2
+#Virtual Graph
+# noVertices
+5
+# noArcs
+10
+# Vertices: id cpu
+0 332
+1 220
+2 212
+3 92
+4 144
+# Arcs: idS idT bandwidth delay
+0 1 64 233
+1 2 63 233
+2 0 40 233
+3 4 46 233
+4 0 61 233
+1 0 47 233
+2 1 66 233
+0 2 61 233
+4 3 11 233
+0 4 41 233
+# Mapping
+20
+# Mapping pairs
+4 15
+4 13
+4 12
+3 4
+2 5
+2 2
+2 0
+1 7
+3 6
+1 16
+1 10
+1 19
+3 3
+0 14
+2 1
+0 8
+3 17
+0 9
+1 18
+0 11
+# Substrate Size
+20
+# Slice Type
+2
+#Virtual Graph
+# noVertices
+5
+# noArcs
+10
+# Vertices: id cpu
+0 192
+1 102
+2 114
+3 238
+4 240
+# Arcs: idS idT bandwidth delay
+0 1 70 233
+1 2 11 233
+2 3 28 233
+3 4 67 233
+4 0 67 233
+1 0 40 233
+2 1 29 233
+3 2 52 233
+4 3 53 233
+0 4 26 233
+# Mapping
+20
+# Mapping pairs
+4 15
+4 13
+4 12
+3 4
+2 5
+2 2
+2 0
+1 7
+3 6
+1 16
+1 10
+1 19
+3 3
+0 14
+2 1
+0 8
+3 17
+0 9
+1 18
+0 11
+# Substrate Size
+20
+# Slice Type
+2
+#Virtual Graph
+# noVertices
+5
+# noArcs
+10
+# Vertices: id cpu
+0 192
+1 108
+2 244
+3 272
+4 94
+# Arcs: idS idT bandwidth delay
+0 1 45 233
+1 2 40 233
+2 3 64 233
+3 4 66 233
+4 0 16 233
+1 0 14 233
+2 1 58 233
+3 2 70 233
+4 3 31 233
+0 4 51 233
+# Mapping
+20
+# Mapping pairs
+4 15
+4 13
+4 12
+3 4
+2 5
+2 2
+2 0
+1 7
+3 6
+1 16
+1 10
+1 19
+3 3
+0 14
+2 1
+0 8
+3 17
+0 9
+1 18
+0 11
+# Substrate Size
+20
+# Slice Type
+2
+#Virtual Graph
+# noVertices
+6
+# noArcs
+24
+# Vertices: id cpu
+0 222
+1 84
+2 81
+3 108
+4 126
+5 177
+# Arcs: idS idT bandwidth delay
+0 1 14 68
+0 2 15 135
+1 2 5 133
+1 3 11 179
+2 3 4 111
+2 4 3 188
+3 0 8 233
+3 5 5 183
+4 5 14 121
+4 0 18 125
+5 0 19 119
+5 1 9 51
+1 0 6 124
+2 0 4 195
+2 1 16 137
+3 1 13 175
+3 2 10 114
+4 2 10 180
+0 3 7 181
+5 3 20 174
+5 4 11 112
+0 4 18 86
+0 5 20 76
+1 5 6 74
+# Mapping
+20
+# Mapping pairs
+5 19
+5 18
+4 15
+4 13
+4 12
+3 4
+2 5
+2 2
+2 0
+1 7
+1 10
+3 6
+1 16
+3 3
+0 14
+3 17
+2 1
+0 8
+0 9
+0 11
+# Substrate Size
+20
+# Slice Type
+3
+#Virtual Graph
+# noVertices
+6
+# noArcs
+24
+# Vertices: id cpu
+0 171
+1 90
+2 87
+3 102
+4 228
+5 105
+# Arcs: idS idT bandwidth delay
+0 1 14 68
+0 2 15 135
+1 4 9 117
+1 3 9 179
+2 3 6 111
+2 4 10 188
+3 4 11 226
+3 0 3 233
+4 5 20 121
+4 0 16 125
+5 0 5 119
+5 2 17 128
+1 0 12 124
+2 0 3 195
+4 1 19 113
+3 1 5 175
+3 2 15 114
+4 2 15 180
+4 3 6 226
+0 3 20 181
+5 4 13 112
+0 4 2 86
+0 5 6 76
+2 5 10 145
+# Mapping
+20
+# Mapping pairs
+5 19
+5 18
+4 15
+4 13
+4 12
+3 4
+2 5
+2 2
+2 0
+1 7
+1 10
+3 6
+1 16
+3 3
+0 14
+3 17
+2 1
+0 8
+0 9
+0 11
+# Substrate Size
+20
+# Slice Type
+3
+#Virtual Graph
+# noVertices
+6
+# noArcs
+20
+# Vertices: id cpu
+0 117
+1 114
+2 123
+3 114
+4 129
+5 129
+# Arcs: idS idT bandwidth delay
+0 1 11 68
+0 3 15 181
+1 2 9 133
+1 3 14 179
+2 5 16 145
+2 4 16 188
+3 0 20 233
+3 5 14 183
+4 5 16 121
+4 0 10 125
+5 0 10 119
+5 2 11 128
+1 0 15 124
+2 1 9 137
+3 1 4 175
+4 2 17 180
+5 3 8 174
+5 4 14 112
+0 4 8 86
+0 5 5 76
+# Mapping
+20
+# Mapping pairs
+5 19
+5 18
+4 15
+4 13
+4 12
+3 4
+2 5
+2 2
+2 0
+1 7
+1 10
+3 6
+1 16
+3 3
+0 14
+3 17
+2 1
+0 8
+0 9
+0 11
+# Substrate Size
+20
+# Slice Type
+3
+#Virtual Graph
+# noVertices
+5
+# noArcs
+10
+# Vertices: id cpu
+0 42
+1 24
+2 99
+3 60
+4 12
+# Arcs: idS idT bandwidth delay
+0 1 14 76
+1 2 3 133
+2 3 17 111
+3 4 5 226
+4 2 2 180
+1 0 5 124
+2 1 14 145
+3 2 15 114
+4 3 2 226
+2 4 2 188
+# Mapping
+20
+# Mapping pairs
+4 15
+4 13
+4 12
+3 4
+2 5
+2 2
+2 0
+1 7
+3 6
+1 16
+1 10
+1 19
+3 3
+0 14
+2 1
+0 8
+3 17
+0 9
+1 18
+0 11
+# Substrate Size
+20
+# Slice Type
+3
+#Virtual Graph
+# noVertices
+5
+# noArcs
+10
+# Vertices: id cpu
+0 69
+1 90
+2 45
+3 138
+4 87
+# Arcs: idS idT bandwidth delay
+0 1 17 76
+1 3 10 179
+2 3 15 111
+3 4 12 226
+4 0 18 125
+1 0 20 124
+3 1 15 183
+3 2 19 114
+4 3 11 226
+0 4 6 86
+# Mapping
+20
+# Mapping pairs
+4 15
+4 13
+4 12
+3 4
+2 5
+2 2
+2 0
+1 7
+3 6
+1 16
+1 10
+1 19
+3 3
+0 14
+2 1
+0 8
+3 17
+0 9
+1 18
+0 11
+# Substrate Size
+20
+# Slice Type
+3
+#Virtual Graph
+# noVertices
+6
+# noArcs
+24
+# Vertices: id cpu
+0 183
+1 120
+2 99
+3 141
+4 183
+5 156
+# Arcs: idS idT bandwidth delay
+0 1 8 68
+0 2 16 135
+1 2 8 133
+1 3 9 179
+2 3 14 111
+2 4 14 188
+3 4 5 226
+3 5 16 183
+4 5 19 121
+4 0 10 125
+5 0 14 119
+5 1 13 51
+1 0 12 124
+2 0 3 195
+2 1 2 137
+3 1 11 175
+3 2 15 114
+4 2 20 180
+4 3 12 226
+5 3 12 174
+5 4 13 112
+0 4 19 86
+0 5 18 76
+1 5 11 74
+# Mapping
+20
+# Mapping pairs
+5 19
+5 18
+4 15
+4 13
+4 12
+3 4
+2 5
+2 2
+2 0
+1 7
+1 10
+3 6
+1 16
+3 3
+0 14
+3 17
+2 1
+0 8
+0 9
+0 11
+# Substrate Size
+20
+# Slice Type
+3
+#Virtual Graph
+# noVertices
+5
+# noArcs
+10
+# Vertices: id cpu
+0 15
+1 75
+2 69
+3 48
+4 54
+# Arcs: idS idT bandwidth delay
+0 1 5 76
+1 2 11 133
+2 3 5 111
+3 4 9 226
+4 2 2 180
+1 0 14 124
+2 1 14 145
+3 2 7 114
+4 3 16 226
+2 4 4 188
+# Mapping
+20
+# Mapping pairs
+4 15
+4 13
+4 12
+3 4
+2 5
+2 2
+2 0
+1 7
+3 6
+1 16
+1 10
+1 19
+3 3
+0 14
+2 1
+0 8
+3 17
+0 9
+1 18
+0 11
+# Substrate Size
+20
+# Slice Type
+3
+#Virtual Graph
+# noVertices
+6
+# noArcs
+24
+# Vertices: id cpu
+0 207
+1 159
+2 153
+3 102
+4 138
+5 117
+# Arcs: idS idT bandwidth delay
+0 1 20 68
+0 2 19 135
+1 2 14 133
+1 3 17 179
+2 3 4 111
+2 4 7 188
+3 4 14 226
+3 5 5 183
+4 1 17 113
+4 0 14 125
+5 0 19 119
+5 2 2 128
+1 0 10 124
+2 0 15 195
+2 1 5 137
+3 1 13 175
+3 2 2 114
+4 2 7 180
+4 3 8 226
+5 3 18 174
+1 4 12 117
+0 4 12 86
+0 5 18 76
+2 5 20 145
+# Mapping
+20
+# Mapping pairs
+5 19
+5 18
+4 15
+4 13
+4 12
+3 4
+2 5
+2 2
+2 0
+1 7
+1 10
+3 6
+1 16
+3 3
+0 14
+3 17
+2 1
+0 8
+0 9
+0 11
+# Substrate Size
+20
+# Slice Type
+3
+#Virtual Graph
+# noVertices
+5
+# noArcs
+10
+# Vertices: id cpu
+0 60
+1 69
+2 42
+3 42
+4 75
+# Arcs: idS idT bandwidth delay
+0 1 16 76
+1 2 11 133
+2 3 11 111
+3 4 6 226
+4 0 16 125
+1 0 12 124
+2 1 3 145
+3 2 8 114
+4 3 9 226
+0 4 4 86
+# Mapping
+20
+# Mapping pairs
+4 15
+4 13
+4 12
+3 4
+2 5
+2 2
+2 0
+1 7
+3 6
+1 16
+1 10
+1 19
+3 3
+0 14
+2 1
+0 8
+3 17
+0 9
+1 18
+0 11
+# Substrate Size
+20
+# Slice Type
+3
+#Virtual Graph
+# noVertices
+5
+# noArcs
+10
+# Vertices: id cpu
+0 60
+1 69
+2 87
+3 48
+4 24
+# Arcs: idS idT bandwidth delay
+0 1 11 76
+1 2 17 133
+2 3 17 111
+3 4 11 226
+4 0 2 125
+1 0 6 124
+2 1 12 145
+3 2 5 114
+4 3 6 226
+0 4 9 86
+# Mapping
+20
+# Mapping pairs
+4 15
+4 13
+4 12
+3 4
+2 5
+2 2
+2 0
+1 7
+3 6
+1 16
+1 10
+1 19
+3 3
+0 14
+2 1
+0 8
+3 17
+0 9
+1 18
+0 11
+# Substrate Size
+20
+# Slice Type
+3

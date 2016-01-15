@@ -15,8 +15,15 @@ import simulator.simulation.Simulation;
  */
 public class RunFirstScenario {
   public static void main(String[] args) {
-    File baseDir = new File("/media/embs/Data/VNMP_Instances/");
+    String baseDirPath = "/media/embs/Data/VNMP_Instances/";
     String outDir = "/media/embs/Data/VirtuaSimulationSharingNodesOptFIVNMPs/";
+    if(args.length == 1) {
+      baseDirPath = args[0];
+    } else if(args.length == 2) {
+      baseDirPath = args[0];
+      outDir = args[1];
+    }
+    File baseDir = new File(baseDirPath);
     for(File problemsDir : baseDir.listFiles()) {
       for(File problemFile : problemsDir.listFiles()) {
         String filename = problemFile.getAbsolutePath();
@@ -30,3 +37,5 @@ public class RunFirstScenario {
     }
   }
 }
+
+// REFACTOR PHASE!!!
